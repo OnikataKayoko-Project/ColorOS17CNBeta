@@ -461,12 +461,11 @@
                         <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Total
                             Contributors</span>
                     </div>
-                    <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
-                        <span class="block text-xl sm:text-3xl font-bold text-purple-500 dark:text-purple-400">70%
-                        </span>
-                        <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Stable
-                            Build</span>
-                    </div>
+<div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
+    <!-- Tambahkan id="counter-value" dan ubah isi awal jadi 0% -->
+    <span id="counter-value" class="block text-xl sm:text-3xl font-bold text-purple-500 dark:text-purple-400">0%</span>
+    <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Stable Build</span>
+</div>
                 </div>
             </section>
 
@@ -1084,6 +1083,28 @@ function transitionToImage() {
                 card.style.setProperty('--mouse-y', `${y}px`);
             }
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const counter = document.getElementById("counter-value");
+    const target = 70; // Angka tujuan
+    const duration = 1500; // Durasi animasi dalam milidetik (1.5 detik)
+    let startTimestamp = null;
+
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        
+        // Hitung angka saat ini berdasarkan progress
+        const currentVal = Math.floor(progress * target);
+        counter.textContent = currentVal + "%";
+
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+
+    window.requestAnimationFrame(step);
+});
     </script>
 
 
