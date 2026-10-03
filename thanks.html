@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KayokoProject | Special Thanks (ColorOS 17 China Beta)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Outfit & Inter -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Library Canvas Confetti untuk efek petasan -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'media', // Automatic system preference dark/light mode
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'bounce-slow': 'bounceSlow 3s ease-in-out infinite',
+                        'float': 'float 5s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite alternate',
+                        'spring-pop': 'springPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                    },
+                    keyframes: {
+                        bounceSlow: {
+                            '0%, 100%': { transform: 'translateY(-6%) scale(1)' },
+                            '50%': { transform: 'translateY(0%) scale(1.02)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseGlow: {
+                            '0%': { opacity: 0.4, transform: 'scale(1)' },
+                            '100%': { opacity: 0.8, transform: 'scale(1.08)' }
+                        },
+                        springPop: {
+                            '0%': { transform: 'scale(0.92)' },
+                            '60%': { transform: 'scale(1.06)' },
+                            '100%': { transform: 'scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Animated Mesh Gradient Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-color: #0b0f19;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(0, 122, 255, 0.35) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(175, 82, 222, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(0, 199, 190, 0.25) 0%, transparent 60%);
+            background-size: 200% 200%;
+            animation: moveGradient 12s ease infinite alternate;
+        }
+
+        @keyframes moveGradient {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 50% 100%;
+            }
+        }
+
+        /* ColorOS 17 Aquamorphic Frosted Glass (Adaptive Dark & Light) */
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: #f1f5f9;
+            }
+
+            .aquamorphic-glass {
+                background: rgba(22, 22, 30, 0.6);
+                backdrop-filter: blur(28px);
+                -webkit-backdrop-filter: blur(28px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f8fafc;
+                color: #0f172a;
+            }
+
+            body::before {
+                background-color: #f8fafc;
+                background-image:
+                    radial-gradient(circle at 20% 30%, rgba(0, 122, 255, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(175, 82, 222, 0.12) 0%, transparent 50%);
+            }
+
+            .aquamorphic-glass {
+                background: rgba(255, 255, 255, 0.75);
+                backdrop-filter: blur(28px);
+                -webkit-backdrop-filter: blur(28px);
+                border: 1px solid rgba(255, 255, 255, 0.9);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
+            }
+        }
+
+        /* Spring bounce interactive active state */
+        .spring-bounce {
+            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .spring-bounce:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .spring-bounce:active {
+            transform: scale(0.96);
+        }
+
+        /* Active tab bouncer with spring physics */
+        .tab-active-bounce {
+            animation: springPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(150, 150, 150, 0.3);
+            border-radius: 9999px;
+        }
+
+        /* --- ANIMASI MASKOT UTAMA --- */
+        @keyframes mascotSlide {
+            0% {
+                bottom: -120px;
+                opacity: 0;
+                transform: translateX(-50%) scale(0.8);
+            }
+
+            30% {
+                bottom: 24px;
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+
+            65% {
+                bottom: 32px;
+                opacity: 1;
+                transform: translateX(-50%) scale(1.05);
+            }
+
+            100% {
+                bottom: -120px;
+                opacity: 0;
+                transform: translateX(-50%) scale(0.8);
+            }
+        }
+
+        /* --- MATA KIRI: Melirik ke atas lalu diam melihat ke kita --- */
+        @keyframes leftPupilMove {
+
+            0%,
+            20% {
+                transform: translate(0, -2px);
+            }
+
+            40%,
+            100% {
+                transform: translate(0, 1px);
+            }
+        }
+
+        /* --- MATA KANAN: Melirik ke atas, lalu NGEDIP sebelah (Wink) --- */
+        @keyframes rightWink {
+
+            0%,
+            20% {
+                transform: translate(0, -2px) scaleY(1);
+            }
+
+            40%,
+            75% {
+                transform: translate(0, 1px) scaleY(1);
+            }
+
+            50% {
+                transform: translate(0, 1px) scaleY(0.1);
+                /* Ngedip pas lagi liat ke kita */
+            }
+
+            80%,
+            100% {
+                transform: translate(0, 1px) scaleY(1);
+            }
+        }
+
+        /* --- TANGAN KANAN: Melambai pas udah liat ke kita --- */
+        @keyframes waveHand {
+
+            0%,
+            35% {
+                transform: rotate(12deg) translateY(0);
+            }
+
+            45% {
+                transform: rotate(-15deg) translateY(-2px);
+            }
+
+            55% {
+                transform: rotate(20deg) translateY(0);
+            }
+
+            65% {
+                transform: rotate(-10deg) translateY(-1px);
+            }
+
+            75%,
+            100% {
+                transform: rotate(12deg) translateY(0);
+            }
+        }
+
+        /* --- PERCIKAN API --- */
+        @keyframes sparkFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateY(-6px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* --- KELAS PENGHUBUNG --- */
+        .animate-mascot-story {
+            position: fixed;
+            left: 50%;
+            z-index: 999999;
+            pointer-events: none;
+            animation: mascotSlide 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-left-pupil {
+            animation: leftPupilMove 3.5s ease-in-out forwards;
+        }
+
+        .animate-right-wink {
+            animation: rightWink 3.5s ease-in-out forwards;
+            transform-origin: center;
+        }
+
+        .animate-wave {
+            animation: waveHand 1.5s ease-in-out 1.2s infinite;
+            /* Melambai pas di atas */
+            transform-origin: bottom center;
+        }
+
+        .animate-spark {
+            animation: sparkFloat 0.8s ease-in-out infinite;
+        }
+
+        .glow-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+                    rgba(255, 255, 255, 0.08),
+                    /* Warna putih transparan tipis untuk mode terang/umum */
+                    transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Khusus Dark Mode agar cahayanya tetap elegan & tidak terlalu terang */
+        @media (prefers-color-scheme: dark) {
+            .glow-card::before {
+                background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+                        rgba(59, 130, 246, 0.07),
+                        /* Biru sangat transparan (hanya 7%) */
+                        transparent 50%);
+            }
+        }
+
+        .glow-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Tambahan pendukung style aquamorphic glass */
+        .aquamorphic-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .aquamorphic-glass {
+                background: rgba(15, 23, 42, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="min-h-screen relative selection:bg-blue-500 selection:text-white bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100">
+
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/15 rounded-full blur-[130px] animate-pulse-glow">
+        </div>
+        <div class="absolute top-1/2 -right-32 w-96 h-96 bg-purple-600/15 rounded-full blur-[150px] animate-float">
+        </div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-teal-500/10 rounded-full blur-[140px] animate-pulse-glow">
+        </div>
+        <div class="absolute inset-0 mesh-gradient opacity-90"></div>
+    </div>
+
+    <header class="sticky top-0 z-50 px-3 sm:px-8 py-4">
+        <div class="max-w-5xl mx-auto">
+            <nav id="navbar"
+                class="aquamorphic-glass glow-card rounded-full px-4 sm:px-8 py-3.5 flex items-center justify-between transition-all duration-300">
+
+                <!-- Logo & Judul Kiri -->
+                <div class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl overflow-hidden shadow-lg shadow-blue-500/30 flex items-center justify-center bg-white/10">
+                        <img src="PIC.jpg" alt="Logo KayokoProject" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span
+                            class="font-bold text-sm sm:text-lg tracking-tight text-slate-900 dark:text-white">Kayoko<span
+                                class="text-blue-500">Project</span></span>
+                        <span class="text-[10px] sm:text-xs block text-slate-400 font-medium">ColorOS 17 China
+                            Beta</span>
+                    </div>
+                </div>
+
+                <!-- Menu Tab Tengah (Desktop) -->
+                <div
+                    class="hidden sm:flex items-center space-x-2 bg-black/5 dark:bg-white/5 p-1.5 rounded-full border border-black/5 dark:border-white/10">
+                    <button onclick="switchTab('thanks')"
+                        class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-blue-600 text-white shadow-md shadow-blue-600/30 tab-active-bounce"
+                        data-tab="thanks">
+                        <i class="fa-solid fa-heart mr-2 text-xs"></i> Special Thanks
+                    </button>
+                    <button onclick="switchTab('downloads')"
+                        class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all duration-300"
+                        data-tab="downloads">
+                        <i class="fa-solid fa-download mr-2 text-xs"></i> Downloads
+                    </button>
+                </div>
+
+                <!-- Tombol Kanan & Hamburger Mobile -->
+                <div class="flex items-center space-x-2">
+                    <a href="https://t.me/kayokoprojectall/1" target="_blank"
+                        class="hidden md:flex items-center space-x-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 dark:text-blue-400 text-xs font-semibold hover:bg-blue-500/20 transition-all spring-bounce">
+                        <i class="fa-brands fa-telegram text-sm"></i>
+                        <span>By OnikataKayoko</span>
+                    </a>
+                    <button onclick="toggleMobileMenu()"
+                        class="sm:hidden w-10 h-10 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <div id="mobileMenu"
+                class="hidden sm:hidden absolute left-3 right-3 z-50 aquamorphic-glass rounded-3xl mt-2 p-3 space-y-2 border border-black/5 dark:border-white/10 shadow-2xl backdrop-blur-xl">
+                <button onclick="switchTab('thanks'); toggleMobileMenu();"
+                    class="mobile-tab-btn w-full text-left px-4 py-3 rounded-2xl bg-blue-600 text-white text-sm font-medium flex items-center space-x-3 shadow"
+                    data-mobtab="thanks">
+                    <i class="fa-solid fa-heart w-5"></i><span>Special Thanks</span>
+                </button>
+                <button onclick="switchTab('downloads'); toggleMobileMenu();"
+                    class="mobile-tab-btn w-full text-left px-4 py-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 text-sm font-medium flex items-center space-x-3"
+                    data-mobtab="downloads">
+                    <i class="fa-solid fa-download w-5"></i><span>Downloads</span>
+                </button>
+                <a href="https://t.me/kayokoprojectall/1" target="_blank"
+                    class="w-full text-left px-4 py-3 rounded-2xl bg-blue-500/10 text-blue-500 dark:text-blue-400 text-sm font-medium flex items-center space-x-3">
+                    <i class="fa-brands fa-telegram w-5"></i><span>Telegram ( KayokoProject )</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-24">
+
+        <!-- TAB 1: SPECIAL THANKS -->
+        <div id="tabThanks" class="tab-content transition-all duration-300">
+            <section class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
+                    Apresiasi Spesial untuk <br>
+                    <span
+                        class="bg-gradient-to-r from-blue-500 via-teal-400 to-purple-500 bg-clip-text text-transparent">Para
+                        Fixer & Developer</span>
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg font-normal leading-relaxed mb-8 px-2">
+                    Daftar kontributor hebat yang telah berdedikasi membantu nge-fix bug krusial, mengoptimalkan sistem,
+                    serta menjaga kestabilan port rom ColorOS 17 China Beta.
+                </p>
+
+                <div class="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl mx-auto">
+                    <!-- Ditambahkan kelas glow-card -->
+                    <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
+                        <span class="block text-xl sm:text-3xl font-bold text-blue-500 dark:text-blue-400">3</span>
+                        <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Fixer &
+                            Devs</span>
+                    </div>
+                    <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
+                        <span class="block text-xl sm:text-3xl font-bold text-teal-500 dark:text-teal-400">7</span>
+                        <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Total
+                            Contributors</span>
+                    </div>
+                    <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
+                        <span class="block text-xl sm:text-3xl font-bold text-purple-500 dark:text-purple-400">70%
+                        </span>
+                        <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Stable
+                            Build</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="flex items-center justify-center mb-10 px-2">
+                <div
+                    class="inline-flex items-center gap-2 px-5 py-2 rounded-2xl aquamorphic-glass glow-card text-xs font-semibold text-slate-600 dark:text-slate-300 border border-black/5 dark:border-white/10 shadow-sm">
+                    <i class="fa-solid fa-users text-blue-500"></i>
+                    <span>Semua Kontributor</span>
+                </div>
+            </div>
+
+            <!-- Catatan: Kartu di devsGrid yang di-render lewat JS nantinya juga bisa otomatis dikasih kelas glow-card -->
+            <div id="devsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+
+        <!-- TAB 2: DOWNLOADS -->
+        <div id="tabDownloads" class="tab-content hidden transition-all duration-300">
+            <section class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <div
+                    class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-500 dark:text-teal-400 text-xs font-semibold mb-6">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                    <span>ColorOS 17 For Infinix HOT 50 Pro Plus</span>
+                </div>
+                <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
+                    Pusat Unduhan <br>
+                    <span
+                        class="bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">ColorOS
+                        17
+                        China Beta</span>
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg font-normal leading-relaxed mb-8 px-2">
+                    Unduh file porting resmi ColorOS 17 China Beta yang telah dioptimalkan dan di-fix langsung
+                    untuk INFINIX HOT 50 PRO PLUS
+                </p>
+            </section>
+
+            <!-- Single Download File Card (Diberikan kelas glow-card) -->
+            <div class="max-w-2xl mx-auto">
+                <div
+                    class="aquamorphic-glass glow-card rounded-3xl p-6 sm:p-8 border border-black/5 dark:border-white/10 shadow-2xl relative overflow-hidden">
+                    <div
+                        class="absolute -right-16 -top-16 w-48 h-48 bg-teal-500/10 rounded-full blur-3xl pointer-events-none">
+                    </div>
+                    <div class="flex items-center justify-between mb-6">
+                        <span
+                            class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/30">
+                            <i class="fa-solid fa-shield-check mr-1.5"></i> X6880 Only
+                        </span>
+                        <span
+                            class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 bg-black/5 dark:bg-white/5 px-3 py-1 rounded-xl">v17.1.1
+                            Beta - V1 </span>
+                    </div>
+
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-3">ColorOS 17
+                        China Beta (Infinix HOT 50 Pro Plus) </h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                        Merasakan pengalaman antarmuka kelas flagship kini hadir di Infinix Hot 50 Pro+ Anda! Port ROM
+                        ini dirancang khusus untuk menghadirkan kestabilan tingkat tinggi, dipadukan dengan berbagai
+                        fitur eksklusif dari ColorOS 17 China Beta.
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+                        <div
+                            class="col-span-2 sm:col-span-1 bg-black/5 dark:bg-white/5 p-3 rounded-2xl border border-black/5 dark:border-white/5 text-center">
+                            <span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Ukuran File</span>
+                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">10.5 GB</span>
+                        </div>
+                        <div
+                            class="col-span-2 sm:col-span-1 bg-black/5 dark:bg-white/5 p-3 rounded-2xl border border-black/5 dark:border-white/5 text-center">
+                            <span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Untuk Devices</span>
+                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">Infinix HOT 50 Pro
+                                Plus</span>
+                        </div>
+                        <div
+                            class="col-span-2 sm:col-span-1 bg-black/5 dark:bg-white/5 p-3 rounded-2xl border border-black/5 dark:border-white/5 text-center">
+                            <span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Selinux </span>
+                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">PERMESSIVE </span>
+                        </div>
+                    </div>
+
+                    <!-- Tombol Utama Download -->
+                    <button onclick="triggerConfetti(); alertDownload('Terima Kasih Telah Mengunduh!')"
+                        class="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-teal-500 to-purple-600 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-500/25 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-blue-500/50 hover:brightness-110 active:scale-95 flex items-center justify-center space-x-2 mb-3 cursor-pointer">
+                        <i class="fa-solid fa-cloud-arrow-down text-lg"></i>
+                        <span>Unduh File Sekarang (10.5 GB)</span>
+                    </button>
+
+                    <!-- Tombol Tambahan Kiri-Kanan -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="openExtensionModal()"
+                            class="py-3 px-4 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce">
+                            <i class="fa-solid fa-puzzle-piece text-teal-500"></i>
+                            <span>Extension Module</span>
+                        </button>
+                        <button onclick="openFeaturesBugsModal()"
+                            class="py-3 px-4 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce">
+                            <i class="fa-solid fa-bug text-amber-500"></i>
+                            <span>Features & Bugs</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Unified Modal Box -->
+    <div id="detailModal"
+        class="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div id="modalContent"
+            class="aquamorphic-glass glow-card w-full max-w-lg rounded-3xl p-6 sm:p-8 transform scale-95 transition-all duration-300 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div id="modalBody">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer
+        class="relative z-10 border-t border-black/5 dark:border-white/10 py-10 text-center text-sm text-slate-500 dark:text-slate-400">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col items-center justify-center space-y-4">
+            <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <p class="font-medium text-slate-700 dark:text-slate-300 text-xs sm:text-sm">Crafted with precision by
+                    <a href="https://t.me/kayokoprojectall/1" target="_blank"
+                        class="text-blue-500 dark:text-blue-400 font-bold hover:underline">Onikata Kayoko</a>
+                </p>
+            </div>
+            <p class="text-xs text-slate-400 dark:text-slate-500">© 2026 KayokoProject. PortRom ColorOS 17 China Beta
+            </p>
+            <div class="flex items-center space-x-4 pt-2">
+                <a href="https://t.me/kayokoprojectall" target="_blank"
+                    class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-all spring-bounce"
+                    title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://youtube.com/@nightcoremusiclyricsid?si=fU_Vuz5tBc2eqlvY" target="_blank"
+                    class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-all spring-bounce"
+                    title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://tiktok.com/@systhetic.cn" target="_blank"
+                    class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-gray-800 transition-all spring-bounce"
+                    title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Memaksa halaman selalu kembali ke paling atas (top) setiap kali di-refresh/reload
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.addEventListener('beforeunload', function () {
+            window.scrollTo(0, 0);
+        });
+    </script>
+
+    <script>
+        // Tab switching logic
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
+                btn.classList.add('text-slate-500', 'dark:text-slate-300');
+            });
+            document.querySelectorAll('.mobile-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow');
+                btn.classList.add('bg-black/5', 'dark:bg-white/5', 'text-slate-700', 'dark:text-slate-300');
+            });
+
+            if (tabName === 'thanks') {
+                document.getElementById('tabThanks').classList.remove('hidden');
+                document.querySelectorAll('[data-tab="thanks"]').forEach(btn => {
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
+                    btn.classList.remove('text-slate-500', 'dark:text-slate-300');
+                });
+                document.querySelectorAll('[data-mobtab="thanks"]').forEach(btn => {
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow');
+                    btn.classList.remove('bg-black/5', 'dark:bg-white/5', 'text-slate-700', 'dark:text-slate-300');
+                });
+            } else if (tabName === 'downloads') {
+                document.getElementById('tabDownloads').classList.remove('hidden');
+                document.querySelectorAll('[data-tab="downloads"]').forEach(btn => {
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
+                    btn.classList.remove('text-slate-500', 'dark:text-slate-300');
+                });
+                document.querySelectorAll('[data-mobtab="downloads"]').forEach(btn => {
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow');
+                    btn.classList.remove('bg-black/5', 'dark:bg-white/5', 'text-slate-700', 'dark:text-slate-300');
+                });
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Data Para Developer & Fixer
+        const developersData = [
+            {
+                id: 1,
+                name: "@OnikataKayoko",
+                role: "Lead Project & System Maintainer",
+                avatar: "PIC.jpg",
+                badge: "Main Creator",
+                badgeColor: "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
+                fixedDesc: "Menginisiasi dan memimpin proyek pengembangan ColorOS 17, serta mengawal kestabilan sistem dari awal hingga akhir.",
+                telegram: "https://t.me/kayokoprojectall",
+                youtube: "https://youtube.com/@nightcoremusiclyricsid?si=fU_Vuz5tBc2eqlvY",
+                tiktok: "https://tiktok.com/@systhetic.cn"
+            },
+            {
+                id: 2,
+                name: "@DIANfiit2",
+                role: "Senior Bug Fixer & Vendor Dev",
+                avatar: "DIAN.jpg",
+                badge: "Bug Fixer",
+                badgeColor: "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
+                fixedDesc: "Berhasil menganalisis dan memperbaiki berbagai bug krusial pada sistem ColorOS 17.",
+                telegram: "https://t.me/DIANfiit2"
+            },
+            {
+                id: 3,
+                name: "@GettheFuckoutofhear (ShuiLong-mu)",
+                role: "File Sharer & Contributor",
+                avatar: "1.jpg",
+                badge: "Sharing",
+                badgeColor: "bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
+                fixedDesc: "Berkontribusi membagikan file sumber ColorOS 17 China Beta untuk kebutuhan porting.",
+                telegram: "https://t.me/GettheFuckoutofhear"
+            },
+            {
+                id: 4,
+                name: "AndroidNup",
+                role: "Tutorial Creator",
+                avatar: "android.jpg",
+                badge: "Sharing",
+                badgeColor: "bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
+                fixedDesc: "Membagikan tutorial dan panduan lengkap mengenai teknik porting ROM ColorOS.",
+                youtube: "https://www.youtube.com/@haqqi08",
+                telegram: "https://t.me/Dadobye",
+                tiktok: "https://www.tiktok.com/@random_anu"
+            },
+            {
+                id: 5,
+                name: "@PUINewsroom",
+                role: "Module Customization Developer",
+                avatar: "pui.jpg",
+                badge: "Module Overlay",
+                badgeColor: "bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30",
+                fixedDesc: "Mengembangkan modul kustomisasi dan overlay sistem pendukung untuk tampilan UI yang lebih modern.",
+                telegram: "https://t.me/PUINewsroom"
+            },
+            {
+                id: 6,
+                name: "ZuyQA & @ArticUpdates",
+                role: "Launcher Mod & Translation",
+                avatar: "artic.jpg",
+                badge: "Module Overlay",
+                badgeColor: "bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30",
+                fixedDesc: "Melakukan modifikasi launcher serta penerjemahan string sistem untuk pengalaman UI yang optimal.",
+                telegram: "https://t.me/ArticUpdates"
+            },
+            {
+                id: 7,
+                name: "@LazyBones_LZY",
+                role: "Bootloop Fixer",
+                avatar: "bones.jpg",
+                badge: "System Fixer",
+                badgeColor: "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
+                fixedDesc: "Membantu memperbaiki masalah bootloop dan error sistem kritis selama proses porting ROM.",
+                telegram: "https://t.me/LazyBones_LZY"
+            }
+        ];
+
+        let currentDevFilter = 'all';
+
+        function renderDevelopers(filter = 'all') {
+            const grid = document.getElementById('devsGrid');
+            grid.innerHTML = '';
+            const filtered = developersData.filter(dev => filter === 'all' || dev.category === filter);
+
+            filtered.forEach(dev => {
+                const card = document.createElement('div');
+                // Tambahkan 'glow-card' di dalam string className di bawah ini:
+                card.className = `aquamorphic-glass glow-card rounded-3xl p-5 sm:p-6 transition-all duration-300 spring-bounce cursor-pointer flex flex-col justify-between group border border-black/5 dark:border-white/10`;
+                card.onclick = () => openDeveloperModal(dev.id);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="relative">
+                                <img src="${dev.avatar}" alt="${dev.name}" onerror="this.src='https://placehold.co/100x100/3b82f6/ffffff?text=User'" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover ring-2 ring-black/10 dark:ring-white/20 group-hover:ring-blue-500 transition-all">
+                                <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center text-[10px] text-white shadow">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold border ${dev.badgeColor}">${dev.badge}</span>
+                        </div>
+                        <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-slate-100 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">${dev.name}</h3>
+                        <p class="text-xs font-medium text-blue-600 dark:text-blue-400 mb-3">${dev.role}</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed mb-4">${dev.fixedDesc}</p>
+                    </div>
+                    <div class="pt-4 border-t border-black/5 dark:border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-400 italic">"Terima kasih atas fix-nya!"</span>
+                        <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform inline-flex items-center space-x-1">
+                            <span>Detail</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function alertDownload(title) {
+            const videoSource = 'coloros.mp4';
+            const fallbackImage = 'coloros.webp';
+
+            const mediaHtml = `
+                <div class="mb-5 relative w-full max-w-[260px] mx-auto">
+                    <video id="popupVideo" src="${videoSource}" autoplay loop playsinline 
+                           onloadedmetadata="this.volume = 0.5"
+                           class="w-full h-auto object-cover rounded-2xl shadow-xl ring-1 ring-white/10"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    </video>
+                    <img src="${fallbackImage}" alt="ColorOS 17 Preview" 
+                         class="w-full h-auto object-cover rounded-2xl shadow-xl ring-1 ring-white/10" 
+                         style="display: none;"
+                         onerror="this.style.display='none'">
+                </div>
+            `;
+
+            // Maskot bersih tanpa ikon kuning di atasnya
+            const mascotHtml = `
+                <div id="floatingMascot" class="animate-mascot-story flex flex-col items-center">
+                    <!-- Badan Karakter dengan Tangan Ngambang & Melambai -->
+                    <div class="relative flex items-center justify-center">
+                        <!-- Tangan Kiri (Ngambang terpisah) -->
+                        <div class="absolute -left-4 w-4 h-4 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 shadow-md transform -rotate-12"></div>
+                        
+                        <!-- Badan Utama Blob -->
+                        <div class="relative w-14 h-14 rounded-[20px] bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-400 p-[2px] shadow-2xl shadow-blue-500/80 backdrop-blur-md">
+                            <div class="w-full h-full bg-slate-950/95 rounded-[18px] flex items-center justify-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-pink-500/30 via-cyan-400/30 to-purple-500/30 animate-pulse"></div>
+                                
+                                <!-- Mata Kiri & Mata Kanan -->
+                                <div class="flex gap-2 z-10 items-center">
+                                    <!-- Mata Kiri (Normal melirik) -->
+                                    <div class="w-2 h-3 bg-white rounded-full relative flex items-center justify-center">
+                                        <div class="w-1 h-1 bg-slate-950 rounded-full animate-left-pupil absolute"></div>
+                                    </div>
+                                    <!-- Mata Kanan (Ngedip sebelah / Wink) -->
+                                    <div class="w-2 h-3 bg-white rounded-full relative flex items-center justify-center">
+                                        <div class="w-1 h-1 bg-slate-950 rounded-full animate-right-wink absolute"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tangan Kanan (Ngambang & Melambai) -->
+                        <div class="absolute -right-4 w-4 h-4 rounded-full bg-gradient-to-br from-indigo-500 to-blue-400 shadow-md animate-wave"></div>
+                    </div>
+                </div>
+            `;
+
+            // Hapus maskot lama jika ada
+            const existingMascot = document.getElementById('floatingMascot');
+            if (existingMascot) existingMascot.remove();
+
+            // Masukkan ke body
+            document.body.insertAdjacentHTML('beforeend', mascotHtml);
+
+            // Buka Modal
+            openCustomModal("Unduhan Dimulai", `
+                <div class="text-center py-2 relative">
+                    ${mediaHtml}
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">Terima kasih banyak sudah mengunduh dan mendukung KayokoProject! Jangan lupa gabung ke komunitas Telegram kita untuk diskusi dan update terbaru.</p>
+                    
+                    <button onclick="closeModal()" class="w-full sm:w-auto px-8 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/30 spring-bounce">Mengerti</button>
+                </div>
+            `);
+
+            // Hapus elemen maskot otomatis setelah 4 detik
+            setTimeout(() => {
+                const mascotEl = document.getElementById('floatingMascot');
+                if (mascotEl) mascotEl.remove();
+            }, 4000);
+
+            // Efek Confetti
+            if (typeof confetti === 'function') {
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 75,
+                        spread: 80,
+                        origin: { y: 0.8 },
+                        colors: ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
+                    });
+                }, 1200);
+            }
+        }
+
+        function openExtensionModal() {
+            openCustomModal("Extension Module", `
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-teal-500/20 text-teal-500 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-puzzle-piece"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Modul Ekstensi Tambahan</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Add-on opsional untuk ColorOS 17 China Beta</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-6">
+                        <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5">
+                            <span class="font-bold block text-slate-800 dark:text-slate-200 mb-1"><i class="fa-solid fa-circle-check text-teal-500 mr-1.5"></i> Fluid Spring Animation Enabler</span>
+                            <p class="text-xs">Mengaktifkan efek fisika pegas lanjutan pada transisi daftar aplikasi dan peluncur sistem.</p>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-sm shadow-lg shadow-teal-600/30 transition-all spring-bounce">Tutup</button>
+                </div>
+            `);
+        }
+
+        function openFeaturesBugsModal() {
+            openCustomModal("Features & Known Bugs", `
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-bug"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Fitur & Catatan Bug</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Informasi status rilis ColorOS 17 China Beta</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2 flex items-center">
+                                <i class="fa-solid fa-star mr-1.5"></i> Fitur Utama Fixed:
+                            </h4>
+                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
+                                <li>• AI Sepenuhnya berfungsi dengan baik.</li>
+                                <li>• Penambahan fitur di bagian Launcher (Animasi, dock dan lainnya).</li>
+                                <li>• Bypasscharging, Autocut Charging, Fast Charging berfungsi.</li>
+                                <li>• Fingerprint berfungsi.</li>
+                                <li>• Fitur Privasi berfungsi.</li>
+                                <li>• Penambahan beberapa style untuk fingerprint.</li>
+                                <li>• Dark mode ikon support untuk sidebar.<li>
+                                <li>• Sinyal WI-FI dan SIM Card berfungsi.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2 flex items-center">
+                                <i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Known Bugs (Minor):
+                            </h4>
+                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
+                                <li>• Delay pada bagian fitur (Angkat Device untuk menghidupkan layar).</li>
+                                <li>• Animasi Auto Brightness kurang Smooth.</li>
+                                <li>• Pencahayaan berkedip di bagian boot animasi maupun pada saat penyesuaian</li>
+                                <li>• WI-FI 5 Ghz hanya di beberapa wifi yang akan muncul</li>
+                                <li>• Kamera Blank tidak bisa di pakai (Masih tahap perbaikan)</li>
+                                <li>• Bluetooth TWS terkadang terputus dengan sendirinya</li>
+                                <li>• Face Unlock blank tidak bisa di pakai (Masih dalam tahap perbaikan)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm shadow-lg shadow-amber-600/30 transition-all spring-bounce">Mengerti</button>
+                </div>
+            `);
+        }
+
+        function openDeveloperModal(devId) {
+            const dev = developersData.find(d => d.id === devId);
+            if (!dev) return;
+
+            // Ambil link dari data, atau jadikan '#' jika kosong
+            const teleLink = dev.telegram || "#";
+            const ytLink = dev.youtube || "#";
+            const tiktokLink = dev.tiktok || "#";
+
+            // Atur warna tombol: kalau ada link-nya jadi terang/aktif, kalau kosong jadi abu-abu
+            const teleClass = dev.telegram ? "bg-sky-500 hover:bg-sky-400 text-white shadow-sky-500/30" : "bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-600";
+            const ytClass = dev.youtube ? "bg-red-600 hover:bg-red-500 text-white shadow-red-600/30" : "bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-600";
+            const tiktokClass = dev.tiktok ? "bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-800 dark:hover:bg-zinc-700 shadow-slate-900/30" : "bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-600";
+
+            openCustomModal("Detail Kontributor", `
+                <div>
+                    <div class="flex items-center space-x-4 mb-5">
+                        <img src="${dev.avatar}" class="w-16 h-16 rounded-2xl object-cover ring-2 ring-blue-500/50" onerror="this.src='https://placehold.co/100x100/3b82f6/ffffff?text=User'">
+                        <div>
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold border ${dev.badgeColor}">${dev.badge}</span>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100 mt-1">${dev.name}</h3>
+                            <p class="text-xs text-blue-600 dark:text-blue-400 font-medium">${dev.role}</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300 mb-6">
+                        <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5">
+                            <span class="font-bold block text-slate-800 dark:text-slate-200 mb-1 text-xs uppercase tracking-wider text-blue-500">Kontribusi / Perbaikan / Pesan: </span>
+                            <p class="text-xs leading-relaxed">${dev.fixedDesc}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 3 Tombol Sosmed Berderet (Telegram, YouTube, TikTok) -->
+                    <div class="grid grid-cols-3 gap-2 mb-3">
+                        <!-- Tombol Telegram -->
+                        <a href="${teleLink}" ${dev.telegram ? 'target="_blank"' : 'onclick="event.preventDefault();"'} class="flex flex-col items-center justify-center p-2 rounded-xl font-bold text-xs shadow-md transition-all ${teleClass}">
+                            <svg class="w-4 h-4 fill-current mb-1" viewBox="0 0 24 24">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.228-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-752-.245-1.349-.375-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.228.166.331.012.103.024.337.011.521z"/>
+                            </svg>
+                            <span>Telegram</span>
+                        </a>
+
+                        <!-- Tombol YouTube -->
+                        <a href="${ytLink}" ${dev.youtube ? 'target="_blank"' : 'onclick="event.preventDefault();"'} class="flex flex-col items-center justify-center p-2 rounded-xl font-bold text-xs shadow-md transition-all ${ytClass}">
+                            <svg class="w-4 h-4 fill-current mb-1" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                            <span>YouTube</span>
+                        </a>
+
+                        <!-- Tombol TikTok -->
+                        <a href="${tiktokLink}" ${dev.tiktok ? 'target="_blank"' : 'onclick="event.preventDefault();"'} class="flex flex-col items-center justify-center p-2 rounded-xl font-bold text-xs shadow-md transition-all ${tiktokClass}">
+                            <svg class="w-4 h-4 fill-current mb-1" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+
+                    <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-sm transition-all">Tutup</button>
+                </div>
+            `);
+        }
+
+        function openCustomModal(title, htmlContent) {
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = htmlContent;
+            const modal = document.getElementById('detailModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            const content = document.getElementById('modalContent');
+
+            // 1. Matikan dan reset semua video di dalam modal secara otomatis
+            const activeVideo = modal.querySelector('video');
+            if (activeVideo) {
+                activeVideo.pause();
+                activeVideo.currentTime = 0;
+            }
+
+            // 2. Hapus maskot melayang jika masih ada di layar
+            const floatingMascot = document.getElementById('floatingMascot');
+            if (floatingMascot) {
+                floatingMascot.remove();
+            }
+
+            // 3. Animasi penutupan modal bawaan kamu
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderDevelopers('all');
+        });
+
+        function triggerConfetti() {
+            // Efek ledakan konfeti dari bawah layar ala petasan ulang tahun
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.9 }, // Posisi muncul dari bawah (0.9 dari atas)
+                colors: ['#2563eb', '#14b8a6', '#9333ea', '#ffffff', '#f59e0b']
+            });
+        }
+
+        // --- Script untuk Efek Mouse Glow ala Windows 10 ---
+        document.addEventListener('mousemove', (e) => {
+            for (const card of document.getElementsByClassName('glow-card')) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Mengatur variabel CSS --mouse-x dan --mouse-y sesuai posisi kursor
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
