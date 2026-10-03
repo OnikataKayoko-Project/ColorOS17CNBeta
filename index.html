@@ -788,81 +788,74 @@
     const fallbackImage = 'coloros.webp';
 
     const mediaHtml = `
-        <div class="mb-5 relative w-full max-w-[260px] mx-auto overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/10">
-            <!-- Video (Tanpa loop, ditambah id khusus & onended) -->
-            <video id="popupVideo" src="${videoSource}" autoplay playsinline muted
-                   onloadedmetadata="this.volume = 0.5"
-                   onended="transitionToImage()"
-                   class="w-full h-auto object-cover transition-all duration-700 ease-out"
-                   onerror="this.style.display='none'; document.getElementById('fallbackImg').style.display='block';">
-            </video>
+        <!-- CSS inline untuk memaksa aspek rasio (misal 16:9, ubah sesuai rasio videomu) -->
+        <div id="mediaContainer" class="mb-5 relative w-full max-w-[260px] mx-auto rounded-2xl shadow-xl ring-1 ring-white/10 bg-slate-900 overflow-hidden" 
+             style="aspect-ratio: 16 / 9;">
             
-            <!-- Gambar Fallback / Hasil Transisi (Default hidden dengan opacity 0) -->
-            <img id="fallbackImg" src="${fallbackImage}" alt="ColorOS 17 Preview" 
-                 class="absolute inset-0 w-full h-auto object-cover opacity-0 transition-opacity duration-700 ease-out" 
-                 style="display: none;"
-                 onerror="this.style.display='none'">
+            <!-- Grid CSS untuk menumpuk elemen secara sempurna -->
+            <div class="grid w-full h-full">
+                <!-- Video -->
+                <video id="popupVideo" src="${videoSource}" autoplay playsinline
+                       onloadedmetadata="this.muted = false; this.volume = 0.5; this.play().catch(e => { 
+                           this.muted = true; 
+                           this.play(); 
+                       })"
+                       onended="transitionToImage()"
+                       class="col-start-1 row-start-1 w-full h-full object-contain transition-opacity duration-700 ease-out z-10"
+                       onerror="this.style.display='none'; document.getElementById('fallbackImg').style.display='block'; document.getElementById('fallbackImg').style.opacity='1';">
+                </video>
+                
+                <!-- Gambar -->
+                <img id="fallbackImg" src="${fallbackImage}" alt="ColorOS 17 Preview" 
+                     class="col-start-1 row-start-1 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-out z-0" 
+                     style="display: none;"
+                     onerror="this.style.display='none'">
+            </div>
         </div>
     `;
 
     // Maskot bersih tanpa ikon kuning di atasnya
     const mascotHtml = `
         <div id="floatingMascot" class="animate-mascot-story flex flex-col items-center">
-            <!-- Badan Karakter dengan Tangan Ngambang & Melambai -->
             <div class="relative flex items-center justify-center">
-                <!-- Tangan Kiri (Ngambang terpisah) -->
                 <div class="absolute -left-4 w-4 h-4 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 shadow-md transform -rotate-12"></div>
-                
-                <!-- Badan Utama Blob -->
                 <div class="relative w-14 h-14 rounded-[20px] bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-400 p-[2px] shadow-2xl shadow-blue-500/80 backdrop-blur-md">
                     <div class="w-full h-full bg-slate-950/95 rounded-[18px] flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-r from-pink-500/30 via-cyan-400/30 to-purple-500/30 animate-pulse"></div>
-                        
-                        <!-- Mata Kiri & Mata Kanan -->
                         <div class="flex gap-2 z-10 items-center">
-                            <!-- Mata Kiri (Normal melirik) -->
                             <div class="w-2 h-3 bg-white rounded-full relative flex items-center justify-center">
                                 <div class="w-1 h-1 bg-slate-950 rounded-full animate-left-pupil absolute"></div>
                             </div>
-                            <!-- Mata Kanan (Ngedip sebelah / Wink) -->
                             <div class="w-2 h-3 bg-white rounded-full relative flex items-center justify-center">
                                 <div class="w-1 h-1 bg-slate-950 rounded-full animate-right-wink absolute"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Tangan Kanan (Ngambang & Melambai) -->
                 <div class="absolute -right-4 w-4 h-4 rounded-full bg-gradient-to-br from-indigo-500 to-blue-400 shadow-md animate-wave"></div>
             </div>
         </div>
     `;
 
-    // Hapus maskot lama jika ada
     const existingMascot = document.getElementById('floatingMascot');
     if (existingMascot) existingMascot.remove();
 
-    // Masukkan ke body
     document.body.insertAdjacentHTML('beforeend', mascotHtml);
 
-    // Buka Modal
     openCustomModal("Unduhan Dimulai", `
         <div class="text-center py-2 relative">
             ${mediaHtml}
             <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
             <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">Terima kasih banyak sudah mengunduh dan mendukung KayokoProject! Jangan lupa gabung ke komunitas Telegram kita untuk diskusi dan update terbaru.</p>
-            
             <button onclick="closeModal()" class="w-full sm:w-auto px-8 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/30 spring-bounce">Mengerti</button>
         </div>
     `);
 
-    // Hapus elemen maskot otomatis setelah 4 detik
     setTimeout(() => {
         const mascotEl = document.getElementById('floatingMascot');
         if (mascotEl) mascotEl.remove();
     }, 4000);
 
-    // Efek Confetti
     if (typeof confetti === 'function') {
         setTimeout(() => {
             confetti({
@@ -875,22 +868,23 @@
     }
 }
 
-// Fungsi helper untuk transisi halus dari video ke gambar
 function transitionToImage() {
     const video = document.getElementById('popupVideo');
     const img = document.getElementById('fallbackImg');
     
     if (video && img) {
-        // Tampilkan gambar di bawah video dengan display block tapi transparan
+        video.volume = 0;
+        
+        // Pastikan gambar sudah di-display dan siap untuk di-fade in
         img.style.display = 'block';
         
-        // Beri efek fade out pada video & fade in pada gambar secara bersamaan
+        // Lakukan fade out video & fade in gambar secara bersamaan
         video.style.opacity = '0';
         img.style.opacity = '1';
 
-        // Setelah animasi CSS selesai (700ms), sembunyikan elemen video sepenuhnya agar tidak makan tempat/resource
+        // Hapus elemen video setelah transisi selesai
         setTimeout(() => {
-            video.style.display = 'none';
+            video.remove();
         }, 700);
     }
 }
