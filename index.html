@@ -461,11 +461,13 @@
                         <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Total
                             Contributors</span>
                     </div>
-<div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
-    <!-- Tambahkan id="counter-value" dan ubah isi awal jadi 0% -->
-    <span id="counter-value" class="block text-xl sm:text-3xl font-bold text-purple-500 dark:text-purple-400">0%</span>
-    <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Stable Build</span>
-</div>
+                    <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
+                        <!-- Tambahkan id="counter-value" dan ubah isi awal jadi 0% -->
+                        <span id="counter-value"
+                            class="block text-xl sm:text-3xl font-bold text-purple-500 dark:text-purple-400">0%</span>
+                        <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Stable
+                            Build</span>
+                    </div>
                 </div>
             </section>
 
@@ -513,7 +515,8 @@
                     </div>
                     <div class="flex items-center justify-between mb-6">
                         <span
-                            class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 bg-black/5 dark:bg-white/5 px-3 py-1 rounded-xl">v17.0.0.100 CN01</span>
+                            class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 bg-black/5 dark:bg-white/5 px-3 py-1 rounded-xl">v17.0.0.100
+                            CN01</span>
                     </div>
 
                     <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-3">ColorOS 17
@@ -528,7 +531,7 @@
                         <div
                             class="col-span-2 sm:col-span-1 bg-black/5 dark:bg-white/5 p-3 rounded-2xl border border-black/5 dark:border-white/5 text-center">
                             <span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Ukuran File</span>
-                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">10.5 GB</span>
+                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">10 GB</span>
                         </div>
                         <div
                             class="col-span-2 sm:col-span-1 bg-black/5 dark:bg-white/5 p-3 rounded-2xl border border-black/5 dark:border-white/5 text-center">
@@ -547,7 +550,7 @@
                     <button onclick="triggerConfetti(); alertDownload('Terima Kasih Telah Mengunduh!')"
                         class="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-teal-500 to-purple-600 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-500/25 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-blue-500/50 hover:brightness-110 active:scale-95 flex items-center justify-center space-x-2 mb-3 cursor-pointer">
                         <i class="fa-solid fa-cloud-arrow-down text-lg"></i>
-                        <span>Unduh File Sekarang (10.5 GB)</span>
+                        <span>Unduh File Sekarang (10 GB)</span>
                     </button>
 
                     <!-- Tombol Tambahan Kiri-Kanan -->
@@ -734,6 +737,16 @@
                 badgeColor: "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
                 fixedDesc: "Membantu memperbaiki masalah bootloop dan error sistem kritis selama proses porting ROM.",
                 telegram: "https://t.me/LazyBones_LZY"
+            },
+            {
+                id: 9,
+                name: "Gemini AI",
+                role: "AI Partner & Support",
+                avatar: "gemini.png",
+                badge: "Official AI Support",
+                badgeColor: "bg-orange-500/20 text-orange-600 dark:text-orange-400 border-orange-500/30",
+                fixedDesc: "Membantu riset konfigurasi sysconfig, XML overlay, dan optimasi sistem ColorOS.",
+                youtube: "https://youtube.com/@google?si=XsXtvR5IdzBEV5KF"
             }
         ];
 
@@ -777,11 +790,11 @@
             });
         }
 
- function alertDownload(title) {
-    const videoSource = 'coloros.mp4';
-    const fallbackImage = 'coloros.webp';
+        function alertDownload(title) {
+            const videoSource = 'coloros.mp4';
+            const fallbackImage = 'coloros.webp';
 
-    const mediaHtml = `
+            const mediaHtml = `
         <!-- CSS inline untuk memaksa aspek rasio (misal 16:9, ubah sesuai rasio videomu) -->
         <div id="mediaContainer" class="mb-5 relative w-full max-w-[260px] mx-auto rounded-2xl shadow-xl ring-1 ring-white/10 bg-slate-900 overflow-hidden" 
              style="aspect-ratio: 16 / 9;">
@@ -808,8 +821,8 @@
         </div>
     `;
 
-    // Maskot bersih tanpa ikon kuning di atasnya
-    const mascotHtml = `
+            // Maskot bersih tanpa ikon kuning di atasnya
+            const mascotHtml = `
         <div id="floatingMascot" class="animate-mascot-story flex flex-col items-center">
             <div class="relative flex items-center justify-center">
                 <div class="absolute -left-4 w-4 h-4 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 shadow-md transform -rotate-12"></div>
@@ -831,12 +844,12 @@
         </div>
     `;
 
-    const existingMascot = document.getElementById('floatingMascot');
-    if (existingMascot) existingMascot.remove();
+            const existingMascot = document.getElementById('floatingMascot');
+            if (existingMascot) existingMascot.remove();
 
-    document.body.insertAdjacentHTML('beforeend', mascotHtml);
+            document.body.insertAdjacentHTML('beforeend', mascotHtml);
 
-    openCustomModal("Unduhan Dimulai", `
+            openCustomModal("Unduhan Dimulai", `
         <div class="text-center py-2 relative">
             ${mediaHtml}
             <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
@@ -845,43 +858,43 @@
         </div>
     `);
 
-    setTimeout(() => {
-        const mascotEl = document.getElementById('floatingMascot');
-        if (mascotEl) mascotEl.remove();
-    }, 4000);
+            setTimeout(() => {
+                const mascotEl = document.getElementById('floatingMascot');
+                if (mascotEl) mascotEl.remove();
+            }, 4000);
 
-    if (typeof confetti === 'function') {
-        setTimeout(() => {
-            confetti({
-                particleCount: 75,
-                spread: 80,
-                origin: { y: 0.8 },
-                colors: ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
-            });
-        }, 1200);
-    }
-}
+            if (typeof confetti === 'function') {
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 75,
+                        spread: 80,
+                        origin: { y: 0.8 },
+                        colors: ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
+                    });
+                }, 1200);
+            }
+        }
 
-function transitionToImage() {
-    const video = document.getElementById('popupVideo');
-    const img = document.getElementById('fallbackImg');
-    
-    if (video && img) {
-        video.volume = 0;
-        
-        // Pastikan gambar sudah di-display dan siap untuk di-fade in
-        img.style.display = 'block';
-        
-        // Lakukan fade out video & fade in gambar secara bersamaan
-        video.style.opacity = '0';
-        img.style.opacity = '1';
+        function transitionToImage() {
+            const video = document.getElementById('popupVideo');
+            const img = document.getElementById('fallbackImg');
 
-        // Hapus elemen video setelah transisi selesai
-        setTimeout(() => {
-            video.remove();
-        }, 700);
-    }
-}
+            if (video && img) {
+                video.volume = 0;
+
+                // Pastikan gambar sudah di-display dan siap untuk di-fade in
+                img.style.display = 'block';
+
+                // Lakukan fade out video & fade in gambar secara bersamaan
+                video.style.opacity = '0';
+                img.style.opacity = '1';
+
+                // Hapus elemen video setelah transisi selesai
+                setTimeout(() => {
+                    video.remove();
+                }, 700);
+            }
+        }
 
         function openExtensionModal() {
             openCustomModal("Extension Module", `
@@ -1080,26 +1093,26 @@ function transitionToImage() {
         });
 
         document.addEventListener("DOMContentLoaded", () => {
-    const counter = document.getElementById("counter-value");
-    const target = 70; // Angka tujuan
-    const duration = 1500; // Durasi animasi dalam milidetik (1.5 detik)
-    let startTimestamp = null;
+            const counter = document.getElementById("counter-value");
+            const target = 70; // Angka tujuan
+            const duration = 1500; // Durasi animasi dalam milidetik (1.5 detik)
+            let startTimestamp = null;
 
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        
-        // Hitung angka saat ini berdasarkan progress
-        const currentVal = Math.floor(progress * target);
-        counter.textContent = currentVal + "%";
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
 
-        if (progress < 1) {
+                // Hitung angka saat ini berdasarkan progress
+                const currentVal = Math.floor(progress * target);
+                counter.textContent = currentVal + "%";
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+
             window.requestAnimationFrame(step);
-        }
-    };
-
-    window.requestAnimationFrame(step);
-});
+        });
     </script>
 
 
