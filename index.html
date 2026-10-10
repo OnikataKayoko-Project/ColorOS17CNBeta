@@ -401,9 +401,9 @@
 
                 <!-- Tombol Kanan & Hamburger Mobile -->
                 <div class="flex items-center space-x-2">
-                    <a href="https://t.me/kayokoprojectall/1" target="_blank"
+                    <a href="https://kayokoproject-68d2a.web.app/" target="_blank"
                         class="hidden md:flex items-center space-x-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 dark:text-blue-400 text-xs font-semibold hover:bg-blue-500/20 transition-all spring-bounce">
-                        <i class="fa-brands fa-telegram text-sm"></i>
+                        <i class="fa-solid fa-circle-nodes text-sm"></i>
                         <span>By OnikataKayoko</span>
                     </a>
                     <button onclick="toggleMobileMenu()"
@@ -531,7 +531,7 @@
                         <div
                             class="col-span-2 sm:col-span-1 bg-black/5 dark:bg-white/5 p-3 rounded-2xl border border-black/5 dark:border-white/5 text-center">
                             <span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Ukuran File</span>
-                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">10 GB</span>
+                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">8.03 GB</span>
                         </div>
                         <div
                             class="col-span-2 sm:col-span-1 bg-black/5 dark:bg-white/5 p-3 rounded-2xl border border-black/5 dark:border-white/5 text-center">
@@ -541,8 +541,8 @@
                         </div>
                         <div
                             class="col-span-2 sm:col-span-1 bg-black/5 dark:bg-white/5 p-3 rounded-2xl border border-black/5 dark:border-white/5 text-center">
-                            <span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Selinux </span>
-                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">PERMESSIVE </span>
+                            <span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Kernel </span>
+                            <span class="font-bold text-sm text-blue-500 dark:text-blue-400">SELinux Permissive </span>
                         </div>
                     </div>
 
@@ -550,7 +550,7 @@
                     <button onclick="triggerConfetti(); alertDownload('Terima Kasih Telah Mengunduh!')"
                         class="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-teal-500 to-purple-600 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-500/25 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-blue-500/50 hover:brightness-110 active:scale-95 flex items-center justify-center space-x-2 mb-3 cursor-pointer">
                         <i class="fa-solid fa-cloud-arrow-down text-lg"></i>
-                        <span>Unduh File Sekarang (10 GB)</span>
+                        <span>Unduh File Sekarang (8.03 GB)</span>
                     </button>
 
                     <!-- Tombol Tambahan Kiri-Kanan -->
@@ -562,8 +562,8 @@
                         </button>
                         <button onclick="openFeaturesBugsModal()"
                             class="py-3 px-4 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce">
-                            <i class="fa-solid fa-bug text-amber-500"></i>
-                            <span>Features & Bugs</span>
+                            <i class="fa-solid fa-note-sticky text-amber-500"></i>
+                            <span>Notes</span>
                         </button>
                     </div>
                 </div>
@@ -583,18 +583,9 @@
         </div>
     </div>
 
-    <footer
-        class="relative z-10 border-t border-black/5 dark:border-white/10 py-10 text-center text-sm text-slate-500 dark:text-slate-400">
+    <footer class="relative z-10 border-t border-black/5 py-10 text-center text-sm text-slate-500 dark:text-slate-400">
         <div class="max-w-5xl mx-auto px-4 flex flex-col items-center justify-center space-y-4">
-            <div class="flex items-center space-x-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <p class="font-medium text-slate-700 dark:text-slate-300 text-xs sm:text-sm">Crafted with precision by
-                    <a href="https://t.me/kayokoprojectall/1" target="_blank"
-                        class="text-blue-500 dark:text-blue-400 font-bold hover:underline">Onikata Kayoko</a>
-                </p>
-            </div>
-            <p class="text-xs text-slate-400 dark:text-slate-500">© 2026 KayokoProject. PortRom ColorOS 17 China Beta
-            </p>
+            <!-- Tombol Sosmed (Telegram, YouTube, TikTok) -->
             <div class="flex items-center space-x-4 pt-2">
                 <a href="https://t.me/kayokoprojectall" target="_blank"
                     class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-all spring-bounce"
@@ -606,6 +597,10 @@
                     class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-gray-800 transition-all spring-bounce"
                     title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
             </div>
+            <!-- Tulisan Copyright yang tadinya hilang -->
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+                &copy; 2026 KayokoProject. ColorOS 17 China Beta for X6880.
+            </p>
         </div>
     </footer>
 
@@ -849,14 +844,41 @@
 
             document.body.insertAdjacentHTML('beforeend', mascotHtml);
 
+            // Ganti dengan link tujuan kamu di sini
+            const targetUrl = "https://t.me/kayokoprojectall";
+
             openCustomModal("Unduhan Dimulai", `
-        <div class="text-center py-2 relative">
-            ${mediaHtml}
-            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">Terima kasih banyak sudah mengunduh dan mendukung KayokoProject! Jangan lupa gabung ke komunitas Telegram kita untuk diskusi dan update terbaru.</p>
-            <button onclick="closeModal()" class="w-full sm:w-auto px-8 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/30 spring-bounce">Mengerti</button>
-        </div>
-    `);
+    <div class="text-center py-2 relative">
+        ${mediaHtml}
+        <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+            Terima kasih banyak sudah mengunduh dan mendukung KayokoProject! Jangan lupa gabung ke komunitas Telegram kita untuk diskusi dan update terbaru.
+        </p>
+        <button id="modal-submit-btn" disabled onclick="window.open('${targetUrl}', '_blank'); closeModal();" class="w-full sm:w-auto px-8 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/30 spring-bounce disabled:opacity-50 disabled:cursor-not-allowed">
+            Mempersiapkan link (<span id="modal-timer">10</span>s)
+        </button>
+    </div>
+`);
+
+            // Logika Timer 10 Detik
+            let timeLeft = 10;
+            const timerInterval = setInterval(() => {
+                timeLeft--;
+                const timerSpan = document.getElementById('modal-timer');
+                const submitBtn = document.getElementById('modal-submit-btn');
+
+                if (timerSpan) {
+                    timerSpan.textContent = timeLeft;
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Download';
+                    }
+                }
+            }, 1000);
 
             setTimeout(() => {
                 const mascotEl = document.getElementById('floatingMascot');
@@ -909,10 +931,12 @@
                         </div>
                     </div>
                     <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-6">
-                        <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5">
-                            <span class="font-bold block text-slate-800 dark:text-slate-200 mb-1"><i class="fa-solid fa-circle-check text-teal-500 mr-1.5"></i> Fluid Spring Animation Enabler</span>
-                            <p class="text-xs">Mengaktifkan efek fisika pegas lanjutan pada transisi daftar aplikasi dan peluncur sistem.</p>
-                        </div>
+<a href="https://u.pcloud.link/publink/show?code=XZ7y3YJZnv2wbLreYB0YdDPaDcimBBbDrCJX" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-all cursor-pointer group">
+    <span class="font-bold block text-slate-800 dark:text-slate-200 mb-1 group-hover:text-blue-500 transition-colors">
+        <i class="fa-solid fa-circle-check text-teal-500 mr-1.5"></i>Kernel SELinux Permissive KSU (Recommended)
+    </span>
+    <p class="text-xs text-slate-600 dark:text-slate-400">Wajib gunakan ini sebelum atau sesudah flash PortRom ColorOS 17.</p>
+</a>
                     </div>
                     <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-sm shadow-lg shadow-teal-600/30 transition-all spring-bounce">Tutup</button>
                 </div>
@@ -920,14 +944,14 @@
         }
 
         function openFeaturesBugsModal() {
-            openCustomModal("Features & Known Bugs", `
+            openCustomModal("Notes", `
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-bug"></i>
+                            <i class="fa-solid fa-note-sticky"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Fitur & Catatan Bug</h3>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Catatan</h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400">Informasi status rilis ColorOS 17 China Beta</p>
                         </div>
                     </div>
@@ -944,6 +968,9 @@
                                 <li>• Fingerprint berfungsi.</li>
                                 <li>• Fitur Privasi berfungsi.</li>
                                 <li>• Sinyal WI-FI dan SIM Card berfungsi.</li>
+                                <li>• DeepSleep Berfungsi.</li>
+                                <li>• Sinyal WI-FI dan SIM Card berfungsi.</li>
+                                <li>• Sinyal WI-FI dan SIM Card berfungsi.</li>
                             </ul>
                         </div>
                         <div>
@@ -953,10 +980,23 @@
                             <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
                                 <li>• Delay pada bagian fitur (Angkat Device untuk menghidupkan layar).</li>
                                 <li>• Animasi Auto Brightness kurang Smooth.</li>
-                                <li>• Pencahayaan berkedip di bagian boot animasi maupun pada saat penyesuaian</li>
-                                <li>• WI-FI 5 Ghz hanya di beberapa wifi yang akan muncul</li>
+                                <li>• Pencahayaan berkedip pada saat memasuki sleep mode</li>
                                 <li>• Bluetooth TWS terkadang terputus dengan sendirinya</li>
-                                <li>• Face Unlock blank tidak bisa di pakai (Perbaikan di tunda)</li>
+                                <li>• Face Unlock blank tidak bisa di pakai<li>
+                                <li>• OTG Tidak terdeteksi<li>
+                                <li>• Perekam suara crash<li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2 flex items-center">
+                                <i class="fa-solid fa-box-archive mr-1.5"></i> How To Flash:
+                            </h4>
+                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
+                                <li>• Ekstrak File .ZIP-nya.</li>
+                                <li>• Masuk ke OrangeFOX , Flash file system.img.</li>
+                                <li>• Flash kernel Permessive KSU.</li>
+                                <li>• Format Data.</li>
+                                <li>• Reboot System.</li>
                             </ul>
                         </div>
                     </div>
