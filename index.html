@@ -425,9 +425,10 @@
                     data-mobtab="downloads">
                     <i class="fa-solid fa-download w-5"></i><span>Downloads</span>
                 </button>
-                <a href="https://t.me/kayokoprojectall/1" target="_blank"
+                <a href="https://kayokoproject-68d2a.web.app/" target="_blank"
                     class="w-full text-left px-4 py-3 rounded-2xl bg-blue-500/10 text-blue-500 dark:text-blue-400 text-sm font-medium flex items-center space-x-3">
-                    <i class="fa-brands fa-telegram w-5"></i><span>Telegram ( KayokoProject )</span>
+                    <i class="fa-solid fa-circle-nodes text-sm"></i>
+                    <span>By OnikataKayoko</span>
                 </a>
             </div>
         </div>
@@ -452,12 +453,12 @@
                 <div class="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl mx-auto">
                     <!-- Ditambahkan kelas glow-card -->
                     <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
-                        <span class="block text-xl sm:text-3xl font-bold text-blue-500 dark:text-blue-400">3</span>
+                        <span class="block text-xl sm:text-3xl font-bold text-blue-500 dark:text-blue-400">6</span>
                         <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Fixer &
                             Devs</span>
                     </div>
                     <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
-                        <span class="block text-xl sm:text-3xl font-bold text-teal-500 dark:text-teal-400">7</span>
+                        <span class="block text-xl sm:text-3xl font-bold text-teal-500 dark:text-teal-400">11</span>
                         <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Total
                             Contributors</span>
                     </div>
@@ -515,7 +516,8 @@
                     </div>
                     <div class="flex items-center justify-between mb-6">
                         <span
-                            class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 bg-black/5 dark:bg-white/5 px-3 py-1 rounded-xl">v17.0.0.100 PLG 
+                            class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 bg-black/5 dark:bg-white/5 px-3 py-1 rounded-xl">v17.0.0.100
+                            PLG
                             CN01</span>
                     </div>
 
@@ -881,16 +883,16 @@
         </div>
     `;
 
- const existingMascot = document.getElementById('floatingMascot');
-if (existingMascot) existingMascot.remove();
+            const existingMascot = document.getElementById('floatingMascot');
+            if (existingMascot) existingMascot.remove();
 
-document.body.insertAdjacentHTML('beforeend', mascotHtml);
+            document.body.insertAdjacentHTML('beforeend', mascotHtml);
 
-// Link tujuan
-const targetUrlMediafire = "https://sfl.gl/uReE1"; 
-const targetUrlbuzzheavier = "";    
+            // Link tujuan
+            const targetUrlMediafire = "https://sfl.gl/uReE1";
+            const targetUrlbuzzheavier = "https://sfl.gl/0cY1dHqG";
 
-openCustomModal("Unduhan Dimulai", `
+            openCustomModal("Unduhan Dimulai", `
     <div class="text-center py-2 relative">
         ${mediaHtml}
         <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
@@ -926,40 +928,40 @@ openCustomModal("Unduhan Dimulai", `
     </div>
 `);
 
-// Logika Timer 5 Detik untuk kedua tombol sekaligus
-let timeLeft = 5;
+            // Logika Timer 5 Detik untuk kedua tombol sekaligus
+            let timeLeft = 5;
 
-// Hentikan timer lama jika ada agar tidak bentrok
-if (window.modalTimerInterval) {
-    clearInterval(window.modalTimerInterval);
-}
+            // Hentikan timer lama jika ada agar tidak bentrok
+            if (window.modalTimerInterval) {
+                clearInterval(window.modalTimerInterval);
+            }
 
-window.modalTimerInterval = setInterval(() => {
-    timeLeft--;
+            window.modalTimerInterval = setInterval(() => {
+                timeLeft--;
 
-    const timerSpan1 = document.getElementById('modal-timer-1');
-    const timerSpan2 = document.getElementById('modal-timer-2');
-    const btn1 = document.getElementById('modal-btn-1');
-    const btn2 = document.getElementById('modal-btn-2');
+                const timerSpan1 = document.getElementById('modal-timer-1');
+                const timerSpan2 = document.getElementById('modal-timer-2');
+                const btn1 = document.getElementById('modal-btn-1');
+                const btn2 = document.getElementById('modal-btn-2');
 
-    // Update angka countdown
-    if (timerSpan1) timerSpan1.textContent = timeLeft;
-    if (timerSpan2) timerSpan2.textContent = timeLeft;
+                // Update angka countdown
+                if (timerSpan1) timerSpan1.textContent = timeLeft;
+                if (timerSpan2) timerSpan2.textContent = timeLeft;
 
-    // Ketika waktu habis
-    if (timeLeft <= 0) {
-        clearInterval(window.modalTimerInterval);
-        
-        if (btn1) {
-            btn1.disabled = false;
-            btn1.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> (MediaFire)';
-        }
-        if (btn2) {
-            btn2.disabled = false;
-            btn2.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> (buzzheavier)';
-        }
-    }
-}, 1000);
+                // Ketika waktu habis
+                if (timeLeft <= 0) {
+                    clearInterval(window.modalTimerInterval);
+
+                    if (btn1) {
+                        btn1.disabled = false;
+                        btn1.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> (MediaFire)';
+                    }
+                    if (btn2) {
+                        btn2.disabled = false;
+                        btn2.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> (buzzheavier)';
+                    }
+                }
+            }, 1000);
 
             setTimeout(() => {
                 const mascotEl = document.getElementById('floatingMascot');
