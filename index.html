@@ -555,22 +555,203 @@
                         <span>Unduh File Sekarang (8.03 GB)</span>
                     </button>
 
-                    <!-- Tombol Tambahan Kiri-Kanan -->
-                    <div class="grid grid-cols-2 gap-3">
-                        <button onclick="openExtensionModal()"
-                            class="py-3 px-4 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce">
-                            <i class="fa-solid fa-puzzle-piece text-teal-500"></i>
-                            <span>Extension Module</span>
-                        </button>
-                        <button onclick="openFeaturesBugsModal()"
-                            class="py-3 px-4 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce">
-                            <i class="fa-solid fa-note-sticky text-amber-500"></i>
-                            <span>Notes</span>
+                    <!-- Tombol Tambahan (2 di atas, 1 di bawah) -->
+                    <div class="flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <button onclick="openExtensionModal()"
+                                class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+                                <i class="fa-solid fa-puzzle-piece text-teal-500"></i>
+                                <span>Extension</span>
+                            </button>
+
+                            <button onclick="openFeaturesBugsModal()"
+                                class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+                                <i class="fa-solid fa-note-sticky text-amber-500"></i>
+                                <span>Notes</span>
+                            </button>
+                        </div>
+
+                        <button onclick="openScreenshotModal()"
+                            class="w-full py-3 px-4 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+                            <i class="fa-solid fa-images text-purple-500"></i>
+                            <span>Screenshots</span>
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
+
+                    <!-- MODAL SCREENSHOT GALLERY (10 Slide: 9 Gambar + 1 Blur Telegram) -->
+                    <div id="screenshotModal"
+                        class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/80 backdrop-blur-md p-4 transition-all duration-300">
+                        <div
+                            class="relative w-full max-w-xl aquamorphic-glass rounded-3xl border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden bg-slate-900/90 backdrop-blur-xl">
+
+                            <!-- Header Modal -->
+                            <div
+                                class="flex items-center justify-between p-5 border-b border-black/5 dark:border-white/10">
+                                <div class="flex items-center space-x-3">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                                        <i class="fa-solid fa-images text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h3
+                                            class="font-extrabold text-sm sm:text-base text-slate-900 dark:text-slate-100">
+                                            Screenshot Preview</h3>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Pratinjau antarmuka
+                                            ColorOS 17</p>
+                                    </div>
+                                </div>
+                                <button onclick="closeScreenshotModal()"
+                                    class="w-9 h-9 rounded-xl flex items-center justify-center bg-black/5 dark:bg-white/5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 border border-black/5 dark:border-white/10 transition-colors cursor-pointer">
+                                    <i class="fa-solid fa-xmark text-base"></i>
+                                </button>
+                            </div>
+
+                            <!-- Container Slide Gambar -->
+                            <div
+                                class="relative w-full h-[380px] sm:h-[450px] bg-slate-950/50 flex items-center justify-center overflow-hidden">
+
+                                <!-- Slide 1 sampai 9 (Gambar Asli) -->
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-100 flex items-center justify-center p-2">
+                                    <img src="1.jpg" alt="Screenshot 1"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="2.jpg" alt="Screenshot 2"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="3.jpg" alt="Screenshot 3"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="4.jpg" alt="Screenshot 4"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="5.jpg" alt="Screenshot 5"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="6.jpg" alt="Screenshot 6"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="7.jpg" alt="Screenshot 7"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="8.jpg" alt="Screenshot 8"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="0.jpg" alt="Screenshot 9"
+                                        class="h-full max-h-[420px] w-auto object-contain rounded-xl shadow-lg">
+                                </div>
+
+                                <!-- Slide 10 (Blur + Overlay Telegram) -->
+                                <div
+                                    class="ss-slide absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2">
+                                    <img src="blur.jpg" alt="Screenshot 10"
+                                        class="h-full max-h-[420px] w-auto object-contain filter blur-md scale-105 rounded-xl">
+
+                                    <div
+                                        class="absolute inset-0 bg-slate-950/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center m-3 rounded-2xl border border-white/10">
+                                        <div
+                                            class="w-14 h-14 rounded-2xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-2xl mb-3 border border-sky-500/20 shadow-lg shadow-sky-500/10">
+                                            <i class="fa-brands fa-telegram"></i>
+                                        </div>
+                                        <h4 class="text-white font-bold text-base sm:text-lg mb-1">Ingin Lihat Lebih
+                                            Banyak?</h4>
+                                        <p class="text-slate-300 text-xs sm:text-sm mb-5 max-w-xs leading-relaxed">Lihat
+                                            screenshot selengkapnya dan pembaruan fitur lainnya langsung di grup
+                                            Telegram resmi kami.</p>
+                                        <a href="https://t.me/your_telegram_group" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-sky-500/30 transition-all flex items-center space-x-2">
+                                            <i class="fa-brands fa-telegram text-base"></i>
+                                            <span>Buka Grup Telegram</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Navigasi Panah Kiri & Kanan -->
+                                <button onclick="changeSlide(-1)"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-md border border-white/10 transition-all cursor-pointer shadow-lg">
+                                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                                </button>
+                                <button onclick="changeSlide(1)"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-md border border-white/10 transition-all cursor-pointer shadow-lg">
+                                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                                </button>
+                            </div>
+
+                            <!-- Footer Modal -->
+                            <div
+                                class="p-4 bg-black/20 dark:bg-white/5 flex items-center justify-between border-t border-black/5 dark:border-white/10">
+                                <span id="slideIndicator" class="text-xs font-bold text-slate-400">1 dari 10</span>
+                                <div class="flex space-x-1.5 overflow-x-auto max-w-[220px]" id="dotsContainer"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        const slides = document.querySelectorAll('.ss-slide');
+                        const totalSlides = slides.length; // Otomatis membaca 10 slide
+                        let currentSlide = 0;
+
+                        function openScreenshotModal() {
+                            document.getElementById('screenshotModal').classList.remove('hidden');
+                            showSlide(0);
+                        }
+
+                        function closeScreenshotModal() {
+                            document.getElementById('screenshotModal').classList.add('hidden');
+                        }
+
+                        function showSlide(index) {
+                            if (index >= totalSlides) currentSlide = 0;
+                            else if (index < 0) currentSlide = totalSlides - 1;
+                            else currentSlide = index;
+
+                            slides.forEach((slide, i) => {
+                                if (i === currentSlide) {
+                                    slide.classList.remove('opacity-0', 'pointer-events-none');
+                                    slide.classList.add('opacity-100');
+                                } else {
+                                    slide.classList.remove('opacity-100');
+                                    slide.classList.add('opacity-0', 'pointer-events-none');
+                                }
+                            });
+
+                            const indicator = document.getElementById('slideIndicator');
+                            if (indicator) indicator.innerText = `${currentSlide + 1} dari ${totalSlides}`;
+                            updateDots();
+                        }
+
+                        function changeSlide(direction) {
+                            showSlide(currentSlide + direction);
+                        }
+
+                        function updateDots() {
+                            const dotsContainer = document.getElementById('dotsContainer');
+                            if (!dotsContainer) return;
+                            dotsContainer.innerHTML = '';
+                            for (let i = 0; i < totalSlides; i++) {
+                                const dot = document.createElement('div');
+                                dot.className = `w-2 h-2 rounded-full transition-all flex-shrink-0 ${i === currentSlide ? 'bg-purple-500 w-4' : 'bg-slate-600'}`;
+                                dotsContainer.appendChild(dot);
+                            }
+                        }
+                    </script>
 
     </main>
 
@@ -716,7 +897,7 @@
                 id: 6,
                 name: "@GettheFuckoutofhear (ShuiLong-mu)",
                 role: "File Sharer & Contributor",
-                avatar: "1.jpg",
+                avatar: "reds.jpg",
                 badge: "Sharing",
                 badgeColor: "bg-gradient-to-r from-cyan-500/20 via-teal-500/20 to-emerald-500/20 text-cyan-300 border-cyan-400/40 shadow-sm shadow-cyan-500/10",
                 fixedDesc: "Berkontribusi membagikan file sumber ColorOS 17 China Beta untuk kebutuhan porting.",
@@ -998,6 +1179,144 @@
                 setTimeout(() => {
                     video.remove();
                 }, 700);
+            }
+        }
+
+        function openScreenshotModal() {
+            openCustomModal("Screenshot Preview", `
+            <div>
+                <!-- Header Info -->
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl border border-purple-500/30">
+                        <i class="fa-solid fa-images"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Pratinjau Antarmuka</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">ColorOS 17 China Beta UI Preview</p>
+                    </div>
+                </div>
+
+                <!-- Container Slide Gambar -->
+                <div class="relative w-full h-[360px] sm:h-[420px] bg-slate-950/80 rounded-2xl overflow-hidden flex items-center justify-center mb-4 border border-black/10 dark:border-white/10 shadow-inner">
+                    
+                    <!-- Slide 1 sampai 9 (Gambar Asli) -->
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-100 flex items-center justify-center p-2" data-index="0">
+                        <img src="1.jpg" alt="Screenshot 1" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="1">
+                        <img src="2.jpg" alt="Screenshot 2" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="2">
+                        <img src="3.jpg" alt="Screenshot 3" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="3">
+                        <img src="4.jpg" alt="Screenshot 4" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="4">
+                        <img src="5.jpg" alt="Screenshot 5" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="5">
+                        <img src="6.jpg" alt="Screenshot 6" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="6">
+                        <img src="7.jpg" alt="Screenshot 7" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="7">
+                        <img src="8.jpg" alt="Screenshot 8" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="8">
+                        <img src="0.jpg" alt="Screenshot 9" class="h-full max-h-[390px] w-auto object-contain rounded-xl shadow-lg">
+                    </div>
+
+                    <!-- Slide 10 (Blur + Overlay Telegram) -->
+                    <div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="9">
+                        <img src="blur.jpg" alt="Screenshot 10 Blur" class="h-full max-h-[390px] w-auto object-contain filter blur-md scale-105 rounded-xl">
+                        
+<!-- Slide 10 (Blur + Overlay TikTok & Telegram) -->
+<div class="ss-slide-custom absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-2" data-index="9">
+    <img src="9.jpg" alt="Screenshot 10 Blur" class="h-full max-h-[390px] w-auto object-contain filter blur-md scale-105 rounded-xl">
+    
+    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-md flex flex-col items-center justify-center p-5 text-center m-2 rounded-xl border border-white/10">
+        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-2 border border-purple-500/20 shadow-lg shadow-purple-500/10">
+            <i class="fa-solid fa-photo-film"></i>
+        </div>
+        <h4 class="text-white font-bold text-base sm:text-lg mb-1">Ingin Lihat Lebih Banyak?</h4>
+        <p class="text-slate-300 text-xs sm:text-sm mb-4 max-w-xs leading-relaxed">Cek pratinjau video lengkapnya di TikTok atau bergabunglah ke grup Telegram kami.</p>
+        
+        <!-- Tombol Berdampingan (TikTok & Telegram) -->
+        <div class="flex flex-wrap items-center justify-center gap-2.5 w-full">
+            <!-- Tombol TikTok -->
+            <a href="https://tiktok.com/@systhetic.cn" target="_blank" rel="noopener noreferrer" class="flex-1 min-w-[130px] px-4 py-2.5 rounded-xl bg-black hover:bg-zinc-900 text-white font-semibold text-xs sm:text-sm shadow-lg border border-white/10 transition-all flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-tiktok text-sm"></i>
+                <span>TikTok</span>
+            </a>
+            
+            <!-- Tombol Telegram -->
+            <a href="https://t.me/your_telegram_group" target="_blank" rel="noopener noreferrer" class="flex-1 min-w-[130px] px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-sky-500/30 transition-all flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-telegram text-base"></i>
+                <span>Telegram</span>
+            </a>
+        </div>
+    </div>
+</div>
+                    </div>
+
+                    <!-- Navigasi Panah Kiri & Kanan -->
+                    <button onclick="changeCustomSlide(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/10 transition-all cursor-pointer shadow-lg z-10">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    <button onclick="changeCustomSlide(1)" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/10 transition-all cursor-pointer shadow-lg z-10">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Footer Indikator & Tombol Tutup -->
+                <div class="flex items-center justify-between mb-4 px-1">
+                    <span id="customSlideIndicator" class="text-xs font-bold text-slate-500 dark:text-slate-400">1 dari 10</span>
+                    <div class="flex space-x-1.5 overflow-x-auto max-w-[200px]" id="customDotsContainer"></div>
+                </div>
+
+                <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm shadow-lg shadow-purple-600/30 transition-all spring-bounce cursor-pointer">Tutup</button>
+            </div>
+        `);
+            currentSlide = 0;
+            showCustomSlide(0);
+        }
+
+        function showCustomSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            const slides = document.querySelectorAll('.ss-slide-custom');
+            slides.forEach((slide) => {
+                const slideIdx = parseInt(slide.getAttribute('data-index'));
+                if (slideIdx === currentSlide) {
+                    slide.classList.remove('opacity-0', 'pointer-events-none');
+                    slide.classList.add('opacity-100');
+                } else {
+                    slide.classList.remove('opacity-100');
+                    slide.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+
+            const indicator = document.getElementById('customSlideIndicator');
+            if (indicator) indicator.innerText = `${currentSlide + 1} dari ${totalSlides}`;
+            updateCustomDots();
+        }
+
+        function changeCustomSlide(direction) {
+            showCustomSlide(currentSlide + direction);
+        }
+
+        function updateCustomDots() {
+            const dotsContainer = document.getElementById('customDotsContainer');
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `w-2 h-2 rounded-full transition-all flex-shrink-0 ${i === currentSlide ? 'bg-purple-500 w-4' : 'bg-slate-400 dark:bg-slate-600'}`;
+                dotsContainer.appendChild(dot);
             }
         }
 
