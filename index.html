@@ -348,6 +348,37 @@
                 border: 1px solid rgba(255, 255, 255, 0.05);
             }
         }
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-hover:hover {
+    background-size: 200% 200%;
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes iosBounce {
+    0% { 
+        transform: scale(1); 
+    }
+    35% { 
+        transform: scale(0.94); 
+    }
+    70% { 
+        transform: scale(1.04); 
+    }
+    100% { 
+        transform: scale(1); 
+    }
+}
+
+.tab-active-bounce {
+    animation: iosBounce 0.5s cubic-bezier(0.25, 1, 0.5, 1.25) forwards;
+    transform-origin: center;
+}
     </style>
 </head>
 
@@ -458,12 +489,11 @@
                             Devs</span>
                     </div>
                     <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
-                        <span class="block text-xl sm:text-3xl font-bold text-teal-500 dark:text-teal-400">11</span>
+                        <span class="block text-xl sm:text-3xl font-bold text-teal-500 dark:text-teal-400">12</span>
                         <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Total
                             Contributors</span>
                     </div>
                     <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
-                        <!-- Tambahkan id="counter-value" dan ubah isi awal jadi 0% -->
                         <span id="counter-value"
                             class="block text-xl sm:text-3xl font-bold text-purple-500 dark:text-purple-400">0%</span>
                         <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Stable
@@ -549,34 +579,45 @@
                     </div>
 
                     <!-- Tombol Utama Download -->
-                    <button onclick="triggerConfetti(); alertDownload('Terima Kasih Telah Mengunduh!')"
-                        class="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-teal-500 to-purple-600 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-500/25 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-blue-500/50 hover:brightness-110 active:scale-95 flex items-center justify-center space-x-2 mb-3 cursor-pointer">
-                        <i class="fa-solid fa-cloud-arrow-down text-lg"></i>
-                        <span>Unduh File Sekarang (8.03 GB)</span>
-                    </button>
+<button onclick="triggerConfetti(); alertDownload('Terima Kasih Telah Mengunduh!')"
+    class="relative overflow-hidden w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-500/25 hover:shadow-[0_4px_20px_rgba(59,130,246,0.3)] transition-all duration-500 transform hover:scale-[1.01] hover:brightness-110 active:scale-95 flex items-center justify-center space-x-2 mb-3 cursor-pointer group">
+    
+    <!-- Lapisan Warna Biru Terang dengan Efek Geser Background (Full Sampai Ujung) -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#2563eb,#38bdf8,#2563eb)] bg-[length:200%_100%] bg-[position:100%_0] group-hover:bg-[position:0%_0] transition-all duration-500 ease-out pointer-events-none"></div>
 
-                    <!-- Tombol Tambahan (2 di atas, 1 di bawah) -->
-                    <div class="flex flex-col gap-2.5">
-                        <div class="grid grid-cols-2 gap-2.5">
-                            <button onclick="openExtensionModal()"
-                                class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
-                                <i class="fa-solid fa-puzzle-piece text-teal-500"></i>
-                                <span>Extension</span>
-                            </button>
+    <!-- Konten Tombol -->
+    <i class="fa-solid fa-cloud-arrow-down text-lg relative z-10"></i>
+    <span class="relative z-10">Unduh File Sekarang (8.03 GB)</span>
+</button>
 
-                            <button onclick="openFeaturesBugsModal()"
-                                class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
-                                <i class="fa-solid fa-note-sticky text-amber-500"></i>
-                                <span>Notes</span>
-                            </button>
-                        </div>
+<!-- Grid Tombol Opsi (Dua Baris x Dua Kolom yang Rapi) -->
+<div class="grid grid-cols-2 gap-2.5">
+    <!-- Baris 1: Extension & Notes -->
+    <button onclick="openExtensionModal()"
+        class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+        <i class="fa-solid fa-puzzle-piece text-teal-500"></i>
+        <span>Extension</span>
+    </button>
 
-                        <button onclick="openScreenshotModal()"
-                            class="w-full py-3 px-4 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
-                            <i class="fa-solid fa-images text-purple-500"></i>
-                            <span>Screenshots</span>
-                        </button>
-                    </div>
+    <button onclick="openFeaturesBugsModal()"
+        class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+        <i class="fa-solid fa-note-sticky text-amber-500"></i>
+        <span>Notes</span>
+    </button>
+
+    <!-- Baris 2: Screenshots & Versi Lama -->
+    <button onclick="openScreenshotModal()"
+        class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+        <i class="fa-solid fa-images text-purple-500"></i>
+        <span>Screenshots</span>
+    </button>
+
+    <button onclick="openOldVersionsModal()"
+        class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+        <i class="fa-solid fa-clock-rotate-left text-blue-500"></i>
+        <span>Versi Lama</span>
+    </button>
+</div>
 
                     <!-- MODAL SCREENSHOT GALLERY (10 Slide: 9 Gambar + 1 Blur Telegram) -->
                     <div id="screenshotModal"
@@ -800,6 +841,32 @@
     <script>
         // Tab switching logic
         function switchTab(tabName) {
+    // 1. Ambil semua tombol tab
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    
+    tabButtons.forEach(btn => {
+        // Reset style tombol ke non-aktif (sesuaikan dengan class bawaan project kamu)
+        btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
+        btn.classList.add('text-slate-500', 'dark:text-slate-300');
+        
+        // Jika tombol sesuai dengan tab yang diklik
+        if (btn.getAttribute('data-tab') === tabName) {
+            // Aktifkan style tombol terpilih
+            btn.classList.remove('text-slate-500', 'dark:text-slate-300');
+            btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30');
+            
+            // Picu efek bounce ala iOS
+            btn.classList.add('tab-active-bounce');
+            
+            // Hapus kelas animasi setelah selesai agar bisa dipicu lagi di klik berikutnya
+            setTimeout(() => {
+                btn.classList.remove('tab-active-bounce');
+            }, 400);
+        }
+    });
+
+    // ... (lanjutkan logika konten tab kamu di sini, misal menampilkan/menyembunyikan section)
+
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
@@ -960,7 +1027,7 @@
                 role: "AI Partner & Support",
                 avatar: "gemini.png",
                 badge: "Official AI Support",
-               badgeColor: "bg-gradient-to-r from-rose-950/40 via-red-900/30 to-amber-950/40 text-rose-200 border-rose-800/40 shadow-sm shadow-rose-950/20",
+                badgeColor: "bg-gradient-to-r from-rose-950/40 via-red-900/30 to-amber-950/40 text-rose-200 border-rose-800/40 shadow-sm shadow-rose-950/20",
                 fixedDesc: "Membantu riset konfigurasi sysconfig, XML overlay, dan optimasi sistem ColorOS.",
                 youtube: "https://youtube.com/@google?si=XsXtvR5IdzBEV5KF"
             }
@@ -1006,24 +1073,21 @@
             });
         }
 
-        function alertDownload(title) {
-            const videoSource = 'coloros.mp4';
-            const fallbackImage = 'coloros.webp';
+    // 1. Fungsi Utama Pop-up Unduhan (Mendukung Link Kustom untuk Versi Terbaru & Lama)
+    function alertDownload(title, customMediafireUrl, customBuzzheavierUrl) {
+        const videoSource = 'coloros.mp4';
+        const fallbackImage = 'coloros.webp';
 
-            // Deteksi apakah pengguna menggunakan HP/Mobile (layar <= 768px atau browser mobile)
-            const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        let mediaContentHtml = '';
 
-            let mediaContentHtml = '';
-
-            if (isMobile) {
-                // Tampilan KHUSUS MOBILE: Hanya muat Gambar WebP
-                mediaContentHtml = `
+        if (isMobile) {
+            mediaContentHtml = `
             <img id="fallbackImg" src="${fallbackImage}" alt="ColorOS 17 Preview" 
                  class="w-full h-full object-contain">
         `;
-            } else {
-                // Tampilan DESKTOP: Video dengan transisi ke Gambar
-                mediaContentHtml = `
+        } else {
+            mediaContentHtml = `
             <video id="popupVideo" src="${videoSource}" autoplay playsinline
                    onloadedmetadata="this.muted = false; this.volume = 0.5; this.play().catch(e => { 
                        this.muted = true; 
@@ -1039,10 +1103,9 @@
                  style="display: none;"
                  onerror="this.style.display='none'">
         `;
-            }
+        }
 
-            const mediaHtml = `
-        <!-- Container Utama dengan Aspect Ratio 16:9 -->
+        const mediaHtml = `
         <div id="mediaContainer" class="mb-5 relative w-full max-w-[260px] mx-auto rounded-2xl shadow-xl ring-1 ring-white/10 bg-slate-900 overflow-hidden" 
              style="aspect-ratio: 16 / 9;">
             <div class="grid w-full h-full">
@@ -1050,8 +1113,8 @@
             </div>
         </div>
     `;
-            // Maskot bersih tanpa ikon kuning di atasnya
-            const mascotHtml = `
+
+        const mascotHtml = `
         <div id="floatingMascot" class="animate-mascot-story flex flex-col items-center">
             <div class="relative flex items-center justify-center">
                 <div class="absolute -left-4 w-4 h-4 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 shadow-md transform -rotate-12"></div>
@@ -1073,123 +1136,173 @@
         </div>
     `;
 
-            const existingMascot = document.getElementById('floatingMascot');
-            if (existingMascot) existingMascot.remove();
+        const existingMascot = document.getElementById('floatingMascot');
+        if (existingMascot) existingMascot.remove();
 
-            document.body.insertAdjacentHTML('beforeend', mascotHtml);
+        document.body.insertAdjacentHTML('beforeend', mascotHtml);
 
-            // Link tujuan
-            const targetUrlMediafire = "https://sfl.gl/uReE1";
-            const targetUrlbuzzheavier = "https://sfl.gl/0cY1dHqG";
+        // Gunakan link kustom dari dropdown jika ada, jika kosong gunakan link default utama
+        const targetUrlMediafire = customMediafireUrl || "https://sfl.gl/uReE1";
+        const targetUrlbuzzheavier = customBuzzheavierUrl || "https://sfl.gl/0cY1dHqG";
 
-            openCustomModal("Unduhan Dimulai", `
-    <div class="text-center py-2 relative">
-        ${mediaHtml}
-        <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
-        <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-            Terima kasih banyak sudah mengunduh dan mendukung KayokoProject! Silakan pilih server unduhan di bawah ini.
-        </p>
+        openCustomModal("Unduhan Dimulai", `
+            <div class="text-center py-2 relative">
+                ${mediaHtml}
+                <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                    Terima kasih banyak sudah mengunduh dan mendukung KayokoProject! Silakan pilih server unduhan di bawah ini.
+                </p>
 
-        <!-- Container Tombol -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 w-full max-w-sm sm:max-w-none mx-auto">
-            
-            <!-- Tombol 1: MediaFire -->
-            <button id="modal-btn-1" disabled 
-                    onclick="window.open('${targetUrlMediafire}', '_blank'); closeModal();" 
-                    class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/30 select-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-                MediaFire (<span id="modal-timer-1">5</span>s)
-            </button>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 w-full max-w-sm sm:max-w-none mx-auto">
+                    <button id="modal-btn-1" disabled 
+                            onclick="window.open('${targetUrlMediafire}', '_blank'); closeModal();" 
+                            class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/30 select-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                        MediaFire (<span id="modal-timer-1">5</span>s)
+                    </button>
 
-            <!-- Tombol 2: buzzheavier -->
-            <button id="modal-btn-2" disabled 
-                    onclick="window.open('${targetUrlbuzzheavier}', '_blank'); closeModal();" 
-                    class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-orange-600 text-white font-medium text-sm hover:bg-orange-500 transition-colors shadow-lg shadow-orange-600/30 select-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-                buzzheavier (<span id="modal-timer-2">5</span>s)
-            </button>
+                    <button id="modal-btn-2" disabled 
+                            onclick="window.open('${targetUrlbuzzheavier}', '_blank'); closeModal();" 
+                            class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-orange-600 text-white font-medium text-sm hover:bg-orange-500 transition-colors shadow-lg shadow-orange-600/30 select-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                        buzzheavier (<span id="modal-timer-2">5</span>s)
+                    </button>
 
-            <!-- Tombol Tutup -->
-            <button type="button" 
-                    onclick="closeModal()" 
-                    class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium text-sm transition-colors shadow-sm cursor-pointer select-none">
-                Tutup
-            </button>
+                    <button type="button" 
+                            onclick="closeModal()" 
+                            class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium text-sm transition-colors shadow-sm cursor-pointer select-none">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        `);
 
-        </div>
-    </div>
-`);
+        // Logika Timer 5 Detik
+        let timeLeft = 5;
+        if (window.modalTimerInterval) {
+            clearInterval(window.modalTimerInterval);
+        }
 
-            // Logika Timer 5 Detik untuk kedua tombol sekaligus
-            let timeLeft = 5;
+        window.modalTimerInterval = setInterval(() => {
+            timeLeft--;
 
-            // Hentikan timer lama jika ada agar tidak bentrok
-            if (window.modalTimerInterval) {
+            const timerSpan1 = document.getElementById('modal-timer-1');
+            const timerSpan2 = document.getElementById('modal-timer-2');
+            const btn1 = document.getElementById('modal-btn-1');
+            const btn2 = document.getElementById('modal-btn-2');
+
+            if (timerSpan1) timerSpan1.textContent = timeLeft;
+            if (timerSpan2) timerSpan2.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
                 clearInterval(window.modalTimerInterval);
-            }
 
-            window.modalTimerInterval = setInterval(() => {
-                timeLeft--;
-
-                const timerSpan1 = document.getElementById('modal-timer-1');
-                const timerSpan2 = document.getElementById('modal-timer-2');
-                const btn1 = document.getElementById('modal-btn-1');
-                const btn2 = document.getElementById('modal-btn-2');
-
-                // Update angka countdown
-                if (timerSpan1) timerSpan1.textContent = timeLeft;
-                if (timerSpan2) timerSpan2.textContent = timeLeft;
-
-                // Ketika waktu habis
-                if (timeLeft <= 0) {
-                    clearInterval(window.modalTimerInterval);
-
-                    if (btn1) {
-                        btn1.disabled = false;
-                        btn1.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> (MediaFire)';
-                    }
-                    if (btn2) {
-                        btn2.disabled = false;
-                        btn2.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> (buzzheavier)';
-                    }
+                if (btn1) {
+                    btn1.disabled = false;
+                    btn1.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> MediaFire';
                 }
-            }, 1000);
+                if (btn2) {
+                    btn2.disabled = false;
+                    btn2.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> buzzheavier';
+                }
+            }
+        }, 1000);
+
+        setTimeout(() => {
+            const mascotEl = document.getElementById('floatingMascot');
+            if (mascotEl) mascotEl.remove();
+        }, 4000);
+
+        if (typeof confetti === 'function') {
+            setTimeout(() => {
+                confetti({
+                    particleCount: 75,
+                    spread: 80,
+                    origin: { y: 0.8 },
+                    colors: ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
+                });
+            }, 1200);
+        }
+    }
+
+    function transitionToImage() {
+        const video = document.getElementById('popupVideo');
+        const img = document.getElementById('fallbackImg');
+
+        if (video && img) {
+            video.volume = 0;
+            img.style.display = 'block';
+            video.style.opacity = '0';
+            img.style.opacity = '1';
 
             setTimeout(() => {
-                const mascotEl = document.getElementById('floatingMascot');
-                if (mascotEl) mascotEl.remove();
-            }, 4000);
-
-            if (typeof confetti === 'function') {
-                setTimeout(() => {
-                    confetti({
-                        particleCount: 75,
-                        spread: 80,
-                        origin: { y: 0.8 },
-                        colors: ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
-                    });
-                }, 1200);
-            }
+                video.remove();
+            }, 700);
         }
+    }
 
-        function transitionToImage() {
-            const video = document.getElementById('popupVideo');
-            const img = document.getElementById('fallbackImg');
 
-            if (video && img) {
-                video.volume = 0;
+    // 2. Modal Arsip Versi Lama
+    function openOldVersionsModal() {
+        openCustomModal("Arsip Versi Lama", `
+            <div>
+                <!-- Header Info -->
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-500 flex items-center justify-center text-xl border border-blue-500/30">
+                        <i class="fa-solid fa-box-archive"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Arsip Build ROM</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Pilih build versi terdahulu yang diinginkan</p>
+                    </div>
+                </div>
 
-                // Pastikan gambar sudah di-display dan siap untuk di-fade in
-                img.style.display = 'block';
+                <!-- Daftar Pilihan Versi ROM dengan link spesifik di atribut data-* -->
+                <div class="space-y-3 mb-6">
+                    <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1">Pilih Build ROM:</label>
+                    
+                    <div class="relative">
+                        <select id="romVersionSelect" class="w-full py-3.5 px-4 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer">
+                            <option value="v1" data-mediafire="https://watchbutdonotlearn.github.io/" data-buzzheavier="https://watchbutdonotlearn.github.io/">ColorOS 18 Beta - Initial Build (9.00 GB)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
 
-                // Lakukan fade out video & fade in gambar secara bersamaan
-                video.style.opacity = '0';
-                img.style.opacity = '1';
+                <!-- Tombol Aksi -->
+                <div class="flex gap-3 pt-2">
+                    <button onclick="closeModal()" class="flex-1 py-3.5 rounded-2xl bg-slate-200/70 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm transition-all cursor-pointer">
+                        Batal
+                    </button>
+                    <!-- Mengarah ke fungsi downloadSelectedVersion() yang benar -->
+                    <button onclick="downloadSelectedVersion()" class="flex-1 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Unduh Build</span>
+                    </button>
+                </div>
+            </div>
+        `);
+    }
 
-                // Hapus elemen video setelah transisi selesai
-                setTimeout(() => {
-                    video.remove();
-                }, 700);
-            }
+    // 3. Fungsi untuk mengambil link dari dropdown lalu membuka pop-up server unduhan
+    function downloadSelectedVersion() {
+        const select = document.getElementById('romVersionSelect');
+        const selectedOption = select.options[select.selectedIndex];
+        
+        const mediafireUrl = selectedOption.getAttribute('data-mediafire');
+        const buzzheavierUrl = selectedOption.getAttribute('data-buzzheavier');
+        const buildName = selectedOption.text;
+
+        // Tutup modal arsip versi lama
+        closeModal();
+
+        // Jalankan efek confetti jika ada, lalu panggil pop-up server unduhan
+        if (typeof triggerConfetti === 'function') {
+            triggerConfetti();
         }
+        
+        alertDownload(buildName, mediafireUrl, buzzheavierUrl);
+    }
 
         function openScreenshotModal() {
             openCustomModal("Screenshot Preview", `
@@ -1446,7 +1559,10 @@
             <li class="flex items-start">
             <span class="mr-1.5">•</span>
             <span>Lakukan <strong>Wipe Data</strong> lalu centang bagian <strong>Internal Storage</strong> dan swipe ke kanan.</span>
-            <span class="italic">(Bagian ini bisa di lakukan sebelum Format data maupun sesudah booting)</span>
+        </li>
+            <li class="flex items-start text-slate-500 dark:text-slate-400">
+            <span class="mr-1.5">*</span>
+            <span><em>Catatan: Bagian Wipe Data bisa di lakukan sebelum Format data maupun sesudah booting.</em></span>
         </li>
         <li class="flex items-start">
             <span class="mr-1.5">•</span>
