@@ -63,23 +63,60 @@
             min-height: 100vh;
         }
 
-        /* Animated Mesh Gradient Background */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background-color: #0b0f19;
-            background-image:
-                radial-gradient(circle at 20% 30%, rgba(0, 122, 255, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(175, 82, 222, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(0, 199, 190, 0.25) 0%, transparent 60%);
-            background-size: 200% 200%;
-            animation: moveGradient 12s ease infinite alternate;
+        @keyframes shimmerEffect {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
+
+        .animate-shimmer {
+            animation: shimmerEffect 2s linear infinite;
+        }
+
+        /* Pastikan styling background body yang sebelumnya tetap ada */
+        body {
+            --scroll: 0%;
+        }
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* Warna dasar paling atas gelap pekat, lalu transisi ke aurora di bawah */
+    background-color: #07090e;
+    background-image: 
+        /* Efek Aurora 1 (Cyan/Teal) di pojok kiri-bawah */
+        radial-gradient(circle at 10% 90%, rgba(0, 199, 190, 0.25) 0%, transparent 45%),
+        /* Efek Aurora 2 (Ungu/Purple) di bagian tengah-bawah */
+        radial-gradient(circle at 50% 100%, rgba(175, 82, 222, 0.3) 0%, transparent 50%),
+        /* Efek Aurora 3 (Biru/Blue) di pojok kanan-bawah */
+        radial-gradient(circle at 90% 85%, rgba(0, 122, 255, 0.25) 0%, transparent 45%),
+        /* Gradien gelap tambahan di bagian atas supaya area header tetap clean & gelap */
+        linear-gradient(to bottom, rgba(7, 9, 14, 0.9) 0%, rgba(7, 9, 14, 0.4) 50%, transparent 100%);
+    
+    background-size: 200% 200%;
+    animation: auroraMovement 10s ease infinite alternate;
+}
+
+@keyframes auroraMovement {
+    0% {
+        background-position: 0% 30%;
+    }
+    50% {
+        background-position: 100% 70%;
+    }
+    100% {
+        background-position: 50% 50%;
+    }
+}
 
         @keyframes moveGradient {
             0% {
@@ -349,41 +386,81 @@
             }
         }
 
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
 
-.animate-gradient-hover:hover {
-    background-size: 200% 200%;
-    animation: gradientMove 3s ease infinite;
-}
+            50% {
+                background-position: 100% 50%;
+            }
 
-@keyframes iosBounce {
-    0% { 
-        transform: scale(1); 
-    }
-    35% { 
-        transform: scale(0.94); 
-    }
-    70% { 
-        transform: scale(1.04); 
-    }
-    100% { 
-        transform: scale(1); 
-    }
-}
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-.tab-active-bounce {
-    animation: iosBounce 0.5s cubic-bezier(0.25, 1, 0.5, 1.25) forwards;
-    transform-origin: center;
-}
+        .animate-gradient-hover:hover {
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes iosBounce {
+            0% {
+                transform: scale(1);
+            }
+
+            35% {
+                transform: scale(0.94);
+            }
+
+            70% {
+                transform: scale(1.04);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .tab-active-bounce {
+            animation: iosBounce 0.5s cubic-bezier(0.25, 1, 0.5, 1.25) forwards;
+            transform-origin: center;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-gradient {
+            background-size: 200% auto;
+            animation: gradientAnimation 4s ease infinite;
+        }
     </style>
 </head>
 
 <body
     class="min-h-screen relative selection:bg-blue-500 selection:text-white bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100">
+
+    <!-- Scroll Progress Bar dengan Blur & Shimmer -->
+    <div class="fixed top-0 left-0 w-full h-0.5 backdrop-blur-md bg-slate-900/30 z-50">
+        <div id="scrollProgressBar"
+            class="h-full bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 w-0 relative overflow-hidden">
+            <!-- Efek Shimmer Kilau Cahaya -->
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer">
+            </div>
+        </div>
+    </div>
 
     <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/15 rounded-full blur-[130px] animate-pulse-glow">
@@ -437,33 +514,79 @@
                         <i class="fa-solid fa-circle-nodes text-sm"></i>
                         <span>By OnikataKayoko</span>
                     </a>
-                    <button onclick="toggleMobileMenu()"
-                        class="sm:hidden w-10 h-10 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
+<!-- Tombol Indikator Baterai Khas iPhone Bar -->
+<button id="batteryBtn" onclick="checkBatteryStatus()" title="Cek Status Baterai"
+    class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 hover:border-white/20 transition-all shrink-0 cursor-pointer select-none">
+    
+    <!-- Wadah Baterai Khas iPhone (Pill Horizontal) -->
+    <div class="relative w-6 h-3 rounded-[4px] border-[1.5px] border-slate-300 dark:border-slate-200 p-[1px] flex items-center">
+        <!-- Batang Isi Baterai (Lebar dinamis via JS) -->
+        <div id="batteryLevelBar" class="h-full rounded-[2px] bg-emerald-400 transition-all duration-500" style="width: 100%;"></div>
+        
+        <!-- Pentil/Nipple Baterai Khas iPhone -->
+        <div class="absolute -right-[3px] top-1/2 -translate-y-1/2 w-[2px] h-[4px] bg-slate-300 dark:bg-slate-200 rounded-r-[1px]"></div>
+        
+        <!-- Ikon Petir Saat Dicas (Hidden secara default) -->
+        <i id="batteryChargingBolt" class="fa-solid fa-bolt text-[8px] text-slate-950 absolute inset-0 flex items-center justify-center hidden font-bold"></i>
+    </div>
+
+    <!-- Teks Persentase Angka Khas iOS -->
+    <span id="batteryText" class="text-[11px] font-bold text-slate-200 tracking-tight">100%</span>
+</button>
                 </div>
             </nav>
 
-            <div id="mobileMenu"
-                class="hidden sm:hidden absolute left-3 right-3 z-50 aquamorphic-glass rounded-3xl mt-2 p-3 space-y-2 border border-black/5 dark:border-white/10 shadow-2xl backdrop-blur-xl">
-                <button onclick="switchTab('thanks'); toggleMobileMenu();"
-                    class="mobile-tab-btn w-full text-left px-4 py-3 rounded-2xl bg-blue-600 text-white text-sm font-medium flex items-center space-x-3 shadow"
-                    data-mobtab="thanks">
-                    <i class="fa-solid fa-heart w-5"></i><span>Special Thanks</span>
-                </button>
-                <button onclick="switchTab('downloads'); toggleMobileMenu();"
-                    class="mobile-tab-btn w-full text-left px-4 py-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 text-sm font-medium flex items-center space-x-3"
-                    data-mobtab="downloads">
-                    <i class="fa-solid fa-download w-5"></i><span>Downloads</span>
-                </button>
-                <a href="https://kayokoproject-68d2a.web.app/" target="_blank"
-                    class="w-full text-left px-4 py-3 rounded-2xl bg-blue-500/10 text-blue-500 dark:text-blue-400 text-sm font-medium flex items-center space-x-3">
-                    <i class="fa-solid fa-circle-nodes text-sm"></i>
-                    <span>By OnikataKayoko</span>
-                </a>
-            </div>
-        </div>
+
+<!-- Floating Navigation Pill Khusus Mobile (Di Bawah Layar) -->
+<div class="sm:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm">
+    <div class="aquamorphic-glass rounded-full p-1.5 border border-white/10 shadow-2xl backdrop-blur-2xl bg-slate-950/80 flex items-center justify-between gap-1">
+        
+        <!-- Tombol Special Thanks -->
+        <button onclick="switchTab('thanks')" 
+            class="mobile-tab-btn flex-1 py-2 px-3 rounded-full text-xs font-medium flex items-center justify-center space-x-1.5 transition-all text-slate-300 hover:text-white"
+            data-mobtab="thanks">
+            <i class="fa-solid fa-heart text-xs"></i>
+            <span>Thanks</span>
+        </button>
+
+        <!-- Tombol Downloads -->
+        <button onclick="switchTab('downloads')" 
+            class="mobile-tab-btn flex-1 py-2 px-3 rounded-full text-xs font-medium flex items-center justify-center space-x-1.5 transition-all text-slate-300 hover:text-white"
+            data-mobtab="downloads">
+            <i class="fa-solid fa-download text-xs"></i>
+            <span>Downloads</span>
+        </button>
+
+<!-- Tombol By OnikataKayoko (Mode Ikon Saja) -->
+<a href="https://kayokoproject-68d2a.web.app/" target="_blank"
+    title="By OnikataKayoko"
+    class="w-9 h-9 rounded-full flex items-center justify-center bg-blue-500/20 text-blue-400 border border-blue-500/30 hover:bg-blue-500/30 transition-all shrink-0">
+    <i class="fa-solid fa-circle-nodes text-sm"></i>
+</a>
+
+    </div>
+</div>
     </header>
+
+<!-- Toast Notification Container (Pastikan ada pointer-events-none di luar) -->
+<div id="toastNotification" class="fixed top-4 left-4 right-4 sm:top-auto sm:bottom-5 sm:left-auto sm:right-5 sm:max-w-sm z-[9999] pointer-events-none opacity-0 transition-all duration-300 ease-out transform -translate-y-4 sm:translate-y-4">
+    <!-- Kotak di dalam pakai pointer-events-auto -->
+    <div class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl shadow-2xl shadow-blue-500/20 text-slate-100 pointer-events-auto">
+        <!-- Ikon Notifikasi -->
+        <div id="toastIcon" class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg shrink-0">
+            <i class="fa-solid fa-bell"></i>
+        </div>
+        <!-- Teks Pesan -->
+        <div class="flex-1 min-w-0">
+            <h5 id="toastTitle" class="text-xs font-bold text-slate-200">Notifikasi</h5>
+            <p id="toastMessage" class="text-xs text-slate-400 truncate">Pesan berhasil dimuat.</p>
+        </div>
+        <!-- Tombol Tutup -->
+        <button onclick="hideToast()" class="text-slate-400 hover:text-slate-200 p-1 transition-colors cursor-pointer">
+            <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+    </div>
+</div>
 
     <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-24">
 
@@ -473,8 +596,26 @@
                 <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
                     Apresiasi Spesial untuk <br>
                     <span
-                        class="bg-gradient-to-r from-blue-500 via-teal-400 to-purple-500 bg-clip-text text-transparent">Para
-                        Fixer & Developer</span>
+                        class="bg-gradient-to-r from-blue-500 via-teal-400 to-purple-500 bg-clip-text text-transparent"
+                        style="background-size: 300% auto; animation: rainbowShift 5s ease infinite;">
+                        Para Fixer & Developer
+                    </span>
+
+                    <style>
+                        @keyframes rainbowShift {
+                            0% {
+                                background-position: 0% 50%;
+                            }
+
+                            50% {
+                                background-position: 100% 50%;
+                            }
+
+                            100% {
+                                background-position: 0% 50%;
+                            }
+                        }
+                    </style>
                 </h1>
                 <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg font-normal leading-relaxed mb-8 px-2">
                     Daftar kontributor hebat yang telah berdedikasi membantu nge-fix bug krusial, mengoptimalkan sistem,
@@ -484,12 +625,12 @@
                 <div class="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl mx-auto">
                     <!-- Ditambahkan kelas glow-card -->
                     <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
-                        <span class="block text-xl sm:text-3xl font-bold text-blue-500 dark:text-blue-400">6</span>
+                        <span class="block text-xl sm:text-3xl font-bold text-blue-500 dark:text-blue-400">7</span>
                         <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Fixer &
                             Devs</span>
                     </div>
                     <div class="aquamorphic-glass glow-card p-3 sm:p-4 rounded-2xl text-center">
-                        <span class="block text-xl sm:text-3xl font-bold text-teal-500 dark:text-teal-400">12</span>
+                        <span class="block text-xl sm:text-3xl font-bold text-teal-500 dark:text-teal-400">13</span>
                         <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Total
                             Contributors</span>
                     </div>
@@ -527,9 +668,26 @@
                 <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
                     Pusat Unduhan <br>
                     <span
-                        class="bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">ColorOS
-                        17
-                        China Beta</span>
+                        class="bg-gradient-to-r from-teal-400 via-purple-500 via-blue-500 to-teal-400 bg-clip-text text-transparent"
+                        style="background-size: 300% auto; animation: rainbowShift 5s ease infinite;">
+                        ColorOS 17 China Beta
+                    </span>
+
+                    <style>
+                        @keyframes rainbowShift {
+                            0% {
+                                background-position: 0% 50%;
+                            }
+
+                            50% {
+                                background-position: 100% 50%;
+                            }
+
+                            100% {
+                                background-position: 0% 50%;
+                            }
+                        }
+                    </style>
                 </h1>
                 <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg font-normal leading-relaxed mb-8 px-2">
                     Unduh file porting resmi ColorOS 17 China Beta yang telah dioptimalkan dan di-fix langsung
@@ -579,45 +737,47 @@
                     </div>
 
                     <!-- Tombol Utama Download -->
-<button onclick="triggerConfetti(); alertDownload('Terima Kasih Telah Mengunduh!')"
-    class="relative overflow-hidden w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-500/25 hover:shadow-[0_4px_20px_rgba(59,130,246,0.3)] transition-all duration-500 transform hover:scale-[1.01] hover:brightness-110 active:scale-95 flex items-center justify-center space-x-2 mb-3 cursor-pointer group">
-    
-    <!-- Lapisan Warna Biru Terang dengan Efek Geser Background (Full Sampai Ujung) -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#2563eb,#38bdf8,#2563eb)] bg-[length:200%_100%] bg-[position:100%_0] group-hover:bg-[position:0%_0] transition-all duration-500 ease-out pointer-events-none"></div>
+                    <button onclick="triggerConfetti(); alertDownload('Terima Kasih Telah Mengunduh!')"
+                        class="relative overflow-hidden w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-500/25 hover:shadow-[0_4px_20px_rgba(59,130,246,0.3)] transition-all duration-500 transform hover:scale-[1.01] hover:brightness-110 active:scale-95 flex items-center justify-center space-x-2 mb-3 cursor-pointer group">
 
-    <!-- Konten Tombol -->
-    <i class="fa-solid fa-cloud-arrow-down text-lg relative z-10"></i>
-    <span class="relative z-10">Unduh File Sekarang (8.03 GB)</span>
-</button>
+                        <!-- Lapisan Warna Biru Terang dengan Efek Geser Background (Full Sampai Ujung) -->
+                        <div
+                            class="absolute inset-0 bg-[linear-gradient(to_right,#2563eb,#38bdf8,#2563eb)] bg-[length:200%_100%] bg-[position:100%_0] group-hover:bg-[position:0%_0] transition-all duration-500 ease-out pointer-events-none">
+                        </div>
 
-<!-- Grid Tombol Opsi (Dua Baris x Dua Kolom yang Rapi) -->
-<div class="grid grid-cols-2 gap-2.5">
-    <!-- Baris 1: Extension & Notes -->
-    <button onclick="openExtensionModal()"
-        class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
-        <i class="fa-solid fa-puzzle-piece text-teal-500"></i>
-        <span>Extension</span>
-    </button>
+                        <!-- Konten Tombol -->
+                        <i class="fa-solid fa-cloud-arrow-down text-lg relative z-10"></i>
+                        <span class="relative z-10">Unduh File Sekarang (8.03 GB)</span>
+                    </button>
 
-    <button onclick="openFeaturesBugsModal()"
-        class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
-        <i class="fa-solid fa-note-sticky text-amber-500"></i>
-        <span>Notes</span>
-    </button>
+                    <!-- Grid Tombol Opsi (Dua Baris x Dua Kolom yang Rapi) -->
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <!-- Baris 1: Extension & Notes -->
+                        <button onclick="openExtensionModal()"
+                            class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+                            <i class="fa-solid fa-puzzle-piece text-teal-500"></i>
+                            <span>Extension</span>
+                        </button>
 
-    <!-- Baris 2: Screenshots & Versi Lama -->
-    <button onclick="openScreenshotModal()"
-        class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
-        <i class="fa-solid fa-images text-purple-500"></i>
-        <span>Screenshots</span>
-    </button>
+                        <button onclick="openFeaturesBugsModal()"
+                            class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+                            <i class="fa-solid fa-note-sticky text-amber-500"></i>
+                            <span>Notes</span>
+                        </button>
 
-    <button onclick="openOldVersionsModal()"
-        class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
-        <i class="fa-solid fa-clock-rotate-left text-blue-500"></i>
-        <span>Versi Lama</span>
-    </button>
-</div>
+                        <!-- Baris 2: Screenshots & Versi Lama -->
+                        <button onclick="openScreenshotModal()"
+                            class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+                            <i class="fa-solid fa-images text-purple-500"></i>
+                            <span>Screenshots</span>
+                        </button>
+
+                        <button onclick="openOldVersionsModal()"
+                            class="py-3 px-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-black/5 dark:border-white/10 transition-all flex items-center justify-center space-x-2 spring-bounce cursor-pointer">
+                            <i class="fa-solid fa-clock-rotate-left text-blue-500"></i>
+                            <span>Versi Lama</span>
+                        </button>
+                    </div>
 
                     <!-- MODAL SCREENSHOT GALLERY (10 Slide: 9 Gambar + 1 Blur Telegram) -->
                     <div id="screenshotModal"
@@ -839,72 +999,73 @@
     </script>
 
     <script>
-        // Tab switching logic
+// Tab switching logic
         function switchTab(tabName) {
-    // 1. Ambil semua tombol tab
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    
-    tabButtons.forEach(btn => {
-        // Reset style tombol ke non-aktif (sesuaikan dengan class bawaan project kamu)
-        btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
-        btn.classList.add('text-slate-500', 'dark:text-slate-300');
-        
-        // Jika tombol sesuai dengan tab yang diklik
-        if (btn.getAttribute('data-tab') === tabName) {
-            // Aktifkan style tombol terpilih
-            btn.classList.remove('text-slate-500', 'dark:text-slate-300');
-            btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30');
-            
-            // Picu efek bounce ala iOS
-            btn.classList.add('tab-active-bounce');
-            
-            // Hapus kelas animasi setelah selesai agar bisa dipicu lagi di klik berikutnya
-            setTimeout(() => {
-                btn.classList.remove('tab-active-bounce');
-            }, 400);
-        }
-    });
-
-    // ... (lanjutkan logika konten tab kamu di sini, misal menampilkan/menyembunyikan section)
-
+            // 1. Sembunyikan semua konten tab
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+
+            // 2. Reset semua tombol tab desktop (.tab-btn) ke non-aktif
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
                 btn.classList.add('text-slate-500', 'dark:text-slate-300');
             });
+
+            // 3. Reset semua tombol tab mobile (.mobile-tab-btn) ke non-aktif
             document.querySelectorAll('.mobile-tab-btn').forEach(btn => {
-                btn.classList.remove('bg-blue-600', 'text-white', 'shadow');
-                btn.classList.add('bg-black/5', 'dark:bg-white/5', 'text-slate-700', 'dark:text-slate-300');
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/30');
+                btn.classList.add('text-slate-300', 'hover:text-white');
             });
 
+            // 4. Aktifkan tab dan tombol yang sesuai berdasarkan tabName
             if (tabName === 'thanks') {
-                document.getElementById('tabThanks').classList.remove('hidden');
+                const targetContent = document.getElementById('tabThanks');
+                if (targetContent) targetContent.classList.remove('hidden');
+
+                // Nyalakan tombol desktop
                 document.querySelectorAll('[data-tab="thanks"]').forEach(btn => {
                     btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
                     btn.classList.remove('text-slate-500', 'dark:text-slate-300');
+                    
+                    // Efek bounce ala iOS
+                    setTimeout(() => btn.classList.remove('tab-active-bounce'), 400);
                 });
+
+                // Nyalakan tombol pill mobile
                 document.querySelectorAll('[data-mobtab="thanks"]').forEach(btn => {
-                    btn.classList.add('bg-blue-600', 'text-white', 'shadow');
-                    btn.classList.remove('bg-black/5', 'dark:bg-white/5', 'text-slate-700', 'dark:text-slate-300');
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/30');
+                    btn.classList.remove('text-slate-300', 'hover:text-white');
                 });
+
             } else if (tabName === 'downloads') {
-                document.getElementById('tabDownloads').classList.remove('hidden');
+                const targetContent = document.getElementById('tabDownloads');
+                if (targetContent) targetContent.classList.remove('hidden');
+
+                // Nyalakan tombol desktop
                 document.querySelectorAll('[data-tab="downloads"]').forEach(btn => {
                     btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
                     btn.classList.remove('text-slate-500', 'dark:text-slate-300');
+                    
+                    // Efek bounce ala iOS
+                    setTimeout(() => btn.classList.remove('tab-active-bounce'), 400);
                 });
+
+                // Nyalakan tombol pill mobile
                 document.querySelectorAll('[data-mobtab="downloads"]').forEach(btn => {
-                    btn.classList.add('bg-blue-600', 'text-white', 'shadow');
-                    btn.classList.remove('bg-black/5', 'dark:bg-white/5', 'text-slate-700', 'dark:text-slate-300');
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/30');
+                    btn.classList.remove('text-slate-300', 'hover:text-white');
                 });
             }
+
+            // Scroll otomatis ke atas dengan halus saat pindah tab
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Mobile menu toggle
+        // Fungsi toggle mobile menu (Opsional/Dihapus jika pakai floating pill mendatar)
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
         }
 
         // Data Para Developer & Fixer
@@ -962,6 +1123,16 @@
             },
             {
                 id: 6,
+                name: "@goupstream",
+                role: "Bug Fixes & Solutions",
+                avatar: "erik.jpg",
+                badge: "Sharing",
+                badgeColor: "bg-gradient-to-r from-cyan-500/20 via-teal-500/20 to-emerald-500/20 text-cyan-300 border-cyan-400/40 shadow-sm shadow-cyan-500/10",
+                fixedDesc: "Brightness fix & Play Store setup guide.",
+                telegram: "https://t.me/erikshelbyprjct"
+            },
+            {
+                id: 7,
                 name: "@GettheFuckoutofhear (ShuiLong-mu)",
                 role: "File Sharer & Contributor",
                 avatar: "reds.jpg",
@@ -971,7 +1142,7 @@
                 telegram: "https://t.me/GettheFuckoutofhear"
             },
             {
-                id: 7,
+                id: 8,
                 name: "AndroidNup",
                 role: "Tutorial Creator",
                 avatar: "android.jpg",
@@ -983,7 +1154,7 @@
                 tiktok: "https://www.tiktok.com/@random_anu"
             },
             {
-                id: 8,
+                id: 9,
                 name: "@PUINewsroom",
                 role: "Module Customization Developer",
                 avatar: "pui.jpg",
@@ -993,7 +1164,7 @@
                 telegram: "https://t.me/PUINewsroom"
             },
             {
-                id: 9,
+                id: 10,
                 name: "ZuyQA & @ArticUpdates",
                 role: "Launcher Mod & Translation",
                 avatar: "artic.jpg",
@@ -1003,7 +1174,7 @@
                 telegram: "https://t.me/ArticUpdates"
             },
             {
-                id: 10,
+                id: 11,
                 name: "@LazyBones_LZY",
                 role: "Bootloop Fixer",
                 avatar: "bones.jpg",
@@ -1013,7 +1184,7 @@
                 telegram: "https://t.me/LazyBones_LZY"
             },
             {
-                id: 11,
+                id: 12,
                 name: "@ken_chids.",
                 role: "Tester module & ROM",
                 avatar: "bruh.jpg",
@@ -1022,7 +1193,7 @@
                 fixedDesc: "Membantu memecahkan masalah otg dan sdcard tidak muncul.",
             },
             {
-                id: 12,
+                id: 13,
                 name: "Gemini AI",
                 role: "AI Partner & Support",
                 avatar: "gemini.png",
@@ -1073,29 +1244,29 @@
             });
         }
 
-    // 1. Fungsi Utama Pop-up Unduhan (Mendukung Link Kustom untuk Versi Terbaru & Lama)
-    function alertDownload(title, customMediafireUrl, customBuzzheavierUrl) {
-        const videoSource = 'coloros.mp4';
-        const fallbackImage = 'coloros.webp';
+        // 1. Fungsi Utama Pop-up Unduhan (Mendukung Link Kustom untuk Versi Terbaru & Lama)
+   function alertDownload(title, customMediafireUrl, customBuzzheavierUrl) {
+            const videoSource = 'coloros.mp4';
+            const fallbackImage = 'coloros.webp';
 
-        const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        let mediaContentHtml = '';
+            const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            let mediaContentHtml = '';
 
-        if (isMobile) {
-            mediaContentHtml = `
+            if (isMobile) {
+                mediaContentHtml = `
             <img id="fallbackImg" src="${fallbackImage}" alt="ColorOS 17 Preview" 
                  class="w-full h-full object-contain">
         `;
-        } else {
-            mediaContentHtml = `
+            } else {
+                mediaContentHtml = `
             <video id="popupVideo" src="${videoSource}" autoplay playsinline
-                   onloadedmetadata="this.muted = false; this.volume = 0.5; this.play().catch(e => { 
-                       this.muted = true; 
-                       this.play(); 
-                   })"
-                   onended="transitionToImage()"
-                   class="col-start-1 row-start-1 w-full h-full object-contain transition-opacity duration-700 ease-out z-10"
-                   onerror="this.style.display='none'; document.getElementById('fallbackImg').style.display='block'; document.getElementById('fallbackImg').style.opacity='1';">
+                    onloadedmetadata="this.muted = false; this.volume = 0.5; this.play().catch(e => { 
+                        this.muted = true; 
+                        this.play(); 
+                    })"
+                    onended="transitionToImage()"
+                    class="col-start-1 row-start-1 w-full h-full object-contain transition-opacity duration-700 ease-out z-10"
+                    onerror="this.style.display='none'; document.getElementById('fallbackImg').style.display='block'; document.getElementById('fallbackImg').style.opacity='1';">
             </video>
             
             <img id="fallbackImg" src="${fallbackImage}" alt="ColorOS 17 Preview" 
@@ -1103,9 +1274,9 @@
                  style="display: none;"
                  onerror="this.style.display='none'">
         `;
-        }
+            }
 
-        const mediaHtml = `
+            const mediaHtml = `
         <div id="mediaContainer" class="mb-5 relative w-full max-w-[260px] mx-auto rounded-2xl shadow-xl ring-1 ring-white/10 bg-slate-900 overflow-hidden" 
              style="aspect-ratio: 16 / 9;">
             <div class="grid w-full h-full">
@@ -1114,7 +1285,7 @@
         </div>
     `;
 
-        const mascotHtml = `
+            const mascotHtml = `
         <div id="floatingMascot" class="animate-mascot-story flex flex-col items-center">
             <div class="relative flex items-center justify-center">
                 <div class="absolute -left-4 w-4 h-4 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 shadow-md transform -rotate-12"></div>
@@ -1136,16 +1307,16 @@
         </div>
     `;
 
-        const existingMascot = document.getElementById('floatingMascot');
-        if (existingMascot) existingMascot.remove();
+            const existingMascot = document.getElementById('floatingMascot');
+            if (existingMascot) existingMascot.remove();
 
-        document.body.insertAdjacentHTML('beforeend', mascotHtml);
+            document.body.insertAdjacentHTML('beforeend', mascotHtml);
 
-        // Gunakan link kustom dari dropdown jika ada, jika kosong gunakan link default utama
-        const targetUrlMediafire = customMediafireUrl || "https://sfl.gl/uReE1";
-        const targetUrlbuzzheavier = customBuzzheavierUrl || "https://sfl.gl/0cY1dHqG";
+            // Gunakan link kustom dari dropdown jika ada, jika kosong gunakan link default utama
+            const targetUrlMediafire = customMediafireUrl || "https://sfl.gl/uReE1";
+            const targetUrlbuzzheavier = customBuzzheavierUrl || "https://sfl.gl/0cY1dHqG";
 
-        openCustomModal("Unduhan Dimulai", `
+            openCustomModal("Unduhan Dimulai", `
             <div class="text-center py-2 relative">
                 ${mediaHtml}
                 <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
@@ -1175,74 +1346,85 @@
             </div>
         `);
 
-        // Logika Timer 5 Detik
-        let timeLeft = 5;
-        if (window.modalTimerInterval) {
-            clearInterval(window.modalTimerInterval);
-        }
+            // Panggil notifikasi saat pertama kali modal unduh dibuka
+            showToast("Menyiapkan Unduhan", `Harap tunggu ${title} (${5} detik)...`, "warning");
 
-        window.modalTimerInterval = setInterval(() => {
-            timeLeft--;
-
-            const timerSpan1 = document.getElementById('modal-timer-1');
-            const timerSpan2 = document.getElementById('modal-timer-2');
-            const btn1 = document.getElementById('modal-btn-1');
-            const btn2 = document.getElementById('modal-btn-2');
-
-            if (timerSpan1) timerSpan1.textContent = timeLeft;
-            if (timerSpan2) timerSpan2.textContent = timeLeft;
-
-            if (timeLeft <= 0) {
+            // Logika Timer 5 Detik
+            let timeLeft = 5;
+            if (window.modalTimerInterval) {
                 clearInterval(window.modalTimerInterval);
-
-                if (btn1) {
-                    btn1.disabled = false;
-                    btn1.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> MediaFire';
-                }
-                if (btn2) {
-                    btn2.disabled = false;
-                    btn2.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> buzzheavier';
-                }
             }
-        }, 1000);
 
-        setTimeout(() => {
-            const mascotEl = document.getElementById('floatingMascot');
-            if (mascotEl) mascotEl.remove();
-        }, 4000);
+            window.modalTimerInterval = setInterval(() => {
+                timeLeft--;
 
-        if (typeof confetti === 'function') {
+                const timerSpan1 = document.getElementById('modal-timer-1');
+                const timerSpan2 = document.getElementById('modal-timer-2');
+                const btn1 = document.getElementById('modal-btn-1');
+                const btn2 = document.getElementById('modal-btn-2');
+
+                if (timerSpan1) timerSpan1.textContent = timeLeft;
+                if (timerSpan2) timerSpan2.textContent = timeLeft;
+
+                // Update teks notifikasi di setiap detik berjalan
+                if (timeLeft > 0) {
+                    showToast("Menyiapkan Unduhan", `Tersisa ${timeLeft} detik lagi...`, "warning");
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(window.modalTimerInterval);
+
+                    if (btn1) {
+                        btn1.disabled = false;
+                        btn1.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> MediaFire';
+                    }
+                    if (btn2) {
+                        btn2.disabled = false;
+                        btn2.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> buzzheavier';
+                    }
+
+                    // Notifikasi sukses saat tombol sudah siap diklik
+                    showToast("Siap Diunduh!", "Link unduhan sudah bisa diklik.", "success");
+                }
+            }, 1000);
+
             setTimeout(() => {
-                confetti({
-                    particleCount: 75,
-                    spread: 80,
-                    origin: { y: 0.8 },
-                    colors: ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
-                });
-            }, 1200);
+                const mascotEl = document.getElementById('floatingMascot');
+                if (mascotEl) mascotEl.remove();
+            }, 4000);
+
+            if (typeof confetti === 'function') {
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 75,
+                        spread: 80,
+                        origin: { y: 0.8 },
+                        colors: ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
+                    });
+                }, 1200);
+            }
         }
-    }
 
-    function transitionToImage() {
-        const video = document.getElementById('popupVideo');
-        const img = document.getElementById('fallbackImg');
+        function transitionToImage() {
+            const video = document.getElementById('popupVideo');
+            const img = document.getElementById('fallbackImg');
 
-        if (video && img) {
-            video.volume = 0;
-            img.style.display = 'block';
-            video.style.opacity = '0';
-            img.style.opacity = '1';
+            if (video && img) {
+                video.volume = 0;
+                img.style.display = 'block';
+                video.style.opacity = '0';
+                img.style.opacity = '1';
 
-            setTimeout(() => {
-                video.remove();
-            }, 700);
+                setTimeout(() => {
+                    video.remove();
+                }, 700);
+            }
         }
-    }
 
 
-    // 2. Modal Arsip Versi Lama
-    function openOldVersionsModal() {
-        openCustomModal("Arsip Versi Lama", `
+        // 2. Modal Arsip Versi Lama
+        function openOldVersionsModal() {
+            openCustomModal("Arsip Versi Lama", `
             <div>
                 <!-- Header Info -->
                 <div class="flex items-center space-x-3 mb-4">
@@ -1282,27 +1464,27 @@
                 </div>
             </div>
         `);
-    }
-
-    // 3. Fungsi untuk mengambil link dari dropdown lalu membuka pop-up server unduhan
-    function downloadSelectedVersion() {
-        const select = document.getElementById('romVersionSelect');
-        const selectedOption = select.options[select.selectedIndex];
-        
-        const mediafireUrl = selectedOption.getAttribute('data-mediafire');
-        const buzzheavierUrl = selectedOption.getAttribute('data-buzzheavier');
-        const buildName = selectedOption.text;
-
-        // Tutup modal arsip versi lama
-        closeModal();
-
-        // Jalankan efek confetti jika ada, lalu panggil pop-up server unduhan
-        if (typeof triggerConfetti === 'function') {
-            triggerConfetti();
         }
-        
-        alertDownload(buildName, mediafireUrl, buzzheavierUrl);
-    }
+
+        // 3. Fungsi untuk mengambil link dari dropdown lalu membuka pop-up server unduhan
+        function downloadSelectedVersion() {
+            const select = document.getElementById('romVersionSelect');
+            const selectedOption = select.options[select.selectedIndex];
+
+            const mediafireUrl = selectedOption.getAttribute('data-mediafire');
+            const buzzheavierUrl = selectedOption.getAttribute('data-buzzheavier');
+            const buildName = selectedOption.text;
+
+            // Tutup modal arsip versi lama
+            closeModal();
+
+            // Jalankan efek confetti jika ada, lalu panggil pop-up server unduhan
+            if (typeof triggerConfetti === 'function') {
+                triggerConfetti();
+            }
+
+            alertDownload(buildName, mediafireUrl, buzzheavierUrl);
+        }
 
         function openScreenshotModal() {
             openCustomModal("Screenshot Preview", `
@@ -1524,6 +1706,7 @@
                     </div>
                     
                     <div class="space-y-4 mb-6">
+                        <!-- Fitur Utama Fixed -->
                         <div>
                             <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2 flex items-center">
                                 <i class="fa-solid fa-star mr-1.5"></i> Fitur Utama Fixed:
@@ -1539,6 +1722,10 @@
                                 <li>• GameSpace OPPO berfungsi.</li>
                             </ul>
                         </div>
+
+                        <hr class="border-slate-200 dark:border-slate-800 my-4">
+
+                        <!-- Known Bugs -->
                         <div>
                             <h4 class="text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400 mb-2 flex items-center">
                                 <i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Known Bugs (Minor):
@@ -1546,90 +1733,102 @@
                             <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
                                 <li>• Delay pada bagian fitur (Angkat Device untuk menghidupkan layar).</li>
                                 <li>• Animasi Auto Brightness kurang Smooth.</li>
-                                <li>• Pencahayaan berkedip pada saat memasuki sleep mode</li>
-                                <li>• Bluetooth TWS terkadang terputus dengan sendirinya</li>
-                                <li>• Face Unlock blank tidak bisa di pakai<li>
-                                <li>• Perekam suara crash<li>
+                                <li>• Pencahayaan berkedip pada saat memasuki sleep mode.</li>
+                                <li>• Bluetooth TWS terkadang terputus dengan sendirinya.</li>
+                                <li>• Face Unlock blank tidak bisa di pakai.</li>
+                                <li>• Perekam suara crash.</li>
                             </ul>
                         </div>
-<div>
-    <h4 class="mb-3 flex items-center text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-        <i class="fa-solid fa-box-archive mr-1.5"></i> How To Flash:
-    </h4>
-    <ul class="space-y-2 pl-2 text-xs text-slate-600 dark:text-slate-300">
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Ekstrak file .ZIP-nya terlebih dahulu.</span>
-        </li>
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Masuk ke OrangeFox, lalu flash file <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">system.img</code>.</span>
-        </li>
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Flash kernel Permissive KSU <span class="italic">(tersedia di Extension Module)</span>.</span>
-        </li>
-            <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Lakukan <strong>Wipe Data</strong> lalu centang bagian <strong>Internal Storage</strong> dan swipe ke kanan.</span>
-        </li>
-            <li class="flex items-start text-slate-500 dark:text-slate-400">
-            <span class="mr-1.5">*</span>
-            <span><em>Catatan: Bagian Wipe Data bisa di lakukan sebelum Format data maupun sesudah booting.</em></span>
-        </li>
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Lalu lakukan <strong>Format Data</strong> (ketik <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">yes</code>).</span>
-        </li>
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Reboot system.</span>
-        </li>
-        <li class="pt-1">
-            <a href="https://youtu.be/Ept2a1LPzTY?si=7gZt65sXNL_qr6ke" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg bg-red-50 px-3 py-1.5 font-semibold text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/50">
-                <i class="fa-brands fa-youtube text-sm"></i> 
-                <span>Tutorial YouTube</span>
-            </a>
-        </li>
-    </ul>
-</div>
-<div>
-<h4 class="mb-3 flex items-center text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-    <i class="fa-solid fa-box-archive mr-1.5"></i> 
-    Atasi OrangeFOX (failed to decrypt 0) dan internal storage tidak terbaca:
-</h4>
-    <ul class="space-y-2 pl-2 text-xs text-slate-600 dark:text-slate-300">
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Matikan PIN/kata sandi di perangkatmu terlebih dahulu.</span>
-        </li>
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Masuk ke OrangeFox, lalu ketuk tombol <strong>Home</strong>.</span>
-        </li>
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Buka menu, lalu pilih <strong>Terminal</strong>.</span>
-        </li>
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Masukkan perintah berikut agar internal storage terbaca:</span>
-        </li>
-        <li>
-            <code class="block rounded bg-slate-100 px-2.5 py-1.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">
-                mount --bind /data/media/0 /sdcard
-            </code>
-        </li>
-        <li class="flex items-start">
-            <span class="mr-1.5">•</span>
-            <span>Keluar dari terminal, lalu cek kembali pada tab <strong>Files</strong>.</span>
-        </li>
-        <li class="flex items-start text-slate-500 dark:text-slate-400">
-            <span class="mr-1.5">*</span>
-            <span><em>Catatan: Cara ini bersifat sementara, namun sangat berguna jika ingin pindah ROM dari ColorOS 17 ke ROM lain.</em></span>
-        </li>
-    </ul>
-</div>
+
+                        <hr class="border-slate-200 dark:border-slate-800 my-4">
+
+                        <!-- How To Flash -->
+                        <div>
+                            <h4 class="mb-3 flex items-center text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                                <i class="fa-solid fa-box-archive mr-1.5"></i> How To Flash:
+                            </h4>
+                            <ul class="space-y-2 pl-2 text-xs text-slate-600 dark:text-slate-300">
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Ekstrak file .ZIP-nya terlebih dahulu.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Masuk ke OrangeFox, lalu flash file <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">system.img</code>.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Flash kernel Permissive KSU <span class="italic">(tersedia di Extension Module)</span>.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Lakukan <strong>Wipe Data</strong> lalu centang bagian <strong>Internal Storage</strong> dan swipe ke kanan.</span>
+                                </li>
+                                <li class="flex items-start text-slate-500 dark:text-slate-400">
+                                    <span class="mr-1.5">*</span>
+                                    <span><em>Catatan: Bagian Wipe Data bisa di lakukan sebelum Format data maupun sesudah booting.</em></span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Lalu lakukan <strong>Format Data</strong> (ketik <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">yes</code>).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Reboot system.</span>
+                                </li>
+                                <li class="pt-1">
+                                    <a href="https://youtu.be/Ept2a1LPzTY?si=7gZt65sXNL_qr6ke" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg bg-red-50 px-3 py-1.5 font-semibold text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/50">
+                                        <i class="fa-brands fa-youtube text-sm"></i> 
+                                        <span>Tutorial YouTube</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr class="border-slate-200 dark:border-slate-800 my-4">
+
+                        <!-- Atasi OrangeFOX -->
+                        <div>
+                            <h4 class="mb-3 flex items-center text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                                <i class="fa-brands fa-firefox mr-1.5"></i> 
+                                Atasi OrangeFOX (failed to decrypt 0) dan internal storage tidak terbaca:
+                            </h4>
+                            <ul class="space-y-2 pl-2 text-xs text-slate-600 dark:text-slate-300">
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Matikan PIN/kata sandi di perangkatmu terlebih dahulu.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Masuk ke OrangeFox, lalu ketuk tombol <strong>Home</strong>.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Buka menu, lalu pilih <strong>Terminal</strong>.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Masukkan perintah berikut agar internal storage terbaca:</span>
+                                </li>
+                                <li>
+                                    <code class="block rounded bg-slate-100 px-2.5 py-1.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">
+                                        mount --bind /data/media/0 /sdcard
+                                    </code>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-1.5">•</span>
+                                    <span>Keluar dari terminal, lalu cek kembali pada tab <strong>Files</strong>.</span>
+                                </li>
+                                <li class="flex items-start text-slate-500 dark:text-slate-400">
+                                    <span class="mr-1.5">*</span>
+                                    <span><em>Catatan: Cara ini bersifat sementara, namun sangat berguna jika ingin pindah ROM dari ColorOS 17 ke ROM lain.</em></span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr class="border-slate-200 dark:border-slate-800 my-4">
+
+                        <!-- Notes Tambahan -->
                         <div>
                             <h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2 flex items-center">
                                 <i class="fa-solid fa-note-sticky mr-1.5"></i> Notes:
@@ -1640,6 +1839,7 @@
                             </ul>
                         </div>
                     </div>
+
                     <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm shadow-lg shadow-amber-600/30 transition-all spring-bounce">Mengerti</button>
                 </div>
             `);
@@ -1790,6 +1990,176 @@
 
             window.requestAnimationFrame(step);
         });
+
+        window.addEventListener('scroll', function () {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+            if (scrollHeight > 0) {
+                var scrollPercent = (scrollTop / scrollHeight) * 100;
+
+                // Update panjang progress bar
+                document.getElementById("scrollProgressBar").style.width = scrollPercent + '%';
+
+                // Update posisi background body::before
+                document.body.style.setProperty('--scroll', scrollPercent + '%');
+            }
+        });
+
+ let toastTimer;
+
+function showToast(title, message, type = 'info') {
+    const toast = document.getElementById('toastNotification');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMessage = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+
+    // Set isi teks
+    toastTitle.textContent = title;
+    toastMessage.textContent = message;
+
+    // Atur ikon & warna berdasarkan tipe
+    toastIcon.className = "w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 ";
+    if (type === 'success') {
+        toastIcon.className += "bg-emerald-500/20 text-emerald-400";
+        toastIcon.innerHTML = '<i class="fa-solid fa-check-circle"></i>';
+    } else if (type === 'warning') {
+        toastIcon.className += "bg-amber-500/20 text-amber-400";
+        toastIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+    } else {
+        toastIcon.className += "bg-blue-500/20 text-blue-400";
+        toastIcon.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+    }
+
+    // Munculkan notifikasi (ubah opacity jadi 100 dan kembalikan posisi translate ke 0)
+    toast.classList.remove('opacity-0', '-translate-y-4', 'sm:translate-y-4');
+    toast.classList.add('opacity-100', 'translate-y-0', 'sm:translate-y-0');
+
+    // Reset timer jika ada notifikasi lain yang masuk beruntun
+    clearTimeout(toastTimer);
+
+    // Otomatis sembunyikan setelah 4 detik
+    toastTimer = setTimeout(() => {
+        hideToast();
+    }, 4000);
+}
+
+function hideToast() {
+    const toast = document.getElementById('toastNotification');
+    // Sembunyikan kembali (ubah opacity ke 0 dan geser posisinya)
+    toast.classList.remove('opacity-100', 'translate-y-0', 'sm:translate-y-0');
+    toast.classList.add('opacity-0', '-translate-y-4', 'sm:translate-y-4');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        // Ambil nama user dari localStorage, atau gunakan fallback jika belum login
+        const savedName = localStorage.getItem('userName') || "Onikata Kayoko"; 
+        
+        // Ambil jam saat ini (0 - 23)
+        const hour = new Date().getHours();
+        let greeting = "Selamat Datang";
+
+        // Tentukan sapaan berdasarkan waktu
+        if (hour >= 3 && hour < 11) {
+            greeting = "Selamat Pagi! 🌅";
+        } else if (hour >= 11 && hour < 15) {
+            greeting = "Selamat Siang! ☀️";
+        } else if (hour >= 15 && hour < 18) {
+            greeting = "Selamat Sore! 🌆";
+        } else {
+            greeting = "Selamat Malam! 🌙";
+        }
+
+        // Tampilkan toast: Judul = Nama User, Pesan = Sapaan Waktu
+        showToast(savedName, greeting, "success");
+    }, 1000);
+});
+
+// Inisialisasi Deteksi Baterai Khas iPhone Bar
+function initBatteryTracker() {
+    if ('getBattery' in navigator) {
+        navigator.getBattery().then(function(battery) {
+            updateBatteryUI(battery);
+
+            // Update otomatis saat persentase / status cas berubah
+            battery.addEventListener('levelchange', function() { updateBatteryUI(battery); });
+            battery.addEventListener('chargingchange', function() { updateBatteryUI(battery); });
+        });
+    } else {
+        const batteryBtn = document.getElementById('batteryBtn');
+        if (batteryBtn) batteryBtn.title = "Baterai tidak didukung di browser ini";
+    }
+}
+
+// Update Tampilan Batang Baterai Ala iOS
+function updateBatteryUI(battery) {
+    const level = Math.round(battery.level * 100);
+    const isCharging = battery.charging;
+
+    const bar = document.getElementById('batteryLevelBar');
+    const text = document.getElementById('batteryText');
+    const bolt = document.getElementById('batteryChargingBolt');
+
+    if (!bar || !text) return;
+
+    // Set teks angka persentase
+    text.textContent = `${level}%`;
+
+    // Set lebar batang isi baterai (0% sampai 100%)
+    bar.style.width = `${level}%`;
+
+    // Atur Warna Batang & Status Dicas Ala iPhone:
+    if (isCharging) {
+        // Mode Diisi Daya (Hijau Neon + Ikon Petir)
+        bar.className = "h-full rounded-[2px] bg-emerald-400 transition-all duration-500";
+        if (bolt) bolt.classList.remove('hidden');
+    } else {
+        if (bolt) bolt.classList.add('hidden');
+
+        if (level <= 20) {
+            // Low Battery (Merah iPhone)
+            bar.className = "h-full rounded-[2px] bg-red-500 transition-all duration-500 animate-pulse";
+        } else if (level <= 50) {
+            // Medium Battery (Kuning/Orange)
+            bar.className = "h-full rounded-[2px] bg-amber-400 transition-all duration-500";
+        } else {
+            // Normal / Full Battery (Putih/Hijau Segar khas iOS)
+            bar.className = "h-full rounded-[2px] bg-emerald-400 transition-all duration-500";
+        }
+    }
+}
+
+// Munculkan Toast Saat Bar Baterai Diklik
+function checkBatteryStatus() {
+    if ('getBattery' in navigator) {
+        navigator.getBattery().then(function(battery) {
+            const level = Math.round(battery.level * 100);
+            const isCharging = battery.charging;
+
+            let statusMsg = `Sisa baterai perangkatmu: ${level}%`;
+            let toastType = 'info';
+
+            if (isCharging) {
+                statusMsg += " ⚡ (Sedang Diisi Daya)";
+                toastType = 'success';
+            } else if (level <= 20) {
+                statusMsg += " ⚠️ (Baterai Lemah, Segera Cas!)";
+                toastType = 'warning';
+            } else {
+                statusMsg += " 👍 (Kondisi Baterai Aman)";
+                toastType = 'success';
+            }
+
+            showToast("Informasi Baterai", statusMsg, toastType);
+        });
+    } else {
+        showToast("Fitur Baterai", "Browser ini tidak mendukung pembacaan baterai.", "warning");
+    }
+}
+
+// Jalankan saat web dimuat
+document.addEventListener('DOMContentLoaded', initBatteryTracker);
     </script>
 
 
