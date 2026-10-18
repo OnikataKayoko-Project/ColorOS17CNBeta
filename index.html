@@ -82,41 +82,43 @@
             --scroll: 0%;
         }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    /* Warna dasar paling atas gelap pekat, lalu transisi ke aurora di bawah */
-    background-color: #07090e;
-    background-image: 
-        /* Efek Aurora 1 (Cyan/Teal) di pojok kiri-bawah */
-        radial-gradient(circle at 10% 90%, rgba(0, 199, 190, 0.25) 0%, transparent 45%),
-        /* Efek Aurora 2 (Ungu/Purple) di bagian tengah-bawah */
-        radial-gradient(circle at 50% 100%, rgba(175, 82, 222, 0.3) 0%, transparent 50%),
-        /* Efek Aurora 3 (Biru/Blue) di pojok kanan-bawah */
-        radial-gradient(circle at 90% 85%, rgba(0, 122, 255, 0.25) 0%, transparent 45%),
-        /* Gradien gelap tambahan di bagian atas supaya area header tetap clean & gelap */
-        linear-gradient(to bottom, rgba(7, 9, 14, 0.9) 0%, rgba(7, 9, 14, 0.4) 50%, transparent 100%);
-    
-    background-size: 200% 200%;
-    animation: auroraMovement 10s ease infinite alternate;
-}
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            /* Warna dasar paling atas gelap pekat, lalu transisi ke aurora di bawah */
+            background-color: #07090e;
+            background-image:
+                /* Efek Aurora 1 (Cyan/Teal) di pojok kiri-bawah */
+                radial-gradient(circle at 10% 90%, rgba(0, 199, 190, 0.25) 0%, transparent 45%),
+                /* Efek Aurora 2 (Ungu/Purple) di bagian tengah-bawah */
+                radial-gradient(circle at 50% 100%, rgba(175, 82, 222, 0.3) 0%, transparent 50%),
+                /* Efek Aurora 3 (Biru/Blue) di pojok kanan-bawah */
+                radial-gradient(circle at 90% 85%, rgba(0, 122, 255, 0.25) 0%, transparent 45%),
+                /* Gradien gelap tambahan di bagian atas supaya area header tetap clean & gelap */
+                linear-gradient(to bottom, rgba(7, 9, 14, 0.9) 0%, rgba(7, 9, 14, 0.4) 50%, transparent 100%);
 
-@keyframes auroraMovement {
-    0% {
-        background-position: 0% 30%;
-    }
-    50% {
-        background-position: 100% 70%;
-    }
-    100% {
-        background-position: 50% 50%;
-    }
-}
+            background-size: 200% 200%;
+            animation: auroraMovement 10s ease infinite alternate;
+        }
+
+        @keyframes auroraMovement {
+            0% {
+                background-position: 0% 30%;
+            }
+
+            50% {
+                background-position: 100% 70%;
+            }
+
+            100% {
+                background-position: 50% 50%;
+            }
+        }
 
         @keyframes moveGradient {
             0% {
@@ -514,79 +516,93 @@ body::before {
                         <i class="fa-solid fa-circle-nodes text-sm"></i>
                         <span>By OnikataKayoko</span>
                     </a>
-<!-- Tombol Indikator Baterai Khas iPhone Bar -->
-<button id="batteryBtn" onclick="checkBatteryStatus()" title="Cek Status Baterai"
-    class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 hover:border-white/20 transition-all shrink-0 cursor-pointer select-none">
-    
-    <!-- Wadah Baterai Khas iPhone (Pill Horizontal) -->
-    <div class="relative w-6 h-3 rounded-[4px] border-[1.5px] border-slate-300 dark:border-slate-200 p-[1px] flex items-center">
-        <!-- Batang Isi Baterai (Lebar dinamis via JS) -->
-        <div id="batteryLevelBar" class="h-full rounded-[2px] bg-emerald-400 transition-all duration-500" style="width: 100%;"></div>
-        
-        <!-- Pentil/Nipple Baterai Khas iPhone -->
-        <div class="absolute -right-[3px] top-1/2 -translate-y-1/2 w-[2px] h-[4px] bg-slate-300 dark:bg-slate-200 rounded-r-[1px]"></div>
-        
-        <!-- Ikon Petir Saat Dicas (Hidden secara default) -->
-        <i id="batteryChargingBolt" class="fa-solid fa-bolt text-[8px] text-slate-950 absolute inset-0 flex items-center justify-center hidden font-bold"></i>
-    </div>
-
-    <!-- Teks Persentase Angka Khas iOS -->
-    <span id="batteryText" class="text-[11px] font-bold text-slate-200 tracking-tight">100%</span>
-</button>
-                </div>
             </nav>
 
-
-<!-- Floating Navigation Pill Khusus Mobile (Di Bawah Layar) -->
-<div class="sm:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm">
-    <div class="aquamorphic-glass rounded-full p-1.5 border border-white/10 shadow-2xl backdrop-blur-2xl bg-slate-950/80 flex items-center justify-between gap-1">
-        
-        <!-- Tombol Special Thanks -->
-        <button onclick="switchTab('thanks')" 
-            class="mobile-tab-btn flex-1 py-2 px-3 rounded-full text-xs font-medium flex items-center justify-center space-x-1.5 transition-all text-slate-300 hover:text-white"
-            data-mobtab="thanks">
-            <i class="fa-solid fa-heart text-xs"></i>
-            <span>Thanks</span>
-        </button>
-
-        <!-- Tombol Downloads -->
-        <button onclick="switchTab('downloads')" 
-            class="mobile-tab-btn flex-1 py-2 px-3 rounded-full text-xs font-medium flex items-center justify-center space-x-1.5 transition-all text-slate-300 hover:text-white"
-            data-mobtab="downloads">
-            <i class="fa-solid fa-download text-xs"></i>
-            <span>Downloads</span>
-        </button>
-
-<!-- Tombol By OnikataKayoko (Mode Ikon Saja) -->
-<a href="https://kayokoproject-68d2a.web.app/" target="_blank"
-    title="By OnikataKayoko"
-    class="w-9 h-9 rounded-full flex items-center justify-center bg-blue-500/20 text-blue-400 border border-blue-500/30 hover:bg-blue-500/30 transition-all shrink-0">
-    <i class="fa-solid fa-circle-nodes text-sm"></i>
-</a>
-
+<!-- Widget Indikator Melayang (Mobile: Di bawah header atas | Desktop: Tengah Bawah) -->
+<div class="fixed z-50 top-24 left-1/2 -translate-x-1/2 sm:top-auto sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 flex items-center gap-2">
+    
+    <!-- Widget 1: Indikator Sinyal & Kecepatan (Mbps/ms) -->
+    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-white/10 backdrop-blur-2xl shadow-2xl select-none">
+        <!-- Ikon Bar Sinyal -->
+        <div class="relative flex items-end gap-[1.5px] h-3.5 w-4 justify-center">
+            <span id="sigBar1" class="w-[2.5px] h-[30%] bg-emerald-400 rounded-xs transition-all"></span>
+            <span id="sigBar2" class="w-[2.5px] h-[55%] bg-emerald-400 rounded-xs transition-all"></span>
+            <span id="sigBar3" class="w-[2.5px] h-[80%] bg-emerald-400 rounded-xs transition-all"></span>
+            <span id="sigBar4" class="w-[2.5px] h-[100%] bg-emerald-400 rounded-xs transition-all"></span>
+        </div>
+        <!-- Teks Angka Kecepatan -->
+        <span id="signalText" class="text-[11px] font-bold text-slate-200 tracking-tight">Detecting...</span>
     </div>
+
+    <!-- Widget 2: Indikator Baterai Khas iPhone Bar -->
+    <button id="batteryBtn" onclick="checkBatteryStatus()" title="Cek Status Baterai"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 hover:border-white/25 backdrop-blur-2xl shadow-2xl transition-all shrink-0 cursor-pointer select-none">
+        
+        <!-- Wadah Baterai Khas iPhone (Pill Horizontal) -->
+        <div class="relative w-6 h-3 rounded-[4px] border-[1.5px] border-slate-300 dark:border-slate-200 p-[1px] flex items-center">
+            <div id="batteryLevelBar" class="h-full rounded-[2px] bg-emerald-400 transition-all duration-500" style="width: 100%;"></div>
+            <div class="absolute -right-[3px] top-1/2 -translate-y-1/2 w-[2px] h-[4px] bg-slate-300 dark:bg-slate-200 rounded-r-[1px]"></div>
+            <i id="batteryChargingBolt" class="fa-solid fa-bolt text-[8px] text-slate-950 absolute inset-0 flex items-center justify-center hidden font-bold"></i>
+        </div>
+
+        <span id="batteryText" class="text-[11px] font-bold text-slate-200 tracking-tight">100%</span>
+    </button>
+
 </div>
+            <!-- Floating Navigation Pill Khusus Mobile (Di Bawah Layar) -->
+            <div class="sm:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm">
+                <div
+                    class="aquamorphic-glass rounded-full p-1.5 border border-white/10 shadow-2xl backdrop-blur-2xl bg-slate-950/80 flex items-center justify-between gap-1">
+
+                    <!-- Tombol Special Thanks -->
+                    <button onclick="switchTab('thanks')"
+                        class="mobile-tab-btn flex-1 py-2 px-3 rounded-full text-xs font-medium flex items-center justify-center space-x-1.5 transition-all text-slate-300 hover:text-white"
+                        data-mobtab="thanks">
+                        <i class="fa-solid fa-heart text-xs"></i>
+                        <span>Thanks</span>
+                    </button>
+
+                    <!-- Tombol Downloads -->
+                    <button onclick="switchTab('downloads')"
+                        class="mobile-tab-btn flex-1 py-2 px-3 rounded-full text-xs font-medium flex items-center justify-center space-x-1.5 transition-all text-slate-300 hover:text-white"
+                        data-mobtab="downloads">
+                        <i class="fa-solid fa-download text-xs"></i>
+                        <span>Downloads</span>
+                    </button>
+
+                    <!-- Tombol By OnikataKayoko (Mode Ikon Saja) -->
+                    <a href="https://kayokoproject-68d2a.web.app/" target="_blank" title="By OnikataKayoko"
+                        class="w-9 h-9 rounded-full flex items-center justify-center bg-blue-500/20 text-blue-400 border border-blue-500/30 hover:bg-blue-500/30 transition-all shrink-0">
+                        <i class="fa-solid fa-circle-nodes text-sm"></i>
+                    </a>
+
+                </div>
+            </div>
     </header>
 
-<!-- Toast Notification Container (Pastikan ada pointer-events-none di luar) -->
-<div id="toastNotification" class="fixed top-4 left-4 right-4 sm:top-auto sm:bottom-5 sm:left-auto sm:right-5 sm:max-w-sm z-[9999] pointer-events-none opacity-0 transition-all duration-300 ease-out transform -translate-y-4 sm:translate-y-4">
-    <!-- Kotak di dalam pakai pointer-events-auto -->
-    <div class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl shadow-2xl shadow-blue-500/20 text-slate-100 pointer-events-auto">
-        <!-- Ikon Notifikasi -->
-        <div id="toastIcon" class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg shrink-0">
-            <i class="fa-solid fa-bell"></i>
+    <!-- Toast Notification Container (Pastikan ada pointer-events-none di luar) -->
+    <div id="toastNotification"
+        class="fixed top-4 left-4 right-4 sm:top-auto sm:bottom-5 sm:left-auto sm:right-5 sm:max-w-sm z-[9999] pointer-events-none opacity-0 transition-all duration-300 ease-out transform -translate-y-4 sm:translate-y-4">
+        <!-- Kotak di dalam pakai pointer-events-auto -->
+        <div
+            class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl shadow-2xl shadow-blue-500/20 text-slate-100 pointer-events-auto">
+            <!-- Ikon Notifikasi -->
+            <div id="toastIcon"
+                class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <!-- Teks Pesan -->
+            <div class="flex-1 min-w-0">
+                <h5 id="toastTitle" class="text-xs font-bold text-slate-200">Notifikasi</h5>
+                <p id="toastMessage" class="text-xs text-slate-400 truncate">Pesan berhasil dimuat.</p>
+            </div>
+            <!-- Tombol Tutup -->
+            <button onclick="hideToast()"
+                class="text-slate-400 hover:text-slate-200 p-1 transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
         </div>
-        <!-- Teks Pesan -->
-        <div class="flex-1 min-w-0">
-            <h5 id="toastTitle" class="text-xs font-bold text-slate-200">Notifikasi</h5>
-            <p id="toastMessage" class="text-xs text-slate-400 truncate">Pesan berhasil dimuat.</p>
-        </div>
-        <!-- Tombol Tutup -->
-        <button onclick="hideToast()" class="text-slate-400 hover:text-slate-200 p-1 transition-colors cursor-pointer">
-            <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
     </div>
-</div>
 
     <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-24">
 
@@ -999,7 +1015,7 @@ body::before {
     </script>
 
     <script>
-// Tab switching logic
+        // Tab switching logic
         function switchTab(tabName) {
             // 1. Sembunyikan semua konten tab
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -1025,7 +1041,7 @@ body::before {
                 document.querySelectorAll('[data-tab="thanks"]').forEach(btn => {
                     btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
                     btn.classList.remove('text-slate-500', 'dark:text-slate-300');
-                    
+
                     // Efek bounce ala iOS
                     setTimeout(() => btn.classList.remove('tab-active-bounce'), 400);
                 });
@@ -1044,7 +1060,7 @@ body::before {
                 document.querySelectorAll('[data-tab="downloads"]').forEach(btn => {
                     btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30', 'tab-active-bounce');
                     btn.classList.remove('text-slate-500', 'dark:text-slate-300');
-                    
+
                     // Efek bounce ala iOS
                     setTimeout(() => btn.classList.remove('tab-active-bounce'), 400);
                 });
@@ -1245,7 +1261,186 @@ body::before {
         }
 
         // 1. Fungsi Utama Pop-up Unduhan (Mendukung Link Kustom untuk Versi Terbaru & Lama)
-   function alertDownload(title, customMediafireUrl, customBuzzheavierUrl) {
+        // Variabel global untuk menyimpan ROM yang terakhir dipilih oleh pengguna
+        let currentSelectedRom = "v1";
+
+        // 1. Fungsi Utama: Modal Arsip Versi Lama + Dropdown & Tombol Notes
+        function openOldVersionsModal() {
+            openCustomModal("Arsip Versi Lama", `
+        <div>
+            <!-- Header Info -->
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-500 flex items-center justify-center text-xl border border-blue-500/30">
+                    <i class="fa-solid fa-box-archive"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Arsip Build ROM</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Pilih build versi terdahulu yang diinginkan</p>
+                </div>
+            </div>
+
+            <!-- Daftar Pilihan Versi ROM -->
+            <div class="space-y-3 mb-5">
+                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1">Pilih Build ROM:</label>
+                
+                <div class="relative">
+                    <select id="romVersionSelect" onchange="currentSelectedRom = this.value" class="w-full py-3.5 px-4 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer">
+                        <option value="v1" data-mediafire="https://watchbutdonotlearn.github.io/" data-buzzheavier="https://watchbutdonotlearn.github.io/">ColorOS 17 China Beta (9.00 GB)</option>
+                        <option value="v2" data-mediafire="https://watchbutdonotlearn.github.io/" data-buzzheavier="https://watchbutdonotlearn.github.io/">ColorOS 18 Beta - Initial Build (9.00 GB)</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Aksi Utama (Batal & Unduh) -->
+            <div class="flex gap-3 pt-1 mb-3">
+                <button onclick="closeModal()" class="flex-1 py-3.5 rounded-2xl bg-slate-200/70 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm transition-all cursor-pointer">
+                    Batal
+                </button>
+                <button onclick="downloadSelectedVersion()" class="flex-1 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center space-x-2 cursor-pointer">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Unduh Build</span>
+                </button>
+            </div>
+
+            <!-- TOMBOL NOTES DI BAGIAN BAWAH -->
+            <button onclick="openChangelogModal()" class="w-full py-3 px-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-500 dark:text-amber-400 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center space-x-2 cursor-pointer">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Lihat Catatan Bug & Perbaikan (Notes)</span>
+            </button>
+        </div>
+    `);
+
+            // Set ulang nilai dropdown sesuai pilihan terakhir pengguna saat modal dibuka kembali
+            setTimeout(() => {
+                const selectElement = document.getElementById("romVersionSelect");
+                if (selectElement) {
+                    selectElement.value = currentSelectedRom;
+                }
+            }, 50);
+        }
+
+        // 2. Data Catatan Bug untuk masing-masing ROM
+        const romNotesData = {
+            "v1": {
+                title: "ColorOS 17 China Beta",
+                fixed: [
+                    "AI Sepenuhnya berfungsi dengan baik.",
+                    "Penambahan fitur di bagian Launcher (Animasi, dock dan lainnya).",
+                    "Bypasscharging, Autocut Charging, Fast Charging berfungsi.",
+                    "Fingerprint berfungsi.",
+                    "Fitur Privasi berfungsi.",
+                    "Sinyal WI-FI dan SIM Card berfungsi.",
+                    "DeepSleep Berfungsi.",
+                    "GameSpace OPPO berfungsi."
+                ],
+                bugs: [
+                    "Delay pada bagian fitur (Angkat Device untuk menghidupkan layar).",
+                    "Animasi Auto Brightness kurang Smooth.",
+                    "Pencahayaan berkedip pada saat memasuki sleep mode.",
+                    "Bluetooth TWS terkadang terputus dengan sendirinya.",
+                    "Face Unlock blank tidak bisa di pakai.",
+                    "Perekam suara crash."
+                ]
+            },
+            "v2": {
+                title: "ColorOS 18 Beta - Initial Build",
+                fixed: [
+                    "Performa sistem jauh lebih responsif dan stabil.",
+                    "Penyempurnaan transisi animasi UI.",
+                    "Perbaikan bug kamera utama FC."
+                ],
+                bugs: [
+                    "120Hz refresh rate kadang drop di beberapa aplikasi pihak ketiga.",
+                    "Hotspot tethering terkadang force close."
+                ]
+            }
+        };
+
+        // 3. Fungsi untuk Membuka Notes Sesuai ROM yang Dipilih di Dropdown
+        function openChangelogModal() {
+            const selectElement = document.getElementById("romVersionSelect");
+            if (selectElement) {
+                currentSelectedRom = selectElement.value;
+            }
+
+            const data = romNotesData[currentSelectedRom] || romNotesData["v1"];
+
+            openCustomModal("Catatan Perbaikan", `
+        <div class="font-sans text-left">
+            <!-- Header Info ala Catatan -->
+            <div class="flex items-center space-x-3 mb-4 pb-3 border-b border-zinc-800">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-base shrink-0 border border-amber-500/30">
+                    <i class="fa-solid fa-note-sticky"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Catatan: ${data.title}</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">Informasi status rilis dan bug</p>
+                </div>
+            </div>
+
+            <!-- Konten Catatan Dinamis -->
+            <div class="space-y-3.5 mb-5 max-h-[55vh] overflow-y-auto pr-1 text-xs text-slate-600 dark:text-slate-300">
+                
+                <!-- FITUR UTAMA FIXED -->
+                <div>
+                    <div class="font-bold text-emerald-400 text-xs mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                        <i class="fa-solid fa-star text-[10px]"></i> FITUR UTAMA FIXED:
+                    </div>
+                    <ul class="space-y-1 pl-1 text-zinc-300 text-xs">
+                        ${data.fixed.map(item => `<li class="flex items-start gap-1.5">• <span>${item}</span></li>`).join('')}
+                    </ul>
+                </div>
+
+                <!-- Pemisah Tipis -->
+                <div class="border-t border-zinc-800 pt-2"></div>
+
+                <!-- KNOWN BUGS -->
+                <div>
+                    <div class="font-bold text-amber-500 text-xs mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                        <i class="fa-solid fa-triangle-exclamation text-[10px]"></i> KNOWN BUGS (MINOR):
+                    </div>
+                    <ul class="space-y-1 pl-1 text-zinc-300 text-xs">
+                        ${data.bugs.map(item => `<li class="flex items-start gap-1.5">• <span>${item}</span></li>`).join('')}
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Tombol Kembali ke Modal Arsip Sebelumnya -->
+            <button onclick="openOldVersionsModal()" class="w-full py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold text-xs transition-colors border border-zinc-700 cursor-pointer">
+                Kembali
+            </button>
+        </div>
+    `);
+        }
+
+        // 4. Fungsi untuk Mengambil Link dari Dropdown lalu Membuka Pop-up Server Unduhan
+        function downloadSelectedVersion() {
+            const select = document.getElementById('romVersionSelect');
+            if (!select) return;
+
+            const selectedOption = select.options[select.selectedIndex];
+
+            const mediafireUrl = selectedOption.getAttribute('data-mediafire');
+            const buzzheavierUrl = selectedOption.getAttribute('data-buzzheavier');
+            const buildName = selectedOption.text;
+
+            // Tutup modal arsip versi lama
+            closeModal();
+
+            // Jalankan efek confetti jika ada, lalu panggil pop-up server unduhan
+            if (typeof triggerConfetti === 'function') {
+                triggerConfetti();
+            }
+
+            alertDownload(buildName, mediafireUrl, buzzheavierUrl);
+        }
+
+        // 5. Fungsi Pop-up Server Unduhan & Timer
+        function alertDownload(title, customMediafireUrl, customBuzzheavierUrl) {
             const videoSource = 'coloros.mp4';
             const fallbackImage = 'coloros.webp';
 
@@ -1312,44 +1507,43 @@ body::before {
 
             document.body.insertAdjacentHTML('beforeend', mascotHtml);
 
-            // Gunakan link kustom dari dropdown jika ada, jika kosong gunakan link default utama
             const targetUrlMediafire = customMediafireUrl || "https://sfl.gl/uReE1";
             const targetUrlbuzzheavier = customBuzzheavierUrl || "https://sfl.gl/0cY1dHqG";
 
             openCustomModal("Unduhan Dimulai", `
-            <div class="text-center py-2 relative">
-                ${mediaHtml}
-                <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-                    Terima kasih banyak sudah mengunduh dan mendukung KayokoProject! Silakan pilih server unduhan di bawah ini.
-                </p>
+        <div class="text-center py-2 relative">
+            ${mediaHtml}
+            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">${title}</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                Terima kasih banyak sudah mengunduh dan mendukung KayokoProject! Silakan pilih server unduhan di bawah ini.
+            </p>
 
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 w-full max-w-sm sm:max-w-none mx-auto">
-                    <button id="modal-btn-1" disabled 
-                            onclick="window.open('${targetUrlMediafire}', '_blank'); closeModal();" 
-                            class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/30 select-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-                        MediaFire (<span id="modal-timer-1">5</span>s)
-                    </button>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 w-full max-w-sm sm:max-w-none mx-auto">
+                <button id="modal-btn-1" disabled 
+                        onclick="window.open('${targetUrlMediafire}', '_blank'); closeModal();" 
+                        class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/30 select-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                    MediaFire (<span id="modal-timer-1">5</span>s)
+                </button>
 
-                    <button id="modal-btn-2" disabled 
-                            onclick="window.open('${targetUrlbuzzheavier}', '_blank'); closeModal();" 
-                            class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-orange-600 text-white font-medium text-sm hover:bg-orange-500 transition-colors shadow-lg shadow-orange-600/30 select-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-                        buzzheavier (<span id="modal-timer-2">5</span>s)
-                    </button>
+                <button id="modal-btn-2" disabled 
+                        onclick="window.open('${targetUrlbuzzheavier}', '_blank'); closeModal();" 
+                        class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-orange-600 text-white font-medium text-sm hover:bg-orange-500 transition-colors shadow-lg shadow-orange-600/30 select-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                    buzzheavier (<span id="modal-timer-2">5</span>s)
+                </button>
 
-                    <button type="button" 
-                            onclick="closeModal()" 
-                            class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium text-sm transition-colors shadow-sm cursor-pointer select-none">
-                        Tutup
-                    </button>
-                </div>
+                <button type="button" 
+                        onclick="closeModal()" 
+                        class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium text-sm transition-colors shadow-sm cursor-pointer select-none">
+                    Tutup
+                </button>
             </div>
-        `);
+        </div>
+    `);
 
-            // Panggil notifikasi saat pertama kali modal unduh dibuka
-            showToast("Menyiapkan Unduhan", `Harap tunggu ${title} (${5} detik)...`, "warning");
+            if (typeof showToast === 'function') {
+                showToast("Menyiapkan Unduhan", `Harap tunggu ${title} (${5} detik)...`, "warning");
+            }
 
-            // Logika Timer 5 Detik
             let timeLeft = 5;
             if (window.modalTimerInterval) {
                 clearInterval(window.modalTimerInterval);
@@ -1366,8 +1560,7 @@ body::before {
                 if (timerSpan1) timerSpan1.textContent = timeLeft;
                 if (timerSpan2) timerSpan2.textContent = timeLeft;
 
-                // Update teks notifikasi di setiap detik berjalan
-                if (timeLeft > 0) {
+                if (timeLeft > 0 && typeof showToast === 'function') {
                     showToast("Menyiapkan Unduhan", `Tersisa ${timeLeft} detik lagi...`, "warning");
                 }
 
@@ -1383,8 +1576,9 @@ body::before {
                         btn2.innerHTML = '<i class="fa-solid fa-download mr-2 text-xs"></i> buzzheavier';
                     }
 
-                    // Notifikasi sukses saat tombol sudah siap diklik
-                    showToast("Siap Diunduh!", "Link unduhan sudah bisa diklik.", "success");
+                    if (typeof showToast === 'function') {
+                        showToast("Siap Diunduh!", "Link unduhan sudah bisa diklik.", "success");
+                    }
                 }
             }, 1000);
 
@@ -1405,6 +1599,7 @@ body::before {
             }
         }
 
+        // 6. Transisi video ke gambar preview
         function transitionToImage() {
             const video = document.getElementById('popupVideo');
             const img = document.getElementById('fallbackImg');
@@ -1419,71 +1614,6 @@ body::before {
                     video.remove();
                 }, 700);
             }
-        }
-
-
-        // 2. Modal Arsip Versi Lama
-        function openOldVersionsModal() {
-            openCustomModal("Arsip Versi Lama", `
-            <div>
-                <!-- Header Info -->
-                <div class="flex items-center space-x-3 mb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-500 flex items-center justify-center text-xl border border-blue-500/30">
-                        <i class="fa-solid fa-box-archive"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Arsip Build ROM</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">Pilih build versi terdahulu yang diinginkan</p>
-                    </div>
-                </div>
-
-                <!-- Daftar Pilihan Versi ROM dengan link spesifik di atribut data-* -->
-                <div class="space-y-3 mb-6">
-                    <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1">Pilih Build ROM:</label>
-                    
-                    <div class="relative">
-                        <select id="romVersionSelect" class="w-full py-3.5 px-4 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer">
-                            <option value="v1" data-mediafire="https://watchbutdonotlearn.github.io/" data-buzzheavier="https://watchbutdonotlearn.github.io/">ColorOS 18 Beta - Initial Build (9.00 GB)</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
-                            <i class="fa-solid fa-chevron-down text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tombol Aksi -->
-                <div class="flex gap-3 pt-2">
-                    <button onclick="closeModal()" class="flex-1 py-3.5 rounded-2xl bg-slate-200/70 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm transition-all cursor-pointer">
-                        Batal
-                    </button>
-                    <!-- Mengarah ke fungsi downloadSelectedVersion() yang benar -->
-                    <button onclick="downloadSelectedVersion()" class="flex-1 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center space-x-2 cursor-pointer">
-                        <i class="fa-solid fa-download"></i>
-                        <span>Unduh Build</span>
-                    </button>
-                </div>
-            </div>
-        `);
-        }
-
-        // 3. Fungsi untuk mengambil link dari dropdown lalu membuka pop-up server unduhan
-        function downloadSelectedVersion() {
-            const select = document.getElementById('romVersionSelect');
-            const selectedOption = select.options[select.selectedIndex];
-
-            const mediafireUrl = selectedOption.getAttribute('data-mediafire');
-            const buzzheavierUrl = selectedOption.getAttribute('data-buzzheavier');
-            const buildName = selectedOption.text;
-
-            // Tutup modal arsip versi lama
-            closeModal();
-
-            // Jalankan efek confetti jika ada, lalu panggil pop-up server unduhan
-            if (typeof triggerConfetti === 'function') {
-                triggerConfetti();
-            }
-
-            alertDownload(buildName, mediafireUrl, buzzheavierUrl);
         }
 
         function openScreenshotModal() {
@@ -1694,155 +1824,158 @@ body::before {
 
         function openFeaturesBugsModal() {
             openCustomModal("Notes", `
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-note-sticky"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Catatan</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Informasi status rilis ColorOS 17 China Beta</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4 mb-6">
-                        <!-- Fitur Utama Fixed -->
-                        <div>
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2 flex items-center">
-                                <i class="fa-solid fa-star mr-1.5"></i> Fitur Utama Fixed:
-                            </h4>
-                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
-                                <li>• AI Sepenuhnya berfungsi dengan baik.</li>
-                                <li>• Penambahan fitur di bagian Launcher (Animasi, dock dan lainnya).</li>
-                                <li>• Bypasscharging, Autocut Charging, Fast Charging berfungsi.</li>
-                                <li>• Fingerprint berfungsi.</li>
-                                <li>• Fitur Privasi berfungsi.</li>
-                                <li>• Sinyal WI-FI dan SIM Card berfungsi.</li>
-                                <li>• DeepSleep Berfungsi.</li>
-                                <li>• GameSpace OPPO berfungsi.</li>
-                            </ul>
-                        </div>
-
-                        <hr class="border-slate-200 dark:border-slate-800 my-4">
-
-                        <!-- Known Bugs -->
-                        <div>
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400 mb-2 flex items-center">
-                                <i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Known Bugs (Minor):
-                            </h4>
-                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
-                                <li>• Delay pada bagian fitur (Angkat Device untuk menghidupkan layar).</li>
-                                <li>• Animasi Auto Brightness kurang Smooth.</li>
-                                <li>• Pencahayaan berkedip pada saat memasuki sleep mode.</li>
-                                <li>• Bluetooth TWS terkadang terputus dengan sendirinya.</li>
-                                <li>• Face Unlock blank tidak bisa di pakai.</li>
-                                <li>• Perekam suara crash.</li>
-                            </ul>
-                        </div>
-
-                        <hr class="border-slate-200 dark:border-slate-800 my-4">
-
-                        <!-- How To Flash -->
-                        <div>
-                            <h4 class="mb-3 flex items-center text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                                <i class="fa-solid fa-box-archive mr-1.5"></i> How To Flash:
-                            </h4>
-                            <ul class="space-y-2 pl-2 text-xs text-slate-600 dark:text-slate-300">
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Ekstrak file .ZIP-nya terlebih dahulu.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Masuk ke OrangeFox, lalu flash file <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">system.img</code>.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Flash kernel Permissive KSU <span class="italic">(tersedia di Extension Module)</span>.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Lakukan <strong>Wipe Data</strong> lalu centang bagian <strong>Internal Storage</strong> dan swipe ke kanan.</span>
-                                </li>
-                                <li class="flex items-start text-slate-500 dark:text-slate-400">
-                                    <span class="mr-1.5">*</span>
-                                    <span><em>Catatan: Bagian Wipe Data bisa di lakukan sebelum Format data maupun sesudah booting.</em></span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Lalu lakukan <strong>Format Data</strong> (ketik <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">yes</code>).</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Reboot system.</span>
-                                </li>
-                                <li class="pt-1">
-                                    <a href="https://youtu.be/Ept2a1LPzTY?si=7gZt65sXNL_qr6ke" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg bg-red-50 px-3 py-1.5 font-semibold text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/50">
-                                        <i class="fa-brands fa-youtube text-sm"></i> 
-                                        <span>Tutorial YouTube</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <hr class="border-slate-200 dark:border-slate-800 my-4">
-
-                        <!-- Atasi OrangeFOX -->
-                        <div>
-                            <h4 class="mb-3 flex items-center text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                                <i class="fa-brands fa-firefox mr-1.5"></i> 
-                                Atasi OrangeFOX (failed to decrypt 0) dan internal storage tidak terbaca:
-                            </h4>
-                            <ul class="space-y-2 pl-2 text-xs text-slate-600 dark:text-slate-300">
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Matikan PIN/kata sandi di perangkatmu terlebih dahulu.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Masuk ke OrangeFox, lalu ketuk tombol <strong>Home</strong>.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Buka menu, lalu pilih <strong>Terminal</strong>.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Masukkan perintah berikut agar internal storage terbaca:</span>
-                                </li>
-                                <li>
-                                    <code class="block rounded bg-slate-100 px-2.5 py-1.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">
-                                        mount --bind /data/media/0 /sdcard
-                                    </code>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-1.5">•</span>
-                                    <span>Keluar dari terminal, lalu cek kembali pada tab <strong>Files</strong>.</span>
-                                </li>
-                                <li class="flex items-start text-slate-500 dark:text-slate-400">
-                                    <span class="mr-1.5">*</span>
-                                    <span><em>Catatan: Cara ini bersifat sementara, namun sangat berguna jika ingin pindah ROM dari ColorOS 17 ke ROM lain.</em></span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <hr class="border-slate-200 dark:border-slate-800 my-4">
-
-                        <!-- Notes Tambahan -->
-                        <div>
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2 flex items-center">
-                                <i class="fa-solid fa-note-sticky mr-1.5"></i> Notes:
-                            </h4>
-                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
-                                <li>Perbaikan bug di atas masih dilakukan secara bertahap. Mohon ditunggu pembaruan berikutnya.</li>
-                                <li>Sebagai solusi sementara, modul dan aplikasi pendukung akan dibagikan melalui bagian Extension Module.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm shadow-lg shadow-amber-600/30 transition-all spring-bounce">Mengerti</button>
+<div class="font-sans text-left">
+            <!-- Header Info disamakan persis seperti Extension Module -->
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-note-sticky"></i>
                 </div>
-            `);
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Catatan</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Informasi status rilis ColorOS 17 China Beta</p>
+                </div>
+            </div>
+            
+            <!-- Konten Catatan dengan Scrollbar (max-h-[55vh]) & Font kecil -->
+            <div class="space-y-3.5 mb-5 max-h-[55vh] overflow-y-auto pr-1 text-xs text-slate-600 dark:text-slate-300">
+                
+                <!-- Fitur Utama Fixed -->
+                <div>
+                    <div class="font-bold text-emerald-400 text-xs mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                        <i class="fa-solid fa-star text-[10px]"></i> Fitur Utama Fixed:
+                    </div>
+                    <ul class="space-y-1 pl-1 text-zinc-300 text-xs">
+                        <li class="flex items-start gap-1.5">• <span>AI Sepenuhnya berfungsi dengan baik.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Penambahan fitur di bagian Launcher (Animasi, dock dan lainnya).</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Bypasscharging, Autocut Charging, Fast Charging berfungsi.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Fingerprint berfungsi.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Fitur Privasi berfungsi.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Sinyal WI-FI dan SIM Card berfungsi.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>DeepSleep Berfungsi.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>GameSpace OPPO berfungsi.</span></li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-zinc-800 pt-2"></div>
+
+                <!-- Known Bugs -->
+                <div>
+                    <div class="font-bold text-orange-500 text-xs mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                        <i class="fa-solid fa-triangle-exclamation text-[10px]"></i> Known Bugs (Minor):
+                    </div>
+                    <ul class="space-y-1 pl-1 text-zinc-300 text-xs">
+                        <li class="flex items-start gap-1.5">• <span>Delay pada bagian fitur (Angkat Device untuk menghidupkan layar).</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Animasi Auto Brightness kurang Smooth.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Pencahayaan berkedip pada saat memasuki sleep mode.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Bluetooth TWS terkadang terputus dengan sendirinya.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Face Unlock blank tidak bisa di pakai.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Perekam suara crash.</span></li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-zinc-800 pt-2"></div>
+
+                <!-- How To Flash -->
+                <div>
+                    <div class="font-bold text-blue-500 text-xs mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                        <i class="fa-solid fa-box-archive text-[10px]"></i> How To Flash:
+                    </div>
+                    <ul class="space-y-1.5 pl-1 text-zinc-300 text-xs">
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Ekstrak file .ZIP-nya terlebih dahulu.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Masuk ke OrangeFox, lalu flash file <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">system.img</code>.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Flash kernel Permissive KSU <span class="italic">(tersedia di Extension Module)</span>.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Lakukan <strong>Wipe Data</strong> lalu centang bagian <strong>Internal Storage</strong> dan swipe ke kanan.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5 text-slate-400">
+                            <span>*</span>
+                            <span><em>Catatan: Bagian Wipe Data bisa di lakukan sebelum Format data maupun sesudah booting.</em></span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Lalu lakukan <strong>Format Data</strong> (ketik <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">yes</code>).</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Reboot system.</span>
+                        </li>
+                        <li class="pt-1">
+                            <a href="https://youtu.be/Ept2a1LPzTY?si=7gZt65sXNL_qr6ke" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg bg-red-50 px-3 py-1.5 font-semibold text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/50">
+                                <i class="fa-brands fa-youtube text-sm"></i> 
+                                <span>Tutorial YouTube</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-zinc-800 pt-2"></div>
+
+                <!-- Atasi OrangeFOX -->
+                <div>
+                    <div class="font-bold text-purple-400 text-xs mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                        <i class="fa-brands fa-firefox text-[10px]"></i> Atasi OrangeFOX (failed to decrypt 0) dan internal storage tidak terbaca:
+                    </div>
+                    <ul class="space-y-1.5 pl-1 text-zinc-300 text-xs">
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Matikan PIN/kata sandi di perangkatmu terlebih dahulu.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Masuk ke OrangeFox, lalu ketuk tombol <strong>Home</strong>.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Buka menu, lalu pilih <strong>Terminal</strong>.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Masukkan perintah berikut agar internal storage terbaca:</span>
+                        </li>
+                        <li>
+                            <code class="block rounded bg-slate-100 px-2.5 py-1.5 font-mono text-slate-800 dark:bg-slate-800 dark:text-slate-200">
+                                mount --bind /data/media/0 /sdcard
+                            </code>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Keluar dari terminal, lalu cek kembali pada tab <strong>Files</strong>.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5 text-slate-400">
+                            <span>*</span>
+                            <span><em>Catatan: Cara ini bersifat sementara, namun sangat berguna jika ingin pindah ROM dari ColorOS 17 ke ROM lain.</em></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-zinc-800 pt-2"></div>
+
+                <!-- Notes Tambahan -->
+                <div>
+                    <div class="font-bold text-amber-500 text-xs mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                        <i class="fa-solid fa-note-sticky text-[10px]"></i> Notes:
+                    </div>
+                    <ul class="space-y-1 pl-1 text-zinc-300 text-xs">
+                        <li>Perbaikan bug di atas masih dilakukan secara bertahap. Mohon ditunggu pembaruan berikutnya.</li>
+                        <li>Sebagai solusi sementara, modul dan aplikasi pendukung akan dibagikan melalui bagian Extension Module.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tombol Mengerti / Tutup -->
+            <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-lg shadow-amber-600/30 transition-all cursor-pointer">Mengerti</button>
+        </div>
+    `);
         }
 
         function openDeveloperModal(devId) {
@@ -2006,160 +2139,226 @@ body::before {
             }
         });
 
- let toastTimer;
+        let toastTimer;
 
-function showToast(title, message, type = 'info') {
-    const toast = document.getElementById('toastNotification');
-    const toastTitle = document.getElementById('toastTitle');
-    const toastMessage = document.getElementById('toastMessage');
-    const toastIcon = document.getElementById('toastIcon');
+        function showToast(title, message, type = 'info') {
+            const toast = document.getElementById('toastNotification');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
 
-    // Set isi teks
-    toastTitle.textContent = title;
-    toastMessage.textContent = message;
+            // Set isi teks
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
 
-    // Atur ikon & warna berdasarkan tipe
-    toastIcon.className = "w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 ";
-    if (type === 'success') {
-        toastIcon.className += "bg-emerald-500/20 text-emerald-400";
-        toastIcon.innerHTML = '<i class="fa-solid fa-check-circle"></i>';
-    } else if (type === 'warning') {
-        toastIcon.className += "bg-amber-500/20 text-amber-400";
-        toastIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
-    } else {
-        toastIcon.className += "bg-blue-500/20 text-blue-400";
-        toastIcon.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
-    }
+            // Atur ikon & warna berdasarkan tipe
+            toastIcon.className = "w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 ";
+            if (type === 'success') {
+                toastIcon.className += "bg-emerald-500/20 text-emerald-400";
+                toastIcon.innerHTML = '<i class="fa-solid fa-check-circle"></i>';
+            } else if (type === 'warning') {
+                toastIcon.className += "bg-amber-500/20 text-amber-400";
+                toastIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            } else {
+                toastIcon.className += "bg-blue-500/20 text-blue-400";
+                toastIcon.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+            }
 
-    // Munculkan notifikasi (ubah opacity jadi 100 dan kembalikan posisi translate ke 0)
-    toast.classList.remove('opacity-0', '-translate-y-4', 'sm:translate-y-4');
-    toast.classList.add('opacity-100', 'translate-y-0', 'sm:translate-y-0');
+            // Munculkan notifikasi (ubah opacity jadi 100 dan kembalikan posisi translate ke 0)
+            toast.classList.remove('opacity-0', '-translate-y-4', 'sm:translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0', 'sm:translate-y-0');
 
-    // Reset timer jika ada notifikasi lain yang masuk beruntun
-    clearTimeout(toastTimer);
+            // Reset timer jika ada notifikasi lain yang masuk beruntun
+            clearTimeout(toastTimer);
 
-    // Otomatis sembunyikan setelah 4 detik
-    toastTimer = setTimeout(() => {
-        hideToast();
-    }, 4000);
-}
-
-function hideToast() {
-    const toast = document.getElementById('toastNotification');
-    // Sembunyikan kembali (ubah opacity ke 0 dan geser posisinya)
-    toast.classList.remove('opacity-100', 'translate-y-0', 'sm:translate-y-0');
-    toast.classList.add('opacity-0', '-translate-y-4', 'sm:translate-y-4');
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        // Ambil nama user dari localStorage, atau gunakan fallback jika belum login
-        const savedName = localStorage.getItem('userName') || "Onikata Kayoko"; 
-        
-        // Ambil jam saat ini (0 - 23)
-        const hour = new Date().getHours();
-        let greeting = "Selamat Datang";
-
-        // Tentukan sapaan berdasarkan waktu
-        if (hour >= 3 && hour < 11) {
-            greeting = "Selamat Pagi! 🌅";
-        } else if (hour >= 11 && hour < 15) {
-            greeting = "Selamat Siang! ☀️";
-        } else if (hour >= 15 && hour < 18) {
-            greeting = "Selamat Sore! 🌆";
-        } else {
-            greeting = "Selamat Malam! 🌙";
+            // Otomatis sembunyikan setelah 4 detik
+            toastTimer = setTimeout(() => {
+                hideToast();
+            }, 4000);
         }
 
-        // Tampilkan toast: Judul = Nama User, Pesan = Sapaan Waktu
-        showToast(savedName, greeting, "success");
-    }, 1000);
-});
+        function hideToast() {
+            const toast = document.getElementById('toastNotification');
+            // Sembunyikan kembali (ubah opacity ke 0 dan geser posisinya)
+            toast.classList.remove('opacity-100', 'translate-y-0', 'sm:translate-y-0');
+            toast.classList.add('opacity-0', '-translate-y-4', 'sm:translate-y-4');
+        }
 
-// Inisialisasi Deteksi Baterai Khas iPhone Bar
-function initBatteryTracker() {
-    if ('getBattery' in navigator) {
-        navigator.getBattery().then(function(battery) {
-            updateBatteryUI(battery);
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                // Ambil nama user dari localStorage, atau gunakan fallback jika belum login
+                const savedName = localStorage.getItem('userName') || "Onikata Kayoko";
 
-            // Update otomatis saat persentase / status cas berubah
-            battery.addEventListener('levelchange', function() { updateBatteryUI(battery); });
-            battery.addEventListener('chargingchange', function() { updateBatteryUI(battery); });
+                // Ambil jam saat ini (0 - 23)
+                const hour = new Date().getHours();
+                let greeting = "Selamat Datang";
+
+                // Tentukan sapaan berdasarkan waktu
+                if (hour >= 3 && hour < 11) {
+                    greeting = "Selamat Pagi! 🌅";
+                } else if (hour >= 11 && hour < 15) {
+                    greeting = "Selamat Siang! ☀️";
+                } else if (hour >= 15 && hour < 18) {
+                    greeting = "Selamat Sore! 🌆";
+                } else {
+                    greeting = "Selamat Malam! 🌙";
+                }
+
+                // Tampilkan toast: Judul = Nama User, Pesan = Sapaan Waktu
+                showToast(savedName, greeting, "success");
+            }, 1000);
         });
-    } else {
-        const batteryBtn = document.getElementById('batteryBtn');
-        if (batteryBtn) batteryBtn.title = "Baterai tidak didukung di browser ini";
-    }
-}
 
-// Update Tampilan Batang Baterai Ala iOS
-function updateBatteryUI(battery) {
-    const level = Math.round(battery.level * 100);
-    const isCharging = battery.charging;
+        // Inisialisasi Deteksi Baterai Khas iPhone Bar
+        function initBatteryTracker() {
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(function (battery) {
+                    updateBatteryUI(battery);
 
-    const bar = document.getElementById('batteryLevelBar');
-    const text = document.getElementById('batteryText');
-    const bolt = document.getElementById('batteryChargingBolt');
-
-    if (!bar || !text) return;
-
-    // Set teks angka persentase
-    text.textContent = `${level}%`;
-
-    // Set lebar batang isi baterai (0% sampai 100%)
-    bar.style.width = `${level}%`;
-
-    // Atur Warna Batang & Status Dicas Ala iPhone:
-    if (isCharging) {
-        // Mode Diisi Daya (Hijau Neon + Ikon Petir)
-        bar.className = "h-full rounded-[2px] bg-emerald-400 transition-all duration-500";
-        if (bolt) bolt.classList.remove('hidden');
-    } else {
-        if (bolt) bolt.classList.add('hidden');
-
-        if (level <= 20) {
-            // Low Battery (Merah iPhone)
-            bar.className = "h-full rounded-[2px] bg-red-500 transition-all duration-500 animate-pulse";
-        } else if (level <= 50) {
-            // Medium Battery (Kuning/Orange)
-            bar.className = "h-full rounded-[2px] bg-amber-400 transition-all duration-500";
-        } else {
-            // Normal / Full Battery (Putih/Hijau Segar khas iOS)
-            bar.className = "h-full rounded-[2px] bg-emerald-400 transition-all duration-500";
+                    // Update otomatis saat persentase / status cas berubah
+                    battery.addEventListener('levelchange', function () { updateBatteryUI(battery); });
+                    battery.addEventListener('chargingchange', function () { updateBatteryUI(battery); });
+                });
+            } else {
+                const batteryBtn = document.getElementById('batteryBtn');
+                if (batteryBtn) batteryBtn.title = "Baterai tidak didukung di browser ini";
+            }
         }
-    }
-}
 
-// Munculkan Toast Saat Bar Baterai Diklik
-function checkBatteryStatus() {
-    if ('getBattery' in navigator) {
-        navigator.getBattery().then(function(battery) {
+        // Update Tampilan Batang Baterai Ala iOS
+        function updateBatteryUI(battery) {
             const level = Math.round(battery.level * 100);
             const isCharging = battery.charging;
 
-            let statusMsg = `Sisa baterai perangkatmu: ${level}%`;
-            let toastType = 'info';
+            const bar = document.getElementById('batteryLevelBar');
+            const text = document.getElementById('batteryText');
+            const bolt = document.getElementById('batteryChargingBolt');
 
+            if (!bar || !text) return;
+
+            // Set teks angka persentase
+            text.textContent = `${level}%`;
+
+            // Set lebar batang isi baterai (0% sampai 100%)
+            bar.style.width = `${level}%`;
+
+            // Atur Warna Batang & Status Dicas Ala iPhone:
             if (isCharging) {
-                statusMsg += " ⚡ (Sedang Diisi Daya)";
-                toastType = 'success';
-            } else if (level <= 20) {
-                statusMsg += " ⚠️ (Baterai Lemah, Segera Cas!)";
-                toastType = 'warning';
+                // Mode Diisi Daya (Hijau Neon + Ikon Petir)
+                bar.className = "h-full rounded-[2px] bg-emerald-400 transition-all duration-500";
+                if (bolt) bolt.classList.remove('hidden');
             } else {
-                statusMsg += " 👍 (Kondisi Baterai Aman)";
-                toastType = 'success';
-            }
+                if (bolt) bolt.classList.add('hidden');
 
-            showToast("Informasi Baterai", statusMsg, toastType);
+                if (level <= 20) {
+                    // Low Battery (Merah iPhone)
+                    bar.className = "h-full rounded-[2px] bg-red-500 transition-all duration-500 animate-pulse";
+                } else if (level <= 50) {
+                    // Medium Battery (Kuning/Orange)
+                    bar.className = "h-full rounded-[2px] bg-amber-400 transition-all duration-500";
+                } else {
+                    // Normal / Full Battery (Putih/Hijau Segar khas iOS)
+                    bar.className = "h-full rounded-[2px] bg-emerald-400 transition-all duration-500";
+                }
+            }
+        }
+
+        // Munculkan Toast Saat Bar Baterai Diklik
+        function checkBatteryStatus() {
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(function (battery) {
+                    const level = Math.round(battery.level * 100);
+                    const isCharging = battery.charging;
+
+                    let statusMsg = `Sisa baterai perangkatmu: ${level}%`;
+                    let toastType = 'info';
+
+                    if (isCharging) {
+                        statusMsg += " ⚡ (Sedang Diisi Daya)";
+                        toastType = 'success';
+                    } else if (level <= 20) {
+                        statusMsg += " ⚠️ (Baterai Lemah, Segera Cas!)";
+                        toastType = 'warning';
+                    } else {
+                        statusMsg += " 👍 (Kondisi Baterai Aman)";
+                        toastType = 'success';
+                    }
+
+                    showToast("Informasi Baterai", statusMsg, toastType);
+                });
+            } else {
+                showToast("Fitur Baterai", "Browser ini tidak mendukung pembacaan baterai.", "warning");
+            }
+        }
+
+        // Jalankan saat web dimuat
+        document.addEventListener('DOMContentLoaded', initBatteryTracker);
+
+  // Fungsi untuk Mengukur Ping secara Real-Time
+async function measurePing() {
+    const signalText = document.getElementById('signalText');
+    const bars = [
+        document.getElementById('sigBar1'),
+        document.getElementById('sigBar2'),
+        document.getElementById('sigBar3'),
+        document.getElementById('sigBar4')
+    ];
+
+    if (!signalText) return;
+
+    if (!navigator.onLine) {
+        signalText.textContent = "Offline";
+        bars.forEach(bar => {
+            if (bar) bar.className = "w-[2.5px] bg-slate-600 rounded-xs transition-all";
         });
-    } else {
-        showToast("Fitur Baterai", "Browser ini tidak mendukung pembacaan baterai.", "warning");
+        return;
+    }
+
+    const startTime = performance.now();
+    try {
+        // Ping ringan ke server publik untuk menguji latency
+        await fetch('https://www.google.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' });
+        const endTime = performance.now();
+        const ping = Math.round(endTime - startTime);
+
+        // Tampilkan angka ms secara real-time
+        signalText.textContent = `${ping} ms`;
+
+        // Atur warna bar berdasarkan kestabilan
+        let barColor = "bg-emerald-400"; // Bagus (< 150ms)
+        let heights = ["h-[30%]", "h-[55%]", "h-[80%]", "h-[100%];"]; // Normal full bar
+
+        if (ping > 300) {
+            barColor = "bg-red-500";   // Lambat (> 300ms) - Bar jadi pendek-pendek
+            heights = ["h-[30%]", "h-[30%]", "h-[30%]", "h-[30%]"];
+        } else if (ping > 150) {
+            barColor = "bg-amber-400"; // Sedang (150ms - 300ms)
+            heights = ["h-[30%]", "h-[55%]", "h-[55%]", "h-[55%]"];
+        }
+
+        bars.forEach((bar, index) => {
+            if (bar) {
+                bar.className = `w-[2.5px] ${heights[index]} ${barColor} rounded-xs transition-all`;
+            }
+        });
+
+    } catch (error) {
+        signalText.textContent = "Error";
     }
 }
 
-// Jalankan saat web dimuat
-document.addEventListener('DOMContentLoaded', initBatteryTracker);
+// Jalankan otomatis begitu web pertama kali dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    measurePing();
+
+    // Auto-update terus menerus setiap 10 detik di background secara real-time
+    setInterval(measurePing, 10000);
+});
+
+// Deteksi perubahan status online/offline secara instan
+window.addEventListener('online', measurePing);
+window.addEventListener('offline', measurePing);
+        
     </script>
 
 
