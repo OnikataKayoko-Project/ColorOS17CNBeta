@@ -518,37 +518,46 @@
                     </a>
             </nav>
 
-<!-- Widget Indikator Melayang (Mobile: Di bawah header atas | Desktop: Tengah Bawah) -->
-<div class="fixed z-50 top-24 left-1/2 -translate-x-1/2 sm:top-auto sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 flex items-center gap-2">
-    
-    <!-- Widget 1: Indikator Sinyal & Kecepatan (Mbps/ms) -->
-    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-white/10 backdrop-blur-2xl shadow-2xl select-none">
-        <!-- Ikon Bar Sinyal -->
-        <div class="relative flex items-end gap-[1.5px] h-3.5 w-4 justify-center">
-            <span id="sigBar1" class="w-[2.5px] h-[30%] bg-emerald-400 rounded-xs transition-all"></span>
-            <span id="sigBar2" class="w-[2.5px] h-[55%] bg-emerald-400 rounded-xs transition-all"></span>
-            <span id="sigBar3" class="w-[2.5px] h-[80%] bg-emerald-400 rounded-xs transition-all"></span>
-            <span id="sigBar4" class="w-[2.5px] h-[100%] bg-emerald-400 rounded-xs transition-all"></span>
-        </div>
-        <!-- Teks Angka Kecepatan -->
-        <span id="signalText" class="text-[11px] font-bold text-slate-200 tracking-tight">Detecting...</span>
-    </div>
+            <!-- Widget Indikator Melayang (Mobile: Di bawah header atas | Desktop: Tengah Bawah) -->
+            <div
+                class="fixed z-50 top-24 left-1/2 -translate-x-1/2 sm:top-auto sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 flex items-center gap-2">
 
-    <!-- Widget 2: Indikator Baterai Khas iPhone Bar -->
-    <button id="batteryBtn" onclick="checkBatteryStatus()" title="Cek Status Baterai"
-        class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 hover:border-white/25 backdrop-blur-2xl shadow-2xl transition-all shrink-0 cursor-pointer select-none">
-        
-        <!-- Wadah Baterai Khas iPhone (Pill Horizontal) -->
-        <div class="relative w-6 h-3 rounded-[4px] border-[1.5px] border-slate-300 dark:border-slate-200 p-[1px] flex items-center">
-            <div id="batteryLevelBar" class="h-full rounded-[2px] bg-emerald-400 transition-all duration-500" style="width: 100%;"></div>
-            <div class="absolute -right-[3px] top-1/2 -translate-y-1/2 w-[2px] h-[4px] bg-slate-300 dark:bg-slate-200 rounded-r-[1px]"></div>
-            <i id="batteryChargingBolt" class="fa-solid fa-bolt text-[8px] text-slate-950 absolute inset-0 flex items-center justify-center hidden font-bold"></i>
-        </div>
+                <!-- Widget 1: Indikator Sinyal & Kecepatan (Mbps/ms) -->
+                <div
+                    class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-white/10 backdrop-blur-2xl shadow-2xl select-none">
+                    <!-- Ikon Bar Sinyal -->
+                    <div class="relative flex items-end gap-[1.5px] h-3.5 w-4 justify-center">
+                        <span id="sigBar1" class="w-[2.5px] h-[30%] bg-emerald-400 rounded-xs transition-all"></span>
+                        <span id="sigBar2" class="w-[2.5px] h-[55%] bg-emerald-400 rounded-xs transition-all"></span>
+                        <span id="sigBar3" class="w-[2.5px] h-[80%] bg-emerald-400 rounded-xs transition-all"></span>
+                        <span id="sigBar4" class="w-[2.5px] h-[100%] bg-emerald-400 rounded-xs transition-all"></span>
+                    </div>
+                    <!-- Teks Angka Kecepatan -->
+                    <span id="signalText"
+                        class="text-[11px] font-bold text-slate-200 tracking-tight">Detecting...</span>
+                </div>
 
-        <span id="batteryText" class="text-[11px] font-bold text-slate-200 tracking-tight">100%</span>
-    </button>
+                <!-- Widget 2: Indikator Baterai Khas iPhone Bar -->
+                <button id="batteryBtn" onclick="checkBatteryStatus()" title="Cek Status Baterai"
+                    class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 hover:border-white/25 backdrop-blur-2xl shadow-2xl transition-all shrink-0 cursor-pointer select-none">
 
-</div>
+                    <!-- Wadah Baterai Khas iPhone (Pill Horizontal) -->
+                    <div
+                        class="relative w-6 h-3 rounded-[4px] border-[1.5px] border-slate-300 dark:border-slate-200 p-[1px] flex items-center">
+                        <div id="batteryLevelBar"
+                            class="h-full rounded-[2px] bg-emerald-400 transition-all duration-500"
+                            style="width: 100%;"></div>
+                        <div
+                            class="absolute -right-[3px] top-1/2 -translate-y-1/2 w-[2px] h-[4px] bg-slate-300 dark:bg-slate-200 rounded-r-[1px]">
+                        </div>
+                        <i id="batteryChargingBolt"
+                            class="fa-solid fa-bolt text-[8px] text-slate-950 absolute inset-0 flex items-center justify-center hidden font-bold"></i>
+                    </div>
+
+                    <span id="batteryText" class="text-[11px] font-bold text-slate-200 tracking-tight">100%</span>
+                </button>
+
+            </div>
             <!-- Floating Navigation Pill Khusus Mobile (Di Bawah Layar) -->
             <div class="sm:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm">
                 <div
@@ -2294,74 +2303,345 @@
         // Jalankan saat web dimuat
         document.addEventListener('DOMContentLoaded', initBatteryTracker);
 
-  // Fungsi untuk Mengukur Ping secara Real-Time
-async function measurePing() {
-    const signalText = document.getElementById('signalText');
-    const bars = [
-        document.getElementById('sigBar1'),
-        document.getElementById('sigBar2'),
-        document.getElementById('sigBar3'),
-        document.getElementById('sigBar4')
-    ];
+        // Fungsi untuk Mengukur Ping secara Real-Time
+        async function measurePing() {
+            const signalText = document.getElementById('signalText');
+            const bars = [
+                document.getElementById('sigBar1'),
+                document.getElementById('sigBar2'),
+                document.getElementById('sigBar3'),
+                document.getElementById('sigBar4')
+            ];
 
-    if (!signalText) return;
+            if (!signalText) return;
 
-    if (!navigator.onLine) {
-        signalText.textContent = "Offline";
-        bars.forEach(bar => {
-            if (bar) bar.className = "w-[2.5px] bg-slate-600 rounded-xs transition-all";
-        });
-        return;
-    }
+            if (!navigator.onLine) {
+                signalText.textContent = "Offline";
+                bars.forEach(bar => {
+                    if (bar) bar.className = "w-[2.5px] bg-slate-600 rounded-xs transition-all";
+                });
+                return;
+            }
 
-    const startTime = performance.now();
-    try {
-        // Ping ringan ke server publik untuk menguji latency
-        await fetch('https://www.google.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' });
-        const endTime = performance.now();
-        const ping = Math.round(endTime - startTime);
+            const startTime = performance.now();
+            try {
+                // Ping ringan ke server publik untuk menguji latency
+                await fetch('https://www.google.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' });
+                const endTime = performance.now();
+                const ping = Math.round(endTime - startTime);
 
-        // Tampilkan angka ms secara real-time
-        signalText.textContent = `${ping} ms`;
+                // Tampilkan angka ms secara real-time
+                signalText.textContent = `${ping} ms`;
 
-        // Atur warna bar berdasarkan kestabilan
-        let barColor = "bg-emerald-400"; // Bagus (< 150ms)
-        let heights = ["h-[30%]", "h-[55%]", "h-[80%]", "h-[100%];"]; // Normal full bar
+                // Atur warna bar berdasarkan kestabilan
+                let barColor = "bg-emerald-400"; // Bagus (< 150ms)
+                let heights = ["h-[30%]", "h-[55%]", "h-[80%]", "h-[100%];"]; // Normal full bar
 
-        if (ping > 300) {
-            barColor = "bg-red-500";   // Lambat (> 300ms) - Bar jadi pendek-pendek
-            heights = ["h-[30%]", "h-[30%]", "h-[30%]", "h-[30%]"];
-        } else if (ping > 150) {
-            barColor = "bg-amber-400"; // Sedang (150ms - 300ms)
-            heights = ["h-[30%]", "h-[55%]", "h-[55%]", "h-[55%]"];
+                if (ping > 300) {
+                    barColor = "bg-red-500";   // Lambat (> 300ms) - Bar jadi pendek-pendek
+                    heights = ["h-[30%]", "h-[30%]", "h-[30%]", "h-[30%]"];
+                } else if (ping > 150) {
+                    barColor = "bg-amber-400"; // Sedang (150ms - 300ms)
+                    heights = ["h-[30%]", "h-[55%]", "h-[55%]", "h-[55%]"];
+                }
+
+                bars.forEach((bar, index) => {
+                    if (bar) {
+                        bar.className = `w-[2.5px] ${heights[index]} ${barColor} rounded-xs transition-all`;
+                    }
+                });
+
+            } catch (error) {
+                signalText.textContent = "Error";
+            }
         }
 
-        bars.forEach((bar, index) => {
-            if (bar) {
-                bar.className = `w-[2.5px] ${heights[index]} ${barColor} rounded-xs transition-all`;
-            }
+        // Jalankan otomatis begitu web pertama kali dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            measurePing();
+
+            // Auto-update terus menerus setiap 10 detik di background secara real-time
+            setInterval(measurePing, 10000);
         });
 
-    } catch (error) {
-        signalText.textContent = "Error";
-    }
-}
+        // Deteksi perubahan status online/offline secara instan
+        window.addEventListener('online', measurePing);
+        window.addEventListener('offline', measurePing);
 
-// Jalankan otomatis begitu web pertama kali dimuat
-document.addEventListener('DOMContentLoaded', () => {
-    measurePing();
+        // Fungsi untuk Menutup Toast dengan Animasi Ketarik ke Kanan
+        function closeAdBlockNotification() {
+            const toast = document.getElementById('adblockToast');
+            if (!toast) return;
 
-    // Auto-update terus menerus setiap 10 detik di background secara real-time
-    setInterval(measurePing, 10000);
-});
+            // Tambahkan class animasi keluar (keluar meluncur ke kanan)
+            toast.classList.remove('rtx-layer-1');
+            toast.classList.add('rtx-layer-exit');
 
-// Deteksi perubahan status online/offline secara instan
-window.addEventListener('online', measurePing);
-window.addEventListener('offline', measurePing);
-        
+            // Hapus elemen dari HTML setelah animasi selesai (400ms)
+            setTimeout(() => {
+                toast.remove();
+            }, 400);
+        }
+
+        // Fungsi untuk Menutup Toast dengan Animasi Ketarik ke Kanan
+        function closeAdBlockNotification() {
+            const toast = document.getElementById('adblockToast');
+            if (!toast) return;
+
+            toast.classList.remove('rtx-layer-1');
+            toast.classList.add('rtx-layer-exit');
+
+            setTimeout(() => {
+                toast.remove();
+            }, 400);
+        }
+
+        // Fungsi untuk Menutup Toast dengan Animasi Ketarik ke Kanan
+        function closeAdBlockNotification() {
+            const toast = document.getElementById('adblockToast');
+            if (!toast) return;
+
+            toast.classList.remove('rtx-layer-1');
+            toast.classList.add('rtx-layer-exit');
+
+            setTimeout(() => {
+                toast.remove();
+            }, 400);
+        }
+
+        // Fungsi untuk Menutup Toast dengan Animasi Ketarik ke Kanan
+        function closeAdBlockNotification() {
+            const toast = document.getElementById('adblockToast');
+            if (!toast) return;
+
+            toast.classList.remove('rtx-layer-1');
+            toast.classList.add('rtx-layer-exit');
+
+            setTimeout(() => {
+                toast.remove();
+            }, 400);
+        }
+
+        // Fungsi untuk Menutup Toast dengan Animasi Ketarik ke Kanan
+        function closeAdBlockNotification() {
+            const toast = document.getElementById('adblockToast');
+            if (!toast) return;
+
+            toast.classList.remove('rtx-layer-1');
+            toast.classList.add('rtx-layer-exit');
+
+            setTimeout(() => {
+                toast.remove();
+            }, 400);
+        }
+
+        // Fungsi untuk Menutup Toast (Layer 2 Collapse -> Ketarik ke Kanan)
+        function closeAdBlockNotification() {
+            const toast = document.getElementById('adblockToast');
+            if (!toast) return;
+
+            // 1. Layer 2 masuk / collapse dulu
+            const layer2 = toast.querySelector('.rtx-layer-2');
+            if (layer2) {
+                layer2.classList.add('animate-layer2-collapse');
+            }
+
+            // 2. Beri jeda 200ms, lalu animasi tarik keluar ke kanan
+            setTimeout(() => {
+                toast.classList.remove('rtx-layer-1');
+                toast.classList.add('rtx-layer-exit');
+            }, 200);
+
+            // 3. Hapus dari DOM setelah animasi rampung
+            setTimeout(() => {
+                toast.remove();
+            }, 600);
+        }
+
+        // Fungsi Menutup Toast (Collapse Layer 2 -> Slide Out ke Kanan)
+        function closeAdBlockNotification() {
+            const toast = document.getElementById('adblockToast');
+            if (!toast) return;
+
+            const layer2 = toast.querySelector('.rtx-layer-2');
+            if (layer2) {
+                layer2.classList.add('animate-layer2-collapse');
+            }
+
+            setTimeout(() => {
+                toast.classList.remove('rtx-layer-1');
+                toast.classList.add('rtx-layer-exit');
+            }, 200);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 600);
+        }
+
+        // Fungsi Menutup Toast (Murni Geser Cepat ke Kanan)
+        function closeAdBlockNotification() {
+            const toast = document.getElementById('adblockToast');
+            if (!toast) return;
+
+            toast.classList.remove('rtx-layer-1');
+            toast.classList.add('rtx-layer-exit');
+
+            setTimeout(() => {
+                toast.remove();
+            }, 350);
+        }
+
+        // Fungsi Menampilkan Toast Notifikasi AdBlock
+        function showAdBlockNotification() {
+            if (document.getElementById('adblockToast')) return;
+
+            const toastHtml = `
+        <div id="adblockToast" class="fixed bottom-20 right-4 sm:top-32 sm:right-6 sm:bottom-auto z-[99999] w-[300px] sm:w-[340px] rtx-layer-1">
+            
+            <!-- LAYER 1: Bingkai Red Accent Tipis -->
+            <div class="toast-card relative p-[1px] rounded-2xl bg-red-500/30 shadow-2xl shadow-black/70 overflow-hidden">
+                
+                <!-- LAYER 2: Kontainer Utama dengan Blur Kaca (Glassmorphism) -->
+                <div class="rtx-layer-2 relative z-10 flex items-center gap-3 p-3.5 rounded-[15px] bg-slate-950/80 dark:bg-slate-950/80 custom-backdrop-blur text-white border border-white/10 overflow-hidden">
+                    
+                    <!-- PENDARAN GRADASI MERAH SEKOTAK (Berpusat dari Posisi Tombol X di Kanan Atas) -->
+                    <div class="full-box-glow absolute -top-16 -right-16 w-80 h-80 rounded-full bg-gradient-to-bl from-red-600/50 via-red-500/20 to-transparent blur-2xl z-0"></div>
+
+                    <!-- 1. ICON SHIELD KECIL DI KIRI -->
+                    <div class="relative z-10 w-8 h-8 rounded-xl bg-red-500/20 text-red-500 flex items-center justify-center shrink-0 border border-red-500/30 text-sm shadow-inner">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <!-- 2. TEKS KONTEN (Tengah) -->
+                    <div class="relative z-10 flex-1 text-left min-w-0">
+                        <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-red-400 leading-none">AdGuard / AdBlock Terdeteksi!</h4>
+                        <p class="text-[10px] text-slate-300 leading-snug mt-1.5 break-words">Matikan pemblokir iklan agar link berjalan normal.</p>
+                    </div>
+                    
+                    <!-- 3. TOMBOL CLOSE (X) DI KANAN -->
+                    <button onclick="closeAdBlockNotification()" title="Tutup Notifikasi" class="close-btn relative z-10 w-7 h-7 rounded-full flex items-center justify-center shrink-0 cursor-pointer text-slate-400 hover:text-white transition-transform hover:scale-110 focus:outline-none">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                    </button>
+                    
+                </div>
+            </div>
+            
+        </div>
+    `;
+
+            document.body.insertAdjacentHTML('beforeend', toastHtml);
+        }
+
+        // Fungsi Pengecekan AdGuard & AdBlock
+        function detectAdBlocker() {
+            let adBlockDetected = false;
+
+            const bait = document.createElement('div');
+            bait.className = 'adsbox ad-placement banner-ad text-ad google-ads ag-ads';
+            bait.style.cssText = 'width: 1px; height: 1px; position: absolute; left: -999px; top: -999px; display: block !important;';
+            document.body.appendChild(bait);
+
+            const testScript = document.createElement('script');
+            testScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+            testScript.onerror = () => { adBlockDetected = true; };
+            document.head.appendChild(testScript);
+
+            setTimeout(() => {
+                if (!bait.offsetParent || bait.offsetHeight === 0 || window.getComputedStyle(bait).display === 'none' || window.getComputedStyle(bait).visibility === 'hidden') {
+                    adBlockDetected = true;
+                }
+
+                bait.remove();
+                testScript.remove();
+
+                if (adBlockDetected) {
+                    showAdBlockNotification();
+                }
+            }, 400);
+        }
+
+        // Jalankan saat halaman selesai dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(detectAdBlocker, 1000);
+        });
     </script>
 
+    <style>
+        /* --- EFEK BLUR MANUAL --- */
+        .custom-backdrop-blur {
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            backdrop-filter: blur(16px) saturate(180%);
+        }
 
+        /* --- ANIMASI MASUK (ENTER) --- */
+        @keyframes rtxLayer1SlideEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(120%) scale(0.95);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateX(-8px) scale(1.02);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes rtxLayer2RevealEnter {
+            0% {
+                clip-path: inset(0 100% 0 0);
+                opacity: 0;
+            }
+
+            100% {
+                clip-path: inset(0 0 0 0);
+                opacity: 1;
+            }
+        }
+
+        .rtx-layer-1 {
+            animation: rtxLayer1SlideEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .rtx-layer-2 {
+            animation: rtxLayer2RevealEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+            opacity: 0;
+        }
+
+        /* --- ANIMASI KELUAR (MURNI GESER KE KANAN) --- */
+        @keyframes rtxSlideOutRightPure {
+            0% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(120%);
+            }
+        }
+
+        .rtx-layer-exit {
+            animation: rtxSlideOutRightPure 0.35s cubic-bezier(0.7, 0, 0.84, 0) forwards !important;
+        }
+
+        /* --- EFEK GRADASI SEKOTAK --- */
+        .toast-card:has(.close-btn:hover) .full-box-glow {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .full-box-glow {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            pointer-events: none;
+        }
+    </style>
 </body>
 
 </html>
