@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINK ERROR</title>
+<!-- Favicon Ikon Warning -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><path fill=%22%23ef4444%22 d=%22M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 160c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V216c0-13.3-10.7-24-24-24zm0 208a28 28 0 1 0 0-56 28 28 0 1 0 0 56z%22/></svg>">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'aurora-spin': 'auroraSpin 20s ease-in-out infinite alternate',
+                        'aurora-pulse': 'auroraPulse 10s ease-in-out infinite alternate',
+                        'glow-border': 'glowBorder 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        auroraSpin: {
+                            '0%': { transform: 'rotate(0deg) scale(1) translate(0px, 0px)' },
+                            '50%': { transform: 'rotate(180deg) scale(1.3) translate(50px, -30px)' },
+                            '100%': { transform: 'rotate(360deg) scale(1) translate(-40px, 20px)' },
+                        },
+                        auroraPulse: {
+                            '0%': { opacity: '0.3', transform: 'scale(0.85)' },
+                            '100%': { opacity: '0.8', transform: 'scale(1.2)' },
+                        },
+                        glowBorder: {
+                            '0%': { borderColor: 'rgba(239, 68, 68, 0.2)', boxShadow: '0 0 15px rgba(239, 68, 68, 0.1)' },
+                            '100%': { borderColor: 'rgba(239, 68, 68, 0.55)', boxShadow: '0 0 35px rgba(239, 68, 68, 0.25)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #070a12;
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+        }
+        /* Orb Cahaya Aurora Bergerak di Background */
+        .aurora-orb-1 {
+            position: fixed;
+            width: 650px;
+            height: 650px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.28) 0%, rgba(153, 27, 27, 0.12) 55%, transparent 75%);
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .aurora-orb-2 {
+            position: fixed;
+            width: 550px;
+            height: 550px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.22) 0%, rgba(185, 28, 28, 0.08) 60%, transparent 80%);
+            filter: blur(110px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative flex items-center justify-center p-4 pb-20 selection:bg-red-500/30 overflow-y-auto">
+
+    <!-- Animasi Background Orb Aurora Merah -->
+    <div class="aurora-orb-1 -top-40 -left-40 animate-aurora-spin"></div>
+    <div class="aurora-orb-2 -bottom-40 -right-40 animate-aurora-pulse"></div>
+
+    <!-- Container Utama Kartu Error -->
+    <div class="w-full max-w-lg glass-card rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative z-10 border animate-glow-border my-auto">
+        
+        <!-- Badge / Icon Area -->
+        <div class="mx-auto w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5 shadow-inner text-red-400">
+            <i class="fa-solid fa-triangle-exclamation text-2xl sm:text-3xl animate-pulse"></i>
+        </div>
+
+        <!-- Tag Status Error -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-semibold uppercase tracking-widest mb-3">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+            <span data-i18n="badge">Link Tidak Tersedia / Error</span>
+        </div>
+
+        <!-- Judul Error -->
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2" data-i18n="title">
+            Tautan Unduhan Bermasalah
+        </h1>
+
+        <!-- Deskripsi Keterangan -->
+        <p class="text-slate-400 text-sm leading-relaxed mb-5" data-i18n="desc">
+            File yang ingin kamu akses tidak dapat ditemukan, telah dihapus dari server, atau mengalami kegagalan tautan.
+        </p>
+
+        <!-- Box Kode Error -->
+        <div class="bg-black/50 rounded-2xl p-4 border border-white/5 mb-5 text-left relative overflow-hidden">
+            <div class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1" data-i18n="errorCodeTitle">Kode / Detail Kesalahan:</div>
+            <div id="errorDetails" class="font-mono text-xs text-red-400 break-all bg-red-500/10 px-2.5 py-1.5 rounded-lg border border-red-500/20 inline-block">
+                ERRORFILES1945
+            </div>
+        </div>
+
+        <!-- Tombol Opsi Link Mirror / Alternatif (MediaFire) -->
+        <div class="mb-5 p-3 rounded-2xl bg-slate-900/60 border border-white/5 text-left">
+            <div class="text-[11px] font-bold text-slate-300 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-cloud-arrow-down text-red-400"></i>
+                <span data-i18n="mirrorTitle">Opsi Tautan Cadangan (Mirror Link):</span>
+            </div>
+            <a href="https://sfl.gl/uReE1" id="mirrorLink" target="_blank" 
+                class="w-full px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white border border-white/10 text-xs font-semibold transition-all flex items-center justify-center gap-2 group">
+                <i class="fa-solid fa-fire-flame-curved text-orange-500 group-hover:scale-110 transition-transform"></i>
+                <span data-i18n="mirrorBtnText">Buka Server Mirror (MediaFire)</span>
+            </a>
+        </div>
+
+        <!-- Action Button (Kembali ke Beranda - Full Width) -->
+        <div class="w-full">
+            <a href="index.html" 
+                class="w-full px-5 py-3 rounded-2xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold transition-all duration-300 shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 group">
+                <i class="fa-solid fa-house text-xs group-hover:-translate-x-0.5 transition-transform"></i>
+                <span data-i18n="btnHome">Kembali ke Beranda</span>
+            </a>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="mt-6 pt-5 border-t border-white/5 text-[11px] text-slate-500 flex items-center justify-between">
+            <span>KayokoProject &bull; ColorOS 17</span>
+            <span class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                System Alert
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Widget Indikator Sinyal & Baterai (Fixed Melayang Bebas di Atas Lapisan Bawah) -->
+    <div class="fixed z-50 bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 select-none">
+        
+        <!-- Widget 1: Sinyal & Kecepatan -->
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/10 backdrop-blur-2xl shadow-2xl">
+            <div class="relative flex items-end gap-[1.5px] h-3.5 w-4 justify-center">
+                <span id="sigBar1" class="w-[2.5px] h-[30%] bg-emerald-400 rounded-xs transition-all"></span>
+                <span id="sigBar2" class="w-[2.5px] h-[55%] bg-emerald-400 rounded-xs transition-all"></span>
+                <span id="sigBar3" class="w-[2.5px] h-[80%] bg-emerald-400 rounded-xs transition-all"></span>
+                <span id="sigBar4" class="w-[2.5px] h-[100%] bg-emerald-400 rounded-xs transition-all"></span>
+            </div>
+            <span id="signalText" class="text-[11px] font-bold text-slate-200 tracking-tight">Detecting...</span>
+        </div>
+
+        <!-- Widget 2: Baterai iPhone Bar -->
+        <button id="batteryBtn" onclick="checkBatteryStatus()" title="Cek Status Baterai"
+            class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/90 border border-white/10 hover:border-white/25 backdrop-blur-2xl shadow-2xl transition-all shrink-0 cursor-pointer">
+            <div class="relative w-6 h-3 rounded-[4px] border-[1.5px] border-slate-300 dark:border-slate-200 p-[1px] flex items-center">
+                <div id="batteryLevelBar" class="h-full rounded-[2px] bg-emerald-400 transition-all duration-500" style="width: 100%;"></div>
+                <div class="absolute -right-[3px] top-1/2 -translate-y-1/2 w-[2px] h-[4px] bg-slate-300 dark:bg-slate-200 rounded-r-[1px]"></div>
+                <i id="batteryChargingBolt" class="fa-solid fa-bolt text-[8px] text-slate-950 absolute inset-0 flex items-center justify-center hidden font-bold"></i>
+            </div>
+            <span id="batteryText" class="text-[11px] font-bold text-slate-200 tracking-tight">100%</span>
+        </button>
+
+    </div>
+
+    <!-- Script Logika (Auto Language Detection, Sinyal, Baterai, URL Parameter) -->
+    <script>
+        // --- 1. MULTILINGUAL DICTIONARY ---
+        const langData = {
+            id: {
+                badge: "Link Tidak Tersedia / Error",
+                title: "Tautan Unduhan Bermasalah",
+                desc: "File yang ingin kamu akses tidak dapat ditemukan, telah dihapus dari server, atau mengalami kegagalan tautan.",
+                errorCodeTitle: "Kode / Detail Kesalahan:",
+                mirrorTitle: "Opsi Tautan Cadangan (Mirror Link):",
+                mirrorBtnText: "Buka Server Mirror (MediaFire)",
+                btnHome: "Kembali ke Beranda"
+            },
+            en: {
+                badge: "Link Unavailable / Error",
+                title: "Download Link Issue",
+                desc: "The file you are trying to access cannot be found, has been removed from the server, or the link has expired.",
+                errorCodeTitle: "Error Code / Details:",
+                mirrorTitle: "Alternative Mirror Link:",
+                mirrorBtnText: "Open Mirror Server (MediaFire)",
+                btnHome: "Back to Home"
+            }
+        };
+
+        let currentLang = 'id';
+
+        function detectUserLanguage() {
+            const userLang = (navigator.language || navigator.userLanguage || 'id').toLowerCase();
+            if (userLang.startsWith('id')) {
+                currentLang = 'id';
+            } else {
+                currentLang = 'en';
+            }
+            setLanguage(currentLang);
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (langData[lang][key]) {
+                    el.textContent = langData[lang][key];
+                }
+            });
+        }
+
+// --- 2. REAL-TIME SIGNAL TRACKER (Pure Ping ms) ---
+        async function measurePing() {
+            const signalText = document.getElementById('signalText');
+            const bars = [
+                document.getElementById('sigBar1'),
+                document.getElementById('sigBar2'),
+                document.getElementById('sigBar3'),
+                document.getElementById('sigBar4')
+            ];
+
+            if (!signalText) return;
+
+            if (!navigator.onLine) {
+                signalText.textContent = "Offline";
+                bars.forEach(bar => {
+                    if (bar) bar.className = "w-[2.5px] h-[30%] bg-slate-600 rounded-xs transition-all";
+                });
+                return;
+            }
+
+            const startTime = performance.now();
+            try {
+                // Ping ringan ke server publik untuk menguji latency
+                await fetch('https://www.google.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' });
+                const endTime = performance.now();
+                const ping = Math.round(endTime - startTime);
+
+                // Tampilkan angka ms secara real-time
+                signalText.textContent = `${ping} ms`;
+
+                // Atur warna bar berdasarkan kestabilan
+                let barColor = "bg-emerald-400"; // Bagus (< 150ms)
+                let heights = ["h-[30%]", "h-[55%]", "h-[80%]", "h-[100%]"]; // Normal full bar
+
+                if (ping > 300) {
+                    barColor = "bg-red-500";   // Lambat (> 300ms) - Bar jadi pendek-pendek
+                    heights = ["h-[30%]", "h-[30%]", "h-[30%]", "h-[30%]"];
+                } else if (ping > 150) {
+                    barColor = "bg-amber-400"; // Sedang (150ms - 300ms)
+                    heights = ["h-[30%]", "h-[55%]", "h-[55%]", "h-[55%]"];
+                }
+
+                bars.forEach((bar, index) => {
+                    if (bar) {
+                        bar.className = `w-[2.5px] ${heights[index]} ${barColor} rounded-xs transition-all`;
+                    }
+                });
+
+            } catch (error) {
+                signalText.textContent = "Error";
+            }
+        }
+
+        // --- 3. BATTERY TRACKER ---
+        function initBatteryTracker() {
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(function(battery) {
+                    updateBatteryUI(battery);
+                    battery.addEventListener('levelchange', () => updateBatteryUI(battery));
+                    battery.addEventListener('chargingchange', () => updateBatteryUI(battery));
+                });
+            }
+        }
+
+        function updateBatteryUI(battery) {
+            const level = Math.round(battery.level * 100);
+            const isCharging = battery.charging;
+            const bar = document.getElementById('batteryLevelBar');
+            const text = document.getElementById('batteryText');
+            const bolt = document.getElementById('batteryChargingBolt');
+
+            if (!bar || !text) return;
+            text.textContent = `${level}%`;
+            bar.style.width = `${level}%`;
+
+            if (isCharging) {
+                bar.className = "h-full rounded-[2px] bg-emerald-400 transition-all duration-500";
+                if (bolt) bolt.classList.remove('hidden');
+            } else {
+                if (bolt) bolt.classList.add('hidden');
+                bar.className = `h-full rounded-[2px] ${level <= 20 ? 'bg-red-500 animate-pulse' : (level <= 50 ? 'bg-amber-400' : 'bg-emerald-400')} transition-all duration-500`;
+            }
+        }
+
+        function checkBatteryStatus() {
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(function(battery) {
+                    const level = Math.round(battery.level * 100);
+                    alert(currentLang === 'id' ? `Sisa Baterai: ${level}%` : `Battery Level: ${level}%`);
+                });
+            }
+        }
+
+// --- 4. INITIALIZATION & PARAMETER PARSER ---
+        document.addEventListener('DOMContentLoaded', () => {
+            detectUserLanguage();
+
+            // Jalankan fungsi ping & interval
+            measurePing();
+            setInterval(measurePing, 10000);
+            initBatteryTracker();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorCode = urlParams.get('code') || urlParams.get('data') || urlParams.get('error') || "XXUEUSKDPRIHAIIATOLAIWJTPRAKONWAHAWBAUSXX";
+            
+            const errorElement = document.getElementById('errorDetails');
+            if (errorElement) {
+                errorElement.textContent = `data-errorcode="${errorCode}"`;
+            }
+
+            const mirrorBtn = document.getElementById('mirrorLink');
+            if (mirrorBtn) {
+                mirrorBtn.href = "https://sfl.gl/QvEydub";
+            }
+        });
+
+        // Deteksi perubahan status online/offline secara instan
+        window.addEventListener('online', measurePing);
+        window.addEventListener('offline', measurePing);
+    </script>
+</body>
+</html>
