@@ -1003,7 +1003,7 @@
     </script>
 
     <script>
-// Tab switching logic
+        // Tab switching logic
         function switchTab(tabName) {
             // 1. Sembunyikan semua konten tab
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -1073,7 +1073,7 @@
         }
 
         // 🔥 TAMBAHKAN INI: Otomatis aktifkan tab 'thanks' saat pertama kali halaman dimuat
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             switchTab('thanks');
         });
 
@@ -1850,12 +1850,12 @@
             `);
         }
 
-        function openFeaturesBugsModal() {
-            openCustomModal("Notes", `
-<div class="font-sans text-left">
+    function openFeaturesBugsModal() {
+    openCustomModal("Notes", `
+        <div class="font-sans text-left">
             <!-- Header Info disamakan persis seperti Extension Module -->
             <div class="flex items-center space-x-3 mb-4">
-                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-xl">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/25 text-amber-500 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-note-sticky"></i>
                 </div>
                 <div>
@@ -1864,8 +1864,8 @@
                 </div>
             </div>
             
-            <!-- Konten Catatan dengan Scrollbar (max-h-[55vh]) & Font kecil -->
-            <div class="space-y-3.5 mb-5 max-h-[55vh] overflow-y-auto pr-1 text-xs text-slate-600 dark:text-slate-300">
+            <!-- Konten Catatan dengan Scrollbar (max-h-[55vh]) & Track Transparan -->
+            <div class="space-y-3.5 mb-5 max-h-[55vh] overflow-y-auto pr-2 text-xs text-slate-600 dark:text-slate-300 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full" style="scrollbar-width: thin; scrollbar-color: rgba(100, 116, 139, 0.5) transparent;">
                 
                 <!-- Fitur Utama Fixed -->
                 <div>
@@ -1883,7 +1883,7 @@
                         <li class="flex items-start gap-1.5">• <span>Sinyal WI-FI dan SIM Card berfungsi.</span></li>
                         <li class="flex items-start gap-1.5">• <span>DeepSleep Berfungsi.</span></li>
                         <li class="flex items-start gap-1.5">• <span>GameSpace OPPO berfungsi.</span></li>
-                        <li class="flex items-start gap-1.5">• <span>Brightness telah di perbaiki.</span></li>
+                        <li class="flex items-start gap-1.5">• <span>Brightness telah diperbaiki.</span></li>
                         <li class="flex items-start gap-1.5">• <span>Flashdisk (OTG) dan SDCard terbaca.</span></li>
                     </ul>
                 </div>
@@ -1902,7 +1902,7 @@
 
                 <div class="border-t border-zinc-800 pt-2"></div>
 
- <!-- How To Flash -->
+                <!-- How To Flash -->
                 <div>
                     <div class="font-bold text-blue-500 text-xs mb-3 flex items-center gap-1.5 uppercase tracking-wider">
                         <i class="fa-solid fa-box-archive text-[10px]"></i> How To Flash:
@@ -1932,11 +1932,19 @@
                             <span>•</span>
                             <span>Reboot system.</span>
                         </li>
+                        <li class="flex items-start gap-1.5">
+                            <span>•</span>
+                            <span>Masuk lagi ke OrangeFox, dan lakukan <strong>Wipe Data</strong> (centang <em>Internal Storage</em>, lalu swipe).</span>
+                        </li>
                         <li class="pt-2">
                             <a href="https://youtu.be/Ept2a1LPzTY?si=7gZt65sXNL_qr6ke" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg bg-red-50 px-3 py-1.5 font-semibold text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/50">
                                 <i class="fa-brands fa-youtube text-sm"></i> 
                                 <span>Tutorial YouTube</span>
                             </a>
+                        </li>
+                        <li class="flex items-start gap-1.5 text-slate-400">
+                            <span>*</span>
+                            <span><em>Catatan: Wipe data Internal Storage berguna untuk mengatasi OrangeFox yang failed to decrypt 0.</em></span>
                         </li>
                     </ul>
                 </div>
@@ -1999,7 +2007,7 @@
             <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-lg shadow-amber-600/30 transition-all cursor-pointer">Mengerti</button>
         </div>
     `);
-        }
+}
 
         function openDeveloperModal(devId) {
             const dev = developersData.find(d => d.id === devId);
@@ -2605,7 +2613,7 @@
             }
         });
 
-        
+
     </script>
 
     <style>
@@ -2685,18 +2693,21 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar {
-    width: 5px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(45, 212, 191, 0.4);
-}
+            width: 5px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(45, 212, 191, 0.4);
+        }
     </style>
 
     <!-- Modal Popup Pilihan Download (Clean & Tanpa Efek Loncat) -->
@@ -2745,136 +2756,147 @@
     </div>
 
 
-<!-- Modal Popup Kernel SELinux Permissive KSU GKI (BISA DI-SCROLL) -->
-<div id="fixerModal"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-all opacity-0 pointer-events-none overflow-y-auto">
-    <div class="glass-card w-full max-w-md rounded-3xl p-6 sm:p-8 border border-white/10 text-center transform scale-95 transition-all duration-300 relative max-h-[85vh] overflow-y-auto custom-scrollbar"
-        id="fixerModalContent">
+    <!-- Modal Popup Kernel SELinux Permissive KSU GKI (BISA DI-SCROLL) -->
+    <div id="fixerModal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-all opacity-0 pointer-events-none overflow-y-auto">
+        <div class="glass-card w-full max-w-md rounded-3xl p-6 sm:p-8 border border-white/10 text-center transform scale-95 transition-all duration-300 relative max-h-[85vh] overflow-y-auto custom-scrollbar"
+            id="fixerModalContent">
 
-        <!-- Icon Header Modal -->
-        <div class="mx-auto w-16 h-16 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-5 text-teal-400 shrink-0">
-            <i class="fa-solid fa-microchip text-2xl"></i>
-        </div>
-
-        <h3 class="text-xl font-extrabold text-white tracking-tight mb-2">Kernel SELinux Permissive KSU GKI</h3>
-        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
-            Support MamboSU & KernelSU Next Manager
-        </p>
-
-        <!-- Tombol Pilihan -->
-        <div class="flex flex-col gap-3 mb-4">
-            <!-- Tombol 1: Download PermissiveGKI2 -->
-            <a href="https://www.mediafire.com/file/6sfw0qy0qhgbtbf/Permissiver_GKI2.zip/file" target="_blank" rel="noopener noreferrer"
-                class="w-full px-5 py-3.5 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 group">
-                <i class="fa-solid fa-file-zipper text-base group-hover:scale-110 transition-transform"></i>
-                <span>Download PermissiveGKI2 by @xiastuff</span>
-            </a>
-
-            <!-- Tombol 2: Download GKIKSU -->
-            <a href="https://www.mediafire.com/file/fhdi9mgsedo9lv9/GKI-5.10-5.10.269-KSU-20261020.zip/file" target="_blank" rel="noopener noreferrer"
-                class="w-full px-5 py-3.5 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 group">
-                <i class="fa-solid fa-file-zipper text-base group-hover:scale-110 transition-transform"></i>
-                <span>Download GKIKSU by @goupstream</span>
-            </a>
-
-            <!-- Tombol 3: Download MamboSU APK -->
-            <a href="https://www.mediafire.com/file/se8c8qxd7o2xpv3/MamboSU_v3.3.0-17-geacec300_32653-release.apk/file"
-                target="_blank" rel="noopener noreferrer"
-                class="w-full px-5 py-3.5 rounded-2xl bg-slate-950/60 hover:bg-slate-900 text-slate-200 hover:text-white border border-white/10 hover:border-white/20 text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 group">
-                <i class="fa-brands fa-android text-teal-400 text-base group-hover:scale-110 transition-transform"></i>
-                <span>Download MamboSU APK</span>
-            </a>
-        </div>
-
-        <!-- Daftar Catatan / Panduan -->
-        <div class="flex flex-col gap-3 text-left mb-4">
-            <!-- Panduan 1: Tutorial Flash ROM -->
-            <div class="p-3.5 rounded-2xl bg-slate-900/60 border border-white/5">
-                <div class="text-[11px] font-bold text-teal-400 mb-1 flex items-center gap-1.5">
-                    <i class="fa-solid fa-book-open text-teal-400 text-xs"></i>
-                    <span>1. Tutorial Flash ROM</span>
-                </div>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                    Lakukan flash ROM terlebih dahulu sesuai dengan langkah-langkah standar pada panduan utama.
-                </p>
+            <!-- Icon Header Modal -->
+            <div
+                class="mx-auto w-16 h-16 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-5 text-teal-400 shrink-0">
+                <i class="fa-solid fa-microchip text-2xl"></i>
             </div>
 
-            <!-- Panduan 2: PermissiveGKI2 -->
-            <div class="p-3.5 rounded-2xl bg-slate-900/60 border border-white/5">
-                <div class="text-[11px] font-bold text-teal-400 mb-1 flex items-center gap-1.5">
-                    <i class="fa-solid fa-microchip text-teal-400 text-xs"></i>
-                    <span>2. PermissiveGKI2 by @xiastuff</span>
-                </div>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                    Setelah flash ROM, pasang kernel ini sebagai kernel utama agar device kalian bisa booting dengan normal.
-                </p>
+            <h3 class="text-xl font-extrabold text-white tracking-tight mb-2">Kernel SELinux Permissive KSU GKI</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
+                Support MamboSU & KernelSU Next Manager
+            </p>
+
+            <!-- Tombol Pilihan -->
+            <div class="flex flex-col gap-3 mb-4">
+                <!-- Tombol 1: Download PermissiveGKI2 -->
+                <a href="https://www.mediafire.com/file/6sfw0qy0qhgbtbf/Permissiver_GKI2.zip/file" target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full px-5 py-3.5 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 group">
+                    <i class="fa-solid fa-file-zipper text-base group-hover:scale-110 transition-transform"></i>
+                    <span>Download PermissiveGKI2 by @xiastuff</span>
+                </a>
+
+                <!-- Tombol 2: Download GKIKSU -->
+                <a href="https://www.mediafire.com/file/fhdi9mgsedo9lv9/GKI-5.10-5.10.269-KSU-20261020.zip/file"
+                    target="_blank" rel="noopener noreferrer"
+                    class="w-full px-5 py-3.5 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 group">
+                    <i class="fa-solid fa-file-zipper text-base group-hover:scale-110 transition-transform"></i>
+                    <span>Download GKIKSU by @goupstream</span>
+                </a>
+
+                <!-- Tombol 3: Download MamboSU APK -->
+                <a href="https://www.mediafire.com/file/se8c8qxd7o2xpv3/MamboSU_v3.3.0-17-geacec300_32653-release.apk/file"
+                    target="_blank" rel="noopener noreferrer"
+                    class="w-full px-5 py-3.5 rounded-2xl bg-slate-950/60 hover:bg-slate-900 text-slate-200 hover:text-white border border-white/10 hover:border-white/20 text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 group">
+                    <i
+                        class="fa-brands fa-android text-teal-400 text-base group-hover:scale-110 transition-transform"></i>
+                    <span>Download MamboSU APK</span>
+                </a>
             </div>
 
-            <!-- Panduan 3: GKIKSU -->
-            <div class="p-3.5 rounded-2xl bg-slate-900/60 border border-white/5">
-                <div class="text-[11px] font-bold text-teal-400 mb-1 flex items-center gap-1.5">
-                    <i class="fa-solid fa-microchip text-teal-400 text-xs"></i>
-                    <span>3. GKIKSU by @goupstream (Terakhir)</span>
+            <!-- Daftar Catatan / Panduan -->
+            <div class="flex flex-col gap-3 text-left mb-4">
+                <!-- Panduan 1: Tutorial Flash ROM -->
+                <div class="p-3.5 rounded-2xl bg-slate-900/60 border border-white/5">
+                    <div class="text-[11px] font-bold text-teal-400 mb-1 flex items-center gap-1.5">
+                        <i class="fa-solid fa-book-open text-teal-400 text-xs"></i>
+                        <span>1. Tutorial Flash ROM</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Lakukan flash ROM terlebih dahulu sesuai dengan langkah-langkah standar pada panduan utama.
+                    </p>
                 </div>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                    Lakukan flash kernel ini di urutan terakhir ketika device kalian sudah booting secara normal.
-                </p>
+
+                <!-- Panduan 2: PermissiveGKI2 -->
+                <div class="p-3.5 rounded-2xl bg-slate-900/60 border border-white/5">
+                    <div class="text-[11px] font-bold text-teal-400 mb-1 flex items-center gap-1.5">
+                        <i class="fa-solid fa-microchip text-teal-400 text-xs"></i>
+                        <span>2. PermissiveGKI2 by @xiastuff</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Setelah flash ROM, pasang kernel ini sebagai kernel utama agar device kalian bisa booting dengan
+                        normal.
+                    </p>
+                </div>
+
+                <!-- Panduan 3: GKIKSU -->
+                <div class="p-3.5 rounded-2xl bg-slate-900/60 border border-white/5">
+                    <div class="text-[11px] font-bold text-teal-400 mb-1 flex items-center gap-1.5">
+                        <i class="fa-solid fa-microchip text-teal-400 text-xs"></i>
+                        <span>3. GKIKSU by @goupstream (Terakhir)</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Lakukan flash kernel ini di urutan terakhir ketika device kalian sudah booting secara normal.
+                    </p>
+                </div>
             </div>
+
+            <!-- Tombol Batal -->
+            <button onclick="closeFixerModal()"
+                class="mt-2 py-2 text-xs font-semibold text-slate-500 hover:text-slate-300 transition-colors uppercase tracking-wider w-full">
+                Batal
+            </button>
+
         </div>
-
-        <!-- Tombol Batal -->
-        <button onclick="closeFixerModal()"
-            class="mt-2 py-2 text-xs font-semibold text-slate-500 hover:text-slate-300 transition-colors uppercase tracking-wider w-full">
-            Batal
-        </button>
-
     </div>
-</div>
 
-<!-- Modal Popup Catatan Kernel (BISA DI-SCROLL) -->
-<div id="kernelNoteModal"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-all opacity-0 pointer-events-none overflow-y-auto">
-    <div class="glass-card w-full max-w-sm rounded-3xl p-6 border border-white/10 text-center transform scale-95 transition-all duration-300 relative max-h-[85vh] overflow-y-auto custom-scrollbar"
-        id="kernelNoteModalContent">
+    <!-- Modal Popup Catatan Kernel (BISA DI-SCROLL) -->
+    <div id="kernelNoteModal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-all opacity-0 pointer-events-none overflow-y-auto">
+        <div class="glass-card w-full max-w-sm rounded-3xl p-6 border border-white/10 text-center transform scale-95 transition-all duration-300 relative max-h-[85vh] overflow-y-auto custom-scrollbar"
+            id="kernelNoteModalContent">
 
-        <!-- Icon Header Modal -->
-        <div class="mx-auto w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-4 text-teal-400 shrink-0">
-            <i class="fa-solid fa-circle-exclamation text-xl"></i>
+            <!-- Icon Header Modal -->
+            <div
+                class="mx-auto w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-4 text-teal-400 shrink-0">
+                <i class="fa-solid fa-circle-exclamation text-xl"></i>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-white tracking-tight mb-2">Catatan Instalasi Kernel</h3>
+            <p
+                class="text-xs text-slate-300 leading-relaxed mb-6 bg-slate-900/60 p-3.5 rounded-2xl border border-white/5 text-left">
+                Pilih salah satu kernel yang anda sukai untuk dipasang di device anda. Untuk pemasangan kernel KSU GKI,
+                cara instalasinya berbeda. Untuk selengkapnya kamu bisa cek langsung ke <strong>Kernel SELinux
+                    Permissive KSU GKI</strong>.
+            </p>
+
+            <!-- Tombol Tutup -->
+            <button onclick="closeKernelNoteModal()"
+                class="w-full py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold transition-all">
+                Mengerti
+            </button>
+
         </div>
-
-        <h3 class="text-lg font-extrabold text-white tracking-tight mb-2">Catatan Instalasi Kernel</h3>
-        <p class="text-xs text-slate-300 leading-relaxed mb-6 bg-slate-900/60 p-3.5 rounded-2xl border border-white/5 text-left">
-            Pilih salah satu kernel yang anda sukai untuk dipasang di device anda. Untuk pemasangan kernel KSU GKI, cara instalasinya berbeda. Untuk selengkapnya kamu bisa cek langsung ke <strong>Kernel SELinux Permissive KSU GKI</strong>.
-        </p>
-
-        <!-- Tombol Tutup -->
-        <button onclick="closeKernelNoteModal()"
-            class="w-full py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold transition-all">
-            Mengerti
-        </button>
-
     </div>
-</div>
 </body>
 
-<footer class="relative z-10 border-t border-black/5 py-10 pb-28 sm:pb-36 text-center text-sm text-slate-500 dark:text-slate-400">
-        <div class="max-w-5xl mx-auto px-4 flex flex-col items-center justify-center space-y-4">
-            <!-- Tombol Sosmed (Telegram, YouTube, TikTok) -->
-            <div class="flex items-center space-x-4 pt-2">
-                <a href="https://t.me/kayokoprojectall" target="_blank"
-                    class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-all spring-bounce"
-                    title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                <a href="https://youtube.com/@nightcoremusiclyricsid?si=fU_Vuz5tBc2eqlvY" target="_blank"
-                    class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-all spring-bounce"
-                    title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://tiktok.com/@systhetic.cn" target="_blank"
-                    class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-gray-800 transition-all spring-bounce"
-                    title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            </div>
-            <!-- Tulisan Copyright -->
-            <p class="text-xs text-slate-500 dark:text-slate-400">
-                &copy; 2026 KayokoProject. ColorOS 17 for INFINIX HOT 50 PRO PLUS.
-            </p>
+<footer
+    class="relative z-10 border-t border-black/5 py-10 pb-28 sm:pb-36 text-center text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col items-center justify-center space-y-4">
+        <!-- Tombol Sosmed (Telegram, YouTube, TikTok) -->
+        <div class="flex items-center space-x-4 pt-2">
+            <a href="https://t.me/kayokoprojectall" target="_blank"
+                class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-all spring-bounce"
+                title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://youtube.com/@nightcoremusiclyricsid?si=fU_Vuz5tBc2eqlvY" target="_blank"
+                class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-all spring-bounce"
+                title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://tiktok.com/@systhetic.cn" target="_blank"
+                class="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-gray-800 transition-all spring-bounce"
+                title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         </div>
-    </footer>
+        <!-- Tulisan Copyright -->
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+            &copy; 2026 KayokoProject. ColorOS 17 for INFINIX HOT 50 PRO PLUS.
+        </p>
+    </div>
+</footer>
+
 </html>
